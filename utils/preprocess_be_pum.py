@@ -1,9 +1,7 @@
 import os
 
-log_path = ""
-asm_cfg_path = ""
-
-information = {}
+log_path = "data/logs"
+asm_cfg_path = "data/asm_cfg"
 
 
 def get_end_of_unpacking(name):
@@ -19,17 +17,7 @@ def get_end_of_unpacking(name):
     return None
 
 
-def update_end_unpacking(packed_file_path):
-    with open(packed_file_path, "r") as f:
-        packed_file = [line.strip() for line in f]
-
-    for name in packed_file:
-        end_unpacking_address = get_end_of_unpacking(name)
-        if end_unpacking_address is not None:
-            information[name]["end_unpacking"] = end_unpacking_address
-
-
-def find_OEP_of_UPX(name):
+def get_OEP_of_UPX(name):
     file = os.path.join(asm_cfg_path, name + "_code.asm")
     with open(file, "r") as f:
         traces = []
@@ -39,5 +27,22 @@ def find_OEP_of_UPX(name):
         for idx, trace in enumerate(traces):
             if trace[1] == "popa":
                 return traces[idx + 6][0], traces[idx + 7][0]
-    return None
+    return None, None
 
+
+def update_information_UPX(packed_file_path):
+    information = {}
+    with open(packed_file_path, "r") as f:
+        packed_file = [line.strip() for line in f]
+
+    for name in packed_file:
+        previous_OEP, OEP = get_OEP_of_UPX(name)
+        if OEP is not None:
+            information[name]["previous_OEP"] = previous_OEP
+            information[name]["OEP"] = OEP
+
+    for name in packed_file:
+        end_unpacking_address = get_end_of_unpacking(name)
+        if end_unpacking_address is not None:
+            information[name]["end_unpacking"] = end_unpacking_address
+    return information
