@@ -5,7 +5,7 @@ asm_cfg_path = "data/asm_cfg"
 
 
 def remove_unnecessary_char(s):
-    return  re.sub(r"[\n\t\s]*", "", s)
+    return re.sub(r"[\n\t\s]*", "", s)
 
 def get_end_of_unpacking(name):
     file = os.path.join(log_path, "Log-" + name + ".log")
@@ -13,8 +13,8 @@ def get_end_of_unpacking(name):
         return None
     with open(file, "r") as f:
         last_line = f.readlines()[-1]
-        if "Packed Identified" in last_line:
-            words = last_line.split(" ")
+        if "Packer Identified" in last_line:
+            words = last_line.split("\t")
             for word in words:
                 if word.startswith("0x"):
                     end_unpacking_address = word
