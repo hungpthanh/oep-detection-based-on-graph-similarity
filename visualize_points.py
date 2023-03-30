@@ -11,7 +11,7 @@ from sklearn import preprocessing
 packed_list_path = "data/packed_files.txt"
 
 
-def get_X_y():
+def get_X_y(packer_name):
     information = update_information_UPX(packed_list_path)
     print(information)
     print(len(information))
@@ -36,59 +36,7 @@ def get_X_y():
 
 
 def main():
-    # x = [1, 2, 3, 4, 5, 6, 7, 8]
-    # y = [2, 3, 1, 3, 1, 4, 2, 3]
     X, y = get_X_y()
-    # X = np.asarray(X).reshape((-1, 1))
-    # y = np.asarray(y).reshape((-1, 1)).ravel()
-    # svr_rbf = SVR(kernel="rbf", C=100, gamma=0.01, epsilon=0.005)
-    # svr_lin = SVR(kernel="linear", C=100, gamma="auto")
-    # svr_poly = SVR(kernel="poly", C=100, gamma="auto", degree=3, epsilon=0.1, coef0=1)
-    # rf = RandomForestRegressor(max_depth=2, random_state=0)
-    # lw = 2
-    #
-    # # svrs = [svr_rbf, svr_lin, svr_poly]
-    # svrs = [svr_rbf, svr_lin]
-    # kernel_label = ["RBF", "Linear", "Polynomial"]
-    # model_color = ["m", "c", "g"]
-    #
-    # fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(15, 10), sharey=True)
-    # for ix, svr in enumerate(svrs):
-    #     print("model: {}".format(ix))
-    #     axes[ix].plot(
-    #         X,
-    #         svr.fit(X, y).predict(X),
-    #         color=model_color[ix],
-    #         lw=lw,
-    #         label="{} model".format(kernel_label[ix]),
-    #     )
-    #     axes[ix].scatter(
-    #         X[svr.support_],
-    #         y[svr.support_],
-    #         facecolor="none",
-    #         edgecolor=model_color[ix],
-    #         s=50,
-    #         label="{} support vectors".format(kernel_label[ix]),
-    #     )
-    #     axes[ix].scatter(
-    #         X[np.setdiff1d(np.arange(len(X)), svr.support_)],
-    #         y[np.setdiff1d(np.arange(len(X)), svr.support_)],
-    #         facecolor="none",
-    #         edgecolor="k",
-    #         s=50,
-    #         label="other training data",
-    #     )
-    #     axes[ix].legend(
-    #         loc="upper center",
-    #         bbox_to_anchor=(0.5, 1.1),
-    #         ncol=1,
-    #         fancybox=True,
-    #         shadow=True,
-    #     )
-    #
-    # fig.text(0.5, 0.04, "data", ha="center", va="center")
-    # fig.text(0.06, 0.5, "target", ha="center", va="center", rotation="vertical")
-    # fig.suptitle("Support Vector Regression", fontsize=14)
     fig, ax = plt.subplots(figsize=(12, 8))
     colors = []
     for index in range(len(X)):
