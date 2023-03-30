@@ -1,0 +1,2711 @@
+================== DEBUG ==================
+Start analyzing file with BE-PUM
+Parsing main module asm/testcase/fsg_WhatIsHang.exe...
+-- Reading image import descriptors....
+Starting On-the-fly Model Generation algorithm.
+Finish creating PE Header File kernel32.dll
+Finish creating PE Header File user32.dll
+Finish creating PE Header File advapi32.dll
+Finish creating PE Header File msvcrt.dll
+Finish creating PE Header File ws2_32.dll
+Reset address of import table
+ Library Name:kernel32.dll
+Function Name:LoadLibraryA, Library Handle:0x75c40000
+ Library Name:kernel32.dll
+Function Name:GetProcAddress, Library Handle:0x75c40000
+ Library Name:ntdll.dll
+ Library Name:kernel32.dll
+_____________________________________________________________________________
+_____________________ START NEW OTF THREAD 1680067515955 _______________________
+_____________________________________________________________________________
+Number of static instruction:72
+
+	Call api: LoadLibraryA@kernel32.dll
+	Ins address of api: 0x004240c9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff7c, ebp=3f5, esi=40e2e4, edi=4100d1
+Flag: cf=true, pf=false, af=true, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryA
+Argument:	x1: 4100d1	
+ Library Name:msvcrt.dll
+	Last Error: 0
+EAX=75e80000
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e2e4, edi=4100dc
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4100dc	
+Function Name:__p__commode, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e927c3
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e2e8, edi=4100e9
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4100e9	
+Function Name:_adjust_fdiv, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75f232ec
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e2ec, edi=4100f6
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4100f6	
+Function Name:__setusermatherr, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75f177dd
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e2f0, edi=410107
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410107	
+Function Name:_initterm, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8c151
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e2f4, edi=410111
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410111	
+Function Name:__wgetmainargs, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e94e7c
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e2f8, edi=410120
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410120	
+Function Name:_wcmdln, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75f204dc
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e2fc, edi=410128
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410128	
+Function Name:exit, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e936aa
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e300, edi=41012d
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41012d	
+Function Name:_cexit, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e937d4
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e304, edi=410134
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410134	
+Function Name:_XcptFilter, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75eadc75
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e308, edi=410140
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410140	
+Function Name:__p__fmode, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e927ce
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e30c, edi=41014b
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41014b	
+Function Name:_c_exit, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75eeb2fb
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e310, edi=410153
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410153	
+Function Name:_onexit, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e9112d
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e314, edi=41015b
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41015b	
+Function Name:__dllonexit, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8f509
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e318, edi=410167
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410167	
+Function Name:_wcslwr, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8fb25
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e31c, edi=41016f
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41016f	
+Function Name:strlen, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e943d3
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e320, edi=410176
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410176	
+Function Name:qsort, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8d3e6
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e324, edi=41017c
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41017c	
+Function Name:_purecall, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75ee6eb1
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e328, edi=410186
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410186	
+Function Name:_itow, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e9019c
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e32c, edi=41018c
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41018c	
+Function Name:_wcsicmp, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8a9e9
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e330, edi=410195
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410195	
+Function Name:malloc, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e89cee
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e334, edi=41019c
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41019c	
+Function Name:__set_app_type, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e92804
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e338, edi=4101ab
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101ab	
+Function Name:_controlfp, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8e1e1
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e33c, edi=4101b6
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101b6	
+Function Name:_except_handler3, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75ead770
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e340, edi=4101c7
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101c7	
+Function Name:_exit, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75eeb2e0
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e344, edi=4101cd
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101cd	
+Function Name:wcschr, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8aa61
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e348, edi=4101d4
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101d4	
+Function Name:wcscmp, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e9d3b7
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e34c, edi=4101db
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101db	
+Function Name:free, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e89894
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e350, edi=4101e0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101e0	
+Function Name:modf, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e97551
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e354, edi=4101e5
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101e5	
+Function Name:_memicmp, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e906c8
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e358, edi=4101ee
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101ee	
+Function Name:_wtoi, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8c823
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e35c, edi=4101f4
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101f4	
+Function Name:memcmp, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e97975
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e360, edi=4101fb
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 4101fb	
+Function Name:wcstoul, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8b319
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e364, edi=410203
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410203	
+Function Name:wcsrchr, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8a73f
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e368, edi=41020b
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41020b	
+Function Name:??3@YAXPAX@Z, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8b0b9
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e36c, edi=410218
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410218	
+Function Name:??2@YAPAXI@Z, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8b0c9
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e370, edi=410225
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410225	
+Function Name:memcpy, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e89910
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e374, edi=41022c
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41022c	
+Function Name:wcslen, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e9d335
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e378, edi=410233
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410233	
+Function Name:_ultow, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e8fab0
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e37c, edi=41023a
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41023a	
+Function Name:wcscpy, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e9d4f8
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e380, edi=410241
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410241	
+Function Name:memset, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75e89790
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e384, edi=410248
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 410248	
+Function Name:wcscat, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75f00ece
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e388, edi=41024f
+Flag: cf=false, pf=true, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41024f	
+Function Name:_snwprintf, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75ea95d1
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75e80000, esi=40e38c, edi=41025a
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75e80000		x2: 41025a	
+Function Name:wcsncat, Library Handle:0x75e80000
+	Last Error: 0
+EAX=75f00f01
+
+	Call api: LoadLibraryA@kernel32.dll
+	Ins address of api: 0x004240c9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff7c, ebp=75e80000, esi=40e000, edi=410267
+Flag: cf=true, pf=true, af=false, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryA
+Argument:	x1: 410267	
+ Library Name:COMCTL32.dll
+	Last Error: 0
+EAX=73c10000
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=73c10000, esi=40e000, edi=410274
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 73c10000		x2: 410274	
+Function Name:ImageList_SetImageCount, Library Handle:0x73c10000
+	Last Error: 0
+EAX=73c65251
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=73c10000, esi=40e004, edi=41028c
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 73c10000		x2: 41028c	
+Function Name:CreateStatusWindowW, Library Handle:0x73c10000
+	Last Error: 0
+EAX=73c675f3
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=73c10000, esi=40e008, edi=4102a0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 73c10000		x2: 4102a0	
+Function Name:ImageList_ReplaceIcon, Library Handle:0x73c10000
+	Last Error: 0
+EAX=73c410c1
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=73c10000, esi=40e00c, edi=4102bb
+Flag: cf=true, pf=false, af=true, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 73c10000		x2: 11	
+Get ProcAddres from Ordinal Number!
+Function Name:InitCommonControls, Library Handle:0x73c10000
+	Last Error: 0
+EAX=73c31551
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=73c10000, esi=40e010, edi=4102bc
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 73c10000		x2: 4102bc	
+Function Name:ImageList_Create, Library Handle:0x73c10000
+	Last Error: 0
+EAX=73c23c8d
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=73c10000, esi=40e014, edi=4102cd
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 73c10000		x2: 4102cd	
+Function Name:ImageList_AddMasked, Library Handle:0x73c10000
+	Last Error: 0
+EAX=73c1b077
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=73c10000, esi=40e018, edi=4102e1
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 73c10000		x2: 4102e1	
+Function Name:CreateToolbarEx, Library Handle:0x73c10000
+	Last Error: 0
+EAX=73cf9004
+
+	Call api: LoadLibraryA@kernel32.dll
+	Ins address of api: 0x004240c9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff7c, ebp=73c10000, esi=40e2c8, edi=4102f6
+Flag: cf=true, pf=false, af=true, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryA
+Argument:	x1: 4102f6	
+ Library Name:VERSION.dll
+	Last Error: 0
+EAX=74180000
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=74180000, esi=40e2c8, edi=410302
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 74180000		x2: 410302	
+Function Name:GetFileVersionInfoSizeW, Library Handle:0x74180000
+	Last Error: 0
+EAX=741819d9
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=74180000, esi=40e2cc, edi=41031a
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 74180000		x2: 41031a	
+Function Name:VerQueryValueW, Library Handle:0x74180000
+	Last Error: 0
+EAX=74181b51
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=74180000, esi=40e2d0, edi=410329
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 74180000		x2: 410329	
+Function Name:GetFileVersionInfoW, Library Handle:0x74180000
+	Last Error: 0
+EAX=741819f4
+
+	Call api: LoadLibraryA@kernel32.dll
+	Ins address of api: 0x004240c9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff7c, ebp=74180000, esi=40e050, edi=410342
+Flag: cf=true, pf=false, af=false, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryA
+Argument:	x1: 410342	
+ Library Name:KERNEL32.dll
+	Last Error: 0
+EAX=75c40000
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e050, edi=41034f
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41034f	
+Function Name:ExitProcess, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c9bed2
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e054, edi=41035b
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41035b	
+Function Name:GetTickCount, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8c4a0
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e058, edi=410368
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410368	
+Function Name:SetErrorMode, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c90414
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e05c, edi=410375
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410375	
+Function Name:DeleteFileW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c81937
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e060, edi=410381
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410381	
+Function Name:Sleep, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8c486
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e064, edi=410387
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410387	
+Function Name:GetStdHandle, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c99167
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e068, edi=410394
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410394	
+Function Name:CreateRemoteThread, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75cd035b
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e06c, edi=4103a7
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4103a7	
+Function Name:EnumResourceTypesW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75ca470f
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e070, edi=4103ba
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4103ba	
+Function Name:GetModuleHandleA, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8db33
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e074, edi=4103cb
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4103cb	
+Function Name:GetStartupInfoW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8e51d
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e078, edi=4103db
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4103db	
+Function Name:SetFilePointer, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c908a9
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e07c, edi=4103ea
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4103ea	
+Function Name:GetPrivateProfileStringW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c781db
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e080, edi=410403
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410403	
+Function Name:EnumResourceNamesW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75ca9820
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e084, edi=410416
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410416	
+Function Name:GetPrivateProfileIntW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c77d25
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e088, edi=41042c
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41042c	
+Function Name:WritePrivateProfileStringW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c78859
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e08c, edi=410447
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410447	
+Function Name:LoadLibraryW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8f182
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e090, edi=410454
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410454	
+Function Name:FileTimeToSystemTime, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8c015
+
+	Call api: GetProcAddress@kernel32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e094, edi=410469
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410469	
+Function Name:GetProcAddress, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8cedc
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e098, edi=410478
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410478	
+Function Name:FreeLibrary, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8f1a7
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e09c, edi=410484
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410484	
+Function Name:GetModuleHandleW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8cef4
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0a0, edi=410495
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410495	
+Function Name:GetTimeFormatW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8b210
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0a4, edi=4104a4
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4104a4	
+Function Name:GetFileAttributesW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c94ebc
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0a8, edi=4104b7
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4104b7	
+Function Name:CloseHandle, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8eaa8
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0ac, edi=4104c3
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4104c3	
+Function Name:GetWindowsDirectoryW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c80c02
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0b0, edi=4104d8
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4104d8	
+Function Name:FileTimeToLocalFileTime, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8c02d
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0b4, edi=4104f0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4104f0	
+Function Name:ReadFile, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c89db6
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0b8, edi=4104f9
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4104f9	
+Function Name:GetModuleFileNameW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8f175
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0bc, edi=41050c
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41050c	
+Function Name:WriteFile, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c95696
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0c0, edi=410516
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410516	
+Function Name:CreateFileW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8eae5
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0c4, edi=410522
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410522	
+Function Name:LocalFree, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8ce3c
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0c8, edi=41052c
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41052c	
+Function Name:LockResource, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c80521
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0cc, edi=410539
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410539	
+Function Name:FindResourceW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8571f
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0d0, edi=410547
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410547	
+Function Name:MultiByteToWideChar, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8f147
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0d4, edi=41055b
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41055b	
+Function Name:lstrcpyW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c79317
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0d8, edi=410564
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410564	
+Function Name:lstrlenW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8bff0
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0dc, edi=41056d
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41056d	
+Function Name:LoadResource, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c89ec2
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0e0, edi=41057a
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41057a	
+Function Name:GlobalAlloc, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8a375
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0e4, edi=410586
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410586	
+Function Name:LoadLibraryExW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c852c9
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0e8, edi=410595
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410595	
+Function Name:WideCharToMultiByte, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8f13a
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0ec, edi=4105a9
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4105a9	
+Function Name:GlobalUnlock, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8a3d3
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0f0, edi=4105b6
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4105b6	
+Function Name:GetTempPathW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c79458
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0f4, edi=4105c3
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4105c3	
+Function Name:GetLastError, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8d020
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0f8, edi=4105d0
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4105d0	
+Function Name:SizeofResource, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8573d
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e0fc, edi=4105df
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4105df	
+Function Name:GlobalLock, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8a485
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e100, edi=4105ea
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4105ea	
+Function Name:FormatMessageW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c89020
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e104, edi=4105f9
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4105f9	
+Function Name:GetDateFormatW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8b3f2
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e108, edi=410608
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410608	
+Function Name:GetVersionExW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c89bf1
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e10c, edi=410616
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410616	
+Function Name:GetTempFileNameW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c77291
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e110, edi=410627
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410627	
+Function Name:GetFileSize, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c80a6b
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e114, edi=410633
+Flag: cf=false, pf=false, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410633	
+Function Name:OpenProcess, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c856ef
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e118, edi=41063f
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41063f	
+Function Name:VirtualFreeEx, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c7c9fb
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e11c, edi=41064d
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41064d	
+Function Name:ReadProcessMemory, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c7c9eb
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e120, edi=41065f
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41065f	
+Function Name:VirtualAllocEx, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c7c9d3
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e124, edi=41066e
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 41066e	
+Function Name:GetCurrentProcess, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8d9e0
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e128, edi=410680
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410680	
+Function Name:GetCurrentProcessId, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8d9f5
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e12c, edi=410694
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 410694	
+Function Name:WaitForSingleObject, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8c4d0
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e130, edi=4106a8
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4106a8	
+Function Name:WriteProcessMemory, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75ca97df
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e134, edi=4106bb
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4106bb	
+Function Name:ResumeThread, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8191f
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e138, edi=4106c8
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4106c8	
+Function Name:CreateThread, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8df02
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e13c, edi=4106d5
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4106d5	
+Function Name:GetDriveTypeW, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8ef82
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75c40000, esi=40e140, edi=4106e3
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75c40000		x2: 4106e3	
+Function Name:GetSystemTimeAsFileTime, Library Handle:0x75c40000
+	Last Error: 0
+EAX=75c8da56
+
+	Call api: LoadLibraryA@kernel32.dll
+	Ins address of api: 0x004240c9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff7c, ebp=75c40000, esi=40e15c, edi=410700
+Flag: cf=true, pf=false, af=true, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryA
+Argument:	x1: 410700	
+ Library Name:USER32.dll
+	Last Error: 0
+EAX=75db0000
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e15c, edi=41070b
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41070b	
+Function Name:SetForegroundWindow, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbb1ed
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e160, edi=41071f
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41071f	
+Function Name:FillRect, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc5d26
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e164, edi=410728
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410728	
+Function Name:SetCapture, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de6902
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e168, edi=410733
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410733	
+Function Name:ReleaseCapture, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de69c2
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e16c, edi=410742
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410742	
+Function Name:KillTimer, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc64c7
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e170, edi=41074c
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41074c	
+Function Name:GetFocus, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc3a04
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e174, edi=410755
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410755	
+Function Name:SetCursor, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc3045
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e178, edi=41075f
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41075f	
+Function Name:LoadCursorW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbed58
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e17c, edi=41076b
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41076b	
+Function Name:GetSysColorBrush, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbf1b5
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e180, edi=41077c
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41077c	
+Function Name:ShowWindow, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbf271
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e184, edi=410787
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410787	
+Function Name:ChildWindowFromPoint, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dfb6aa
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e188, edi=41079c
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41079c	
+Function Name:BeginDeferWindowPos, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dba66e
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e18c, edi=4107b0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4107b0	
+Function Name:EndDialog, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de3b73
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e190, edi=4107ba
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4107ba	
+Function Name:EndPaint, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc5d12
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e194, edi=4107c3
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4107c3	
+Function Name:GetDlgItem, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de428b
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e198, edi=4107ce
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4107ce	
+Function Name:InvalidateRect, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc563d
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e19c, edi=4107dd
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4107dd	
+Function Name:SetDlgItemInt, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75ddebfe
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1a0, edi=4107eb
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4107eb	
+Function Name:BeginPaint, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc5ce4
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1a4, edi=4107f6
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4107f6	
+Function Name:SetWindowTextW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc60fb
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1a8, edi=410805
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410805	
+Function Name:GetClientRect, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc54ad
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1ac, edi=410813
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410813	
+Function Name:UpdateWindow, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbff70
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1b0, edi=410820
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410820	
+Function Name:SetDlgItemTextW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75ddeba4
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1b4, edi=410830
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410830	
+Function Name:GetSystemMetrics, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc679f
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1b8, edi=410841
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410841	
+Function Name:DeferWindowPos, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dba690
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1bc, edi=410850
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410850	
+Function Name:CreateWindowExW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbec44
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1c0, edi=410860
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410860	
+Function Name:GetWindowRect, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc555c
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1c4, edi=41086e
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41086e	
+Function Name:GetDlgItemInt, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dded26
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1c8, edi=41087c
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41087c	
+Function Name:GetWindowTextLengthW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dba014
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1cc, edi=410891
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410891	
+Function Name:SetMenu, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de6ade
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1d0, edi=410899
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410899	
+Function Name:SetWindowPos, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc1b94
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1d4, edi=4108a6
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4108a6	
+Function Name:GetWindowPlacement, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de69ae
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1d8, edi=4108b9
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4108b9	
+Function Name:LoadAcceleratorsW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75db9735
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1dc, edi=4108cb
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4108cb	
+Function Name:PostMessageW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc444b
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1e0, edi=4108d8
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4108d8	
+Function Name:DefWindowProcW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc504b
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1e4, edi=4108e7
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4108e7	
+Function Name:SendMessageW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc5509
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1e8, edi=4108f4
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4108f4	
+Function Name:TranslateAcceleratorW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc664e
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1ec, edi=41090a
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41090a	
+Function Name:RegisterClassW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbed12
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1f0, edi=410919
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410919	
+Function Name:MessageBoxW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75e0eae7
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1f4, edi=410925
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410925	
+Function Name:LoadImageW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc12bb
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1f8, edi=410930
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410930	
+Function Name:LoadIconW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbf10a
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e1fc, edi=41093a
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41093a	
+Function Name:SetWindowLongW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc4419
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e200, edi=410949
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410949	
+Function Name:GetWindowLongW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc6188
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e204, edi=410958
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410958	
+Function Name:SetFocus, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbab75
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e208, edi=410961
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410961	
+Function Name:CheckMenuItem, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75ddee4c
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e20c, edi=41096f
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41096f	
+Function Name:CloseClipboard, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de443c
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e210, edi=41097e
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41097e	
+Function Name:GetCursorPos, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dba47b
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e214, edi=41098b
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 41098b	
+Function Name:GetSysColor, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dcdb4a
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e218, edi=410997
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410997	
+Function Name:GetParent, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc5ff9
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e21c, edi=4109a1
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4109a1	
+Function Name:SetClipboardData, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dd2932
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e220, edi=4109b2
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4109b2	
+Function Name:EnableWindow, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75db8cc2
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e224, edi=4109bf
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4109bf	
+Function Name:MapWindowPoints, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc5c7a
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e228, edi=4109cf
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4109cf	
+Function Name:GetMenu, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de6b38
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e22c, edi=4109d7
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4109d7	
+Function Name:GetSubMenu, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75db9be1
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e230, edi=4109e2
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4109e2	
+Function Name:GetDC, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc541c
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e234, edi=4109e8
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4109e8	
+Function Name:EmptyClipboard, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dd28dc
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e238, edi=4109f7
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 4109f7	
+Function Name:EnableMenuItem, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de438c
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e23c, edi=410a06
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a06	
+Function Name:ReleaseDC, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc53f1
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e240, edi=410a10
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a10	
+Function Name:GetClassNameW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc29f9
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e244, edi=410a1e
+Flag: cf=false, pf=false, af=true, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a1e	
+Function Name:OpenClipboard, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de444e
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e248, edi=410a2c
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a2c	
+Function Name:MoveWindow, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75db8ce9
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e24c, edi=410a37
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a37	
+Function Name:GetMenuStringW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de64f8
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e250, edi=410a46
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a46	
+Function Name:GetMenuItemCount, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbae01
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e254, edi=410a57
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a57	
+Function Name:ScreenToClient, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dba4ce
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e258, edi=410a66
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a66	
+Function Name:GetWindowTextW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbb88d
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e25c, edi=410a75
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a75	
+Function Name:EnumWindows, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc372b
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e260, edi=410a81
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a81	
+Function Name:GetWindowThreadProcessId, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbedfa
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e264, edi=410a9a
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410a9a	
+Function Name:RegisterWindowMessageW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbdf55
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e268, edi=410ab1
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410ab1	
+Function Name:IsWindowVisible, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc4d39
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e26c, edi=410ac1
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410ac1	
+Function Name:SendMessageTimeoutW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbe421
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e270, edi=410ad5
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410ad5	
+Function Name:LoadMenuW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbf1dc
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e274, edi=410adf
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410adf	
+Function Name:ModifyMenuW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de4697
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e278, edi=410aeb
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410aeb	
+Function Name:GetMenuItemInfoW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbaec2
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e27c, edi=410afc
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410afc	
+Function Name:DialogBoxParamW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dd3b6b
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e280, edi=410b0c
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b0c	
+Function Name:GetDlgCtrlID, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbb4b0
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e284, edi=410b19
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b19	
+Function Name:DestroyMenu, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75db87df
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e288, edi=410b25
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b25	
+Function Name:DestroyWindow, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbb2bc
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e28c, edi=410b33
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b33	
+Function Name:CreateDialogParamW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75de5600
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e290, edi=410b46
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b46	
+Function Name:EnumChildWindows, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc2918
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e294, edi=410b57
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b57	
+Function Name:LoadStringW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbdf82
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e298, edi=410b63
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b63	
+Function Name:DestroyIcon, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dba747
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e29c, edi=410b6f
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b6f	
+Function Name:TrackPopupMenu, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dd21f8
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e2a0, edi=410b7e
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b7e	
+Function Name:PostQuitMessage, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dbb2d0
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e2a4, edi=410b8e
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b8e	
+Function Name:GetMessageW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dccdb8
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e2a8, edi=410b9a
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410b9a	
+Function Name:SetTimer, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc52bf
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e2ac, edi=410ba3
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410ba3	
+Function Name:IsDialogMessageW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc40d4
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e2b0, edi=410bb4
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410bb4	
+Function Name:DispatchMessageW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dccc31
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e2b4, edi=410bc5
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410bc5	
+Function Name:TranslateMessage, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc6497
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e2b8, edi=410bd6
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410bd6	
+Function Name:EndDeferWindowPos, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dba642
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e2bc, edi=410be8
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410be8	
+Function Name:DrawTextExW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dc5864
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75db0000, esi=40e2c0, edi=410bf4
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75db0000		x2: 410bf4	
+Function Name:SendDlgItemMessageW, Library Handle:0x75db0000
+	Last Error: 0
+EAX=75dd70a8
+
+	Call api: LoadLibraryA@kernel32.dll
+	Ins address of api: 0x004240c9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff7c, ebp=75db0000, esi=40e020, edi=410c0d
+Flag: cf=true, pf=false, af=false, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryA
+Argument:	x1: 410c0d	
+ Library Name:GDI32.dll
+	Last Error: 0
+EAX=75030000
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e020, edi=410c17
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c17	
+Function Name:SetBkMode, Library Handle:0x75030000
+	Last Error: 0
+EAX=750369b1
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e024, edi=410c21
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c21	
+Function Name:DeleteObject, Library Handle:0x75030000
+	Last Error: 0
+EAX=75035f14
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e028, edi=410c2e
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c2e	
+Function Name:GetTextExtentPoint32W, Library Handle:0x75030000
+	Last Error: 0
+EAX=7503b6b5
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e02c, edi=410c44
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c44	
+Function Name:GetStockObject, Library Handle:0x75030000
+	Last Error: 0
+EAX=75035ddf
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e030, edi=410c53
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c53	
+Function Name:SetBkColor, Library Handle:0x75030000
+	Last Error: 0
+EAX=75036a3c
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e034, edi=410c5e
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c5e	
+Function Name:PatBlt, Library Handle:0x75030000
+	Last Error: 0
+EAX=750362af
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e038, edi=410c65
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c65	
+Function Name:CreateSolidBrush, Library Handle:0x75030000
+	Last Error: 0
+EAX=75036b49
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e03c, edi=410c76
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c76	
+Function Name:SelectObject, Library Handle:0x75030000
+	Last Error: 0
+EAX=75036640
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e040, edi=410c83
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c83	
+Function Name:GetDeviceCaps, Library Handle:0x75030000
+	Last Error: 0
+EAX=75036f7f
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e044, edi=410c91
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c91	
+Function Name:SetTextColor, Library Handle:0x75030000
+	Last Error: 0
+EAX=75036906
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75030000, esi=40e048, edi=410c9e
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75030000		x2: 410c9e	
+Function Name:CreateFontIndirectW, Library Handle:0x75030000
+	Last Error: 0
+EAX=7503adfc
+
+	Call api: LoadLibraryA@kernel32.dll
+	Ins address of api: 0x004240c9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff7c, ebp=75030000, esi=40e2d8, edi=410cb7
+Flag: cf=true, pf=true, af=true, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryA
+Argument:	x1: 410cb7	
+ Library Name:comdlg32.dll
+	Last Error: 0
+EAX=75990000
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75990000, esi=40e2d8, edi=410cc4
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75990000		x2: 410cc4	
+Function Name:FindTextW, Library Handle:0x75990000
+	Last Error: 0
+EAX=759cacf0
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75990000, esi=40e2dc, edi=410cce
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75990000		x2: 410cce	
+Function Name:GetSaveFileNameW, Library Handle:0x75990000
+	Last Error: 0
+EAX=759ca36e
+
+	Call api: LoadLibraryA@kernel32.dll
+	Ins address of api: 0x004240c9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff7c, ebp=75990000, esi=40e148, edi=410ce4
+Flag: cf=true, pf=true, af=true, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryA
+Argument:	x1: 410ce4	
+ Library Name:SHELL32.dll
+	Last Error: 0
+EAX=75f30000
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75f30000, esi=40e148, edi=410cf0
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75f30000		x2: 410cf0	
+Function Name:SHGetFileInfoW, Library Handle:0x75f30000
+	Last Error: 0
+EAX=760de1d2
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75f30000, esi=40e14c, edi=410cff
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75f30000		x2: 410cff	
+Function Name:ShellExecuteExW, Library Handle:0x75f30000
+	Last Error: 0
+EAX=75f51e65
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75f30000, esi=40e150, edi=410d0f
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75f30000		x2: 410d0f	
+Function Name:ShellExecuteW, Library Handle:0x75f30000
+	Last Error: 0
+EAX=75f43c39
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x004240e9
+Register: eax=0, ebx=424128, ecx=0, edx=7c90e480, esp=18ff78, ebp=75f30000, esi=40e154, edi=410d1d
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75f30000		x2: 410d1d	
+Function Name:Shell_NotifyIconW, Library Handle:0x75f30000
+	Last Error: 0
+EAX=75f50191
+Set Up Exception: 0x0040db44
+
+	Call api: GetModuleHandleA@KERNEL32.dll
+	Ins address of api: 0x0040d933
+Register: eax=40e3e0, ebx=424128, ecx=0, edx=7c90e480, esp=18feec, ebp=18ff7c, esi=40e158, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetModuleHandleA
+Argument:	x1: 0	
+Library Name: 
+	Last Error: 0
+EAX=400000
+
+	Call api: __set_app_type@msvcrt.dll
+	Ins address of api: 0x0040d992
+Register: eax=0, ebx=2, ecx=400060, edx=7c90e480, esp=18feec, ebp=18ff7c, esi=40e158, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:__set_app_type
+Argument:	x1: 2	
+	Last Error: 0
+EAX=2
+
+	Call api: __p__fmode@msvcrt.dll
+	Ins address of api: 0x0040d9a7
+Register: eax=2, ebx=2, ecx=2, edx=7c90e480, esp=18fef0, ebp=18ff7c, esi=40e158, edi=0
+Flag: cf=false, pf=true, af=false, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:__p__fmode
+	Last Error: 0
+EAX=75f231f4
+
+	Call api: __p__commode@msvcrt.dll
+	Ins address of api: 0x0040d9b5
+Register: eax=75f231f4, ebx=2, ecx=0, edx=7c90e480, esp=18fef0, ebp=18ff7c, esi=40e158, edi=0
+Flag: cf=false, pf=true, af=false, zf=false, sf=true, tf=false, df=false, of=false, if=true
+Call API:__p__commode
+	Last Error: 0
+EAX=75f231f4
+
+	Call api: _controlfp@msvcrt.dll
+	Ins address of api: 0x0040db82
+Register: eax=0, ebx=2, ecx=0, edx=7c90e480, esp=18fee0, ebp=18ff7c, esi=40e158, edi=0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+JMP API:_controlfp
+Argument:	x1: 10000		x2: 30000	
+	Last Error: 0
+EAX=9001f
+
+	Call api: _initterm@msvcrt.dll
+	Ins address of api: 0x0040db1a
+Register: eax=9001f, ebx=2, ecx=30000, edx=7c90e480, esp=18fee4, ebp=18ff7c, esi=40e158, edi=0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+JMP API:_initterm
+Return Value: 0
+	Last Error: 0
+EAX=0
+
+	Call api: __wgetmainargs@msvcrt.dll
+	Ins address of api: 0x0040da1a
+Register: eax=18ff50, ebx=2, ecx=30000, edx=7c90e480, esp=18fed4, ebp=18ff7c, esi=40e158, edi=0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:__wgetmainargs
+Argument:	x1: 18ff50		x2: 18ff54		x3: 18ff58		x4: 0		x5: 18ff5c	
+Return Value: 0
+_Argv[0]: C:\Users\ogawalab\eclipse-workspace\BE_PUM_V2\asm\testcase\fsg_WhatIsHang.exe
+_Env[0]: A
+_Env[1]: A
+_Env[2]: A
+_Env[3]: C
+_Env[4]: C
+_Env[5]: C
+_Env[6]: C
+_Env[7]: D
+_Env[8]: E
+_Env[9]: F
+_Env[10]: H
+_Env[11]: H
+_Env[12]: H
+_Env[13]: H
+_Env[14]: I
+_Env[15]: J
+_Env[16]: L
+_Env[17]: L
+_Env[18]: L
+_Env[19]: M
+_Env[20]: M
+_Env[21]: M
+_Env[22]: M
+_Env[23]: M
+_Env[24]: M
+_Env[25]: M
+_Env[26]: M
+_Env[27]: M
+_Env[28]: M
+_Env[29]: M
+_Env[30]: M
+_Env[31]: M
+_Env[32]: N
+_Env[33]: O
+_Env[34]: O
+_Env[35]: O
+_Env[36]: O
+_Env[37]: O
+_Env[38]: P
+_Env[39]: P
+_Env[40]: P
+_Env[41]: P
+_Env[42]: P
+_Env[43]: P
+_Env[44]: P
+_Env[45]: P
+_Env[46]: P
+_Env[47]: P
+_Env[48]: P
+_Env[49]: P
+_Env[50]: P
+_Env[51]: S
+_Env[52]: S
+_Env[53]: S
+_Env[54]: S
+_Env[55]: S
+_Env[56]: S
+_Env[57]: T
+_Env[58]: T
+_Env[59]: T
+_Env[60]: T
+_Env[61]: T
+_Env[62]: T
+_Env[63]: U
+_Env[64]: U
+_Env[65]: U
+_Env[66]: W
+_Env[67]: _
+_Env[68]: w
+_Env[69]: w
+	Last Error: 0
+EAX=0
+
+	Call api: _initterm@msvcrt.dll
+	Ins address of api: 0x0040db1a
+Register: eax=0, ebx=2, ecx=30000, edx=7c90e480, esp=18fec8, ebp=18ff7c, esi=40e158, edi=0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+JMP API:_initterm
+Return Value: 0
+	Last Error: 0
+EAX=0
+
+	Call api: GetStartupInfoW@KERNEL32.dll
+	Ins address of api: 0x0040da8a
+Register: eax=18ff04, ebx=2, ecx=30000, edx=7c90e480, esp=18feec, ebp=18ff7c, esi=192e3e, edi=0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetStartupInfoW
+Argument:	x1: 18ff04	
+	Last Error: 0
+EAX=18ff04
+
+	Call api: GetModuleHandleA@KERNEL32.dll
+	Ins address of api: 0x0040dab0
+Register: eax=a, ebx=2, ecx=30000, edx=7c90e480, esp=18fee0, ebp=18ff7c, esi=192e3e, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetModuleHandleA
+Argument:	x1: 0	
+Library Name: 
+	Last Error: 0
+EAX=400000
+
+	Call api: LoadLibraryW@KERNEL32.dll
+	Ins address of api: 0x00401f3c
+Register: eax=400000, ebx=0, ecx=30000, edx=7c90e480, esp=18f780, ebp=18f798, esi=192e3e, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryW
+Argument:	x1: 40e768	
+ Library Name:comctl32.dll
+	Last Error: 0
+EAX=73c10000
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x00401f4e
+Register: eax=73c10000, ebx=0, ecx=30000, edx=7c90e480, esp=18f77c, ebp=18f798, esi=73c10000, edi=0
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 73c10000		x2: 40e784	
+Function Name:InitCommonControlsEx, Library Handle:0x73c10000
+	Last Error: 0
+EAX=73c309de
+
+	Call api: InitCommonControlsEx@comctl32.dll
+	Ins address of api: 0x00401f5d
+Register: eax=73c309de, ebx=0, ecx=18f790, edx=7c90e480, esp=18f780, ebp=18f798, esi=73c10000, edi=1
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:InitCommonControlsEx
+Unsupported API: InitCommonControlsEx@comctl32.dll
+Argument: 18f790, 
+EAX=api_eax_InitCommonControlsEx
+
+	Call api: FreeLibrary@KERNEL32.dll
+	Ins address of api: 0x00401f62
+Register: eax=api_eax_InitCommonControlsEx, ebx=api_eax_InitCommonControlsEx, ecx=18f790, edx=7c90e480, esp=18f780, ebp=18f798, esi=73c10000, edi=1
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:FreeLibrary
+Argument:	x1: 73c10000	
+Return Value: 1
+	Last Error: 0
+EAX=1
+Running Z3 at 0x00401f7e
+:extrafuns ((api_eax_InitCommonControlsEx BitVec[32])(TOP BitVec[32]))
+:formula(and (  true)( =  (= (bvand api_eax_InitCommonControlsEx api_eax_InitCommonControlsEx) bv0[32]) false) )
+)
+ExitCode:0
+Check Path Condition: SAT
+Running Z3 at 0x00401f7e
+:extrafuns ((api_eax_InitCommonControlsEx BitVec[32])(TOP BitVec[32]))
+:formula(and (  true)( not  (= (= (bvand api_eax_InitCommonControlsEx api_eax_InitCommonControlsEx) bv0[32]) false)) )
+)
+ExitCode:0
+Check Path Condition: SAT
+
+	Call api: GetVersionExW@KERNEL32.dll
+	Ins address of api: 0x004031ec
+Register: eax=1, ebx=2, ecx=18f790, edx=7c90e480, esp=18f78c, ebp=18fed8, esi=4119b8, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetVersionExW
+Argument:	x1: 4119b8	
+	Last Error: 0
+EAX=1
+
+	Call api: LoadLibraryW@KERNEL32.dll
+	Ins address of api: 0x0040b560
+Register: eax=1, ebx=2, ecx=1, edx=7c90e480, esp=18f790, ebp=18fed8, esi=192e3e, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryW
+Argument:	x1: 40f59c	
+ Library Name:psapi.dll
+	Last Error: 0
+EAX=77080000
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x0040b579
+Register: eax=77080000, ebx=2, ecx=1, edx=7c90e480, esp=18f788, ebp=18fed8, esi=75c8cedc, edi=77080000
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 77080000		x2: 40f5b0	
+Function Name:GetModuleBaseNameW, Library Handle:0x77080000
+	Last Error: 0
+EAX=7708152c
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x0040b58a
+Register: eax=7708152c, ebx=2, ecx=1, edx=7c90e480, esp=18f788, ebp=18fed8, esi=75c8cedc, edi=77080000
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 77080000		x2: 40f5c4	
+Function Name:EnumProcessModules, Library Handle:0x77080000
+	Last Error: 0
+EAX=77081408
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x0040b59b
+Register: eax=77081408, ebx=2, ecx=1, edx=7c90e480, esp=18f788, ebp=18fed8, esi=75c8cedc, edi=77080000
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 77080000		x2: 40f5d8	
+Function Name:GetModuleFileNameExW, Library Handle:0x77080000
+	Last Error: 0
+EAX=770813f0
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x0040b5ac
+Register: eax=770813f0, ebx=2, ecx=1, edx=7c90e480, esp=18f788, ebp=18fed8, esi=75c8cedc, edi=77080000
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 77080000		x2: 40f5f0	
+Function Name:EnumProcesses, Library Handle:0x77080000
+	Last Error: 0
+EAX=77081544
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x0040b5bd
+Register: eax=77081544, ebx=2, ecx=1, edx=7c90e480, esp=18f788, ebp=18fed8, esi=75c8cedc, edi=77080000
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 77080000		x2: 40f600	
+Function Name:GetModuleInformation, Library Handle:0x77080000
+	Last Error: 0
+EAX=77081420
+
+	Call api: LoadLibraryW@KERNEL32.dll
+	Ins address of api: 0x0040c8d6
+Register: eax=1, ebx=2, ecx=1, edx=7c90e480, esp=18f798, ebp=18fed8, esi=192e3e, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:LoadLibraryW
+Argument:	x1: 40f690	
+ Library Name:shell32.dll
+	Last Error: 0
+EAX=75f30000
+
+	Call api: GetProcAddress@KERNEL32.dll
+	Ins address of api: 0x0040c8eb
+Register: eax=75f30000, ebx=2, ecx=1, edx=7c90e480, esp=18f794, ebp=18fed8, esi=192e3e, edi=0
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetProcAddress
+Argument:	x1: 75f30000		x2: 40f6a8	
+Function Name:SHGetSpecialFolderPathW, Library Handle:0x75f30000
+	Last Error: 0
+EAX=75f50438
+
+	Call api: SetErrorMode@KERNEL32.dll
+	Ins address of api: 0x0040a621
+Register: eax=75f50438, ebx=2, ecx=1, edx=7c90e480, esp=18f79c, ebp=18fed8, esi=192e3e, edi=0
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+Call API:SetErrorMode
+Argument:	x1: 8001	
+	Last Error: 0
+EAX=3
+
+	Call api: GetModuleHandleW@KERNEL32.dll
+	Ins address of api: 0x0040a640
+Register: eax=3, ebx=75c8cef4, ecx=1, edx=7c90e480, esp=18f794, ebp=18fed8, esi=0, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:GetModuleHandleW
+Argument:	x1: 0	
+Library Name: 
+	Last Error: 0
+EAX=400000
+
+	Call api: EnumResourceTypesW@KERNEL32.dll
+	Ins address of api: 0x0040a643
+Register: eax=400000, ebx=75c8cef4, ecx=1, edx=7c90e480, esp=18f794, ebp=18fed8, esi=0, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:EnumResourceTypesW
+Unsupported API: EnumResourceTypesW@KERNEL32.dll
+No Handling of this API
+EAX=api_eax
+
+	Call api: ??2@YAPAXI@Z@msvcrt.dll
+	Ins address of api: 0x0040d8b8
+Register: eax=18feac, ebx=75c8cef4, ecx=0, edx=7c90e480, esp=18f774, ebp=18f7f4, esi=18fe84, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+JMP API:??2
+Unsupported API: ??2@YAPAXI@Z@msvcrt.dll
+Size:2c
+EAX=363c68
+
+	Call api: ??2@YAPAXI@Z@msvcrt.dll
+	Ins address of api: 0x0040d8b8
+Register: eax=363c68, ebx=75c8cef4, ecx=2c, edx=7c90e480, esp=18f774, ebp=18f7f4, esi=18fe84, edi=0
+Flag: cf=false, pf=false, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+JMP API:??2
+Unsupported API: ??2@YAPAXI@Z@msvcrt.dll
+Size:308
+EAX=363cb0
+
+	Call api: memset@msvcrt.dll
+	Ins address of api: 0x0040d89a
+Register: eax=363cb4, ebx=75c8cef4, ecx=308, edx=7c90e480, esp=18f750, ebp=18f7f4, esi=363cb0, edi=0
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+JMP API:memset
+Argument:	x1: 363cb4		x2: 0		x3: 2d8	
+Return Value: 3555212
+	Last Error: 0
+EAX=363f8c
+
+	Call api: GetModuleHandleW@KERNEL32.dll
+	Ins address of api: 0x0040357b
+Register: eax=363f8c, ebx=75c8cef4, ecx=308, edx=7c90e480, esp=18f770, ebp=18f7f4, esi=363cb0, edi=0
+Flag: cf=false, pf=true, af=false, zf=false, sf=false, tf=false, df=false, of=false, if=true
+RET API:GetModuleHandleW
+Argument:	x1: 18fe84	
+Library Name: 
+	Last Error: 0
+EAX=400000
+
+	Call api: MessageBoxW@USER32.dll
+	Ins address of api: 0x00401f8d
+Register: eax=api_eax_InitCommonControlsEx, ebx=2, ecx=18f790, edx=7c90e480, esp=18f780, ebp=18f798, esi=192e3e, edi=0
+Flag: cf=false, pf=false, af=false, zf=((api_eax_InitCommonControlsEx and api_eax_InitCommonControlsEx) == 0), sf=((api_eax_InitCommonControlsEx and api_eax_InitCommonControlsEx) < 0), tf=false, df=false, of=false, if=true
+Call API:MessageBoxW
+Argument:	x1: api_eax_InitCommonControlsEx		x2: 40e7a8		x3: 40e79c		x4: 30	
+EAX=api_eax_InitCommonControlsEx
+
+	Call api: exit@msvcrt.dll
+	Ins address of api: 0x0040dac7
+Register: eax=1, ebx=2, ecx=18f790, edx=7c90e480, esp=18feec, ebp=18ff7c, esi=1, edi=0
+Flag: cf=false, pf=true, af=false, zf=true, sf=false, tf=false, df=false, of=false, if=true
+Call API:exit
+***************************************
+* Analysis finished, CFG is complete! *
+***************************************
+===============================================================================
+   Statistics for On-The-Fly Model Generation of BE-PUM
+===============================================================================
+   Filename:                    fsg_WhatIsHang.exe
+   Runtime:                        30843ms
+   Instructions:                     559
+   Nodes:                            580
+   Edges:                            621
+ret = 
+CustomPacked_FSGv2.0_2_0.9826666678518985	0x4240e9
+candidate = 
+	MEWv1.0_2_0.9848667376123464;FSGv2.0_2_0.9826666678518985;yoda's Crypterv1.3_6_0.8321594895181863;UPXv3.0_4_0.901379031113135;UPXv1.20_2_0.7314403307510986;UPXv1.24_2_0.7286855487700155;UPXv1.25_2_0.7757815097592401;UPXv1.94_2_0.9047199965812912;UPXv2.02_2_0.9047199965812912;UPXv2.03_2_0.9047199965812912;UPXv3.06_4_0.9096890693385701;UPXv3.07_4_0.9093984271373633;UPXv3.08_4_0.9142527555762872;UPXv3.09_4_0.9115306302885364;UPXv3.91_4_0.9151290434485497;UPXv3.94_4_0.9172615017523094;PETITEv2.4_2_0.9245647372276402;Upackv0.37-0.39_4_0.957517798749234;
+   Packer Identified:           CustomPacked_FSGv2.0_2_0.9826666678518985	0x4240e9	MEWv1.0_2_0.9848667376123464;FSGv2.0_2_0.9826666678518985;yoda's Crypterv1.3_6_0.8321594895181863;UPXv3.0_4_0.901379031113135;UPXv1.20_2_0.7314403307510986;UPXv1.24_2_0.7286855487700155;UPXv1.25_2_0.7757815097592401;UPXv1.94_2_0.9047199965812912;UPXv2.02_2_0.9047199965812912;UPXv2.03_2_0.9047199965812912;UPXv3.06_4_0.9096890693385701;UPXv3.07_4_0.9093984271373633;UPXv3.08_4_0.9142527555762872;UPXv3.09_4_0.9115306302885364;UPXv3.91_4_0.9151290434485497;UPXv3.94_4_0.9172615017523094;PETITEv2.4_2_0.9245647372276402;Upackv0.37-0.39_4_0.957517798749234;
