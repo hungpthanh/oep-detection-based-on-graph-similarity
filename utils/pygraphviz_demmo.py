@@ -1,6 +1,10 @@
 import pygraphviz as pgv
 visited = []
+name_file = "fsg_Cacheset.exe_model.dot"
 name_file = "fsg_accesschk.exe_model.dot"
+name_file = "upx_accesschk.exe_model.dot"
+name_file = "packed_unikey32.exe_model.dot"
+name_file = "packed_Cacheset.exe_model.dot"
 G = pgv.AGraph("/home/hungpt/workspace/research/oep-detection/utils/{}".format(name_file))
 print(G.nodes())
 print(G.edges())
@@ -45,8 +49,17 @@ for edge in G.edges():
     if not (target[0] in adj[source[0]]):
         adj[source[0]].append(target[0])
 
+def compare(item1, item2):
+    if label[item1] < label[item2]:
+        return -1
+    elif label[item1] > label[item2]:
+        return 1
+    else:
+        return 0
+
 for key, value in adj.items():
-    value.sort()
+    # value.sort(key=compare)
+    value = sorted(value, key=lambda x: label[x])
 
 # print(adj)
 
