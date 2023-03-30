@@ -36,4 +36,15 @@ def build_OEP_dataset(packed_file_path):
         # writer.writerow([list_1[w], list_2[w]])
 
 
-build_OEP_dataset(packed_file_path)
+# build_OEP_dataset(packed_file_path)
+
+def get_oep_dataset():
+    results = {}
+    with open("OEP_dataset.csv", "r") as f:
+        for line in f:
+            line = line.strip()
+            name, oep = line.split(',')
+            results[name] = oep
+    return results
+
+# get_oep_dataset()
