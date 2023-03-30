@@ -94,6 +94,8 @@ def update_information_FSG(packed_file_path):
         previous_OEP = cfg.get_incoming_node(OEP)
         print("OEP = {}".format(OEP))
         print("previous OEP = {}".format(previous_OEP))
+        if len(previous_OEP) > 1:
+            print("multiple incoming node to OEP")
         if OEP is not None and len(previous_OEP) > 0:
             if not (name in information):
                 information[name] = {}

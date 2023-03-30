@@ -46,6 +46,7 @@ def get_X_y_FSG():
         packed_file = [line.strip() for line in f]
     x = []
     y = []
+    z = []
     for name in packed_file:
         if not (name in information):
             continue
@@ -57,8 +58,8 @@ def get_X_y_FSG():
             continue
         x.append(int(information[name]["end_unpacking"], base=16))
         y.append(int(information[name]["previous_OEP"], base=16))
-
-    return x, y
+        z.append(int(information[name]["OEP"], base=16))
+    return x, y, z
 
 
 def main(packer_name):
@@ -143,13 +144,19 @@ def linear_regression():
     plt.show()
 
 
-def bar_chart():
+def bar_chart(packer_name):
+    global packed_list_path
     # data = {'C': 20, 'C++': 15, 'Java': 30,
     #         'Python': 35}
     # courses = list(data.keys())
     # values = list(data.values())
 
-    x, y = get_X_y()
+    if packer_name == "upx":
+        packed_list_path = "data/packed_files.txt"
+        x, y = get_X_y()
+    else:
+        packed_list_path = "data/packed_files_FSG.txt"
+        x, y, z = get_X_y_FSG()
     courses = list(range(1, len(x) + 1))
     values = list(1 * (np.asarray(y) - np.asarray(x)))
     plt.figure(figsize=(10, 5))
@@ -170,6 +177,6 @@ def bar_chart():
 
 
 if __name__ == '__main__':
-    main("fsg")
+    # main("fsg")
     # linear_regression()
-    # bar_chart()
+    bar_chart("fsg")
