@@ -11,7 +11,7 @@ from sklearn import preprocessing
 packed_list_path = "data/packed_files.txt"
 
 
-def get_X_y(packer_name):
+def get_X_y():
     information = update_information_UPX(packed_list_path)
     print(information)
     print(len(information))
@@ -35,12 +35,39 @@ def get_X_y(packer_name):
     return x, y
 
 
-def main():
-    X, y = get_X_y()
+def get_X_y_FSG():
+    information = update_information_UPX(packed_list_path)
+    print(information)
+    print(len(information))
+
+    with open(packed_list_path, "r") as f:
+        packed_file = [line.strip() for line in f]
+    x = []
+    y = []
+    for name in packed_file:
+        if not (name in information):
+            continue
+        print(name)
+        print(information[name])
+        if not ("end_unpacking" in information[name]):
+            continue
+        if not ("previous_OEP" in information[name]):
+            continue
+        x.append(int(information[name]["end_unpacking"], base=16))
+        y.append(int(information[name]["previous_OEP"], base=16))
+
+    return x, y
+
+
+def main(packer_name):
+    if packer_name == "upx":
+        X, y = get_X_y()
+    else:
+        X, y = get_X_y_FSG()
     fig, ax = plt.subplots(figsize=(12, 8))
     colors = []
     for index in range(len(X)):
-        v = y[index] - X[index] if y[index] - X[index]  <= 150 else -1
+        v = y[index] - X[index] if y[index] - X[index] <= 150 else -1
         if v == -1:
             colors.append("red")
         else:
@@ -51,8 +78,6 @@ def main():
     plt.xlabel("The address determined")
     plt.ylabel("Previous OEP")
     plt.title("Previous OEP and the address determined")
-
-
     plt.show()
 
     # plt.scatter(x, y)
@@ -111,6 +136,7 @@ def linear_regression():
 
     plt.show()
 
+
 def bar_chart():
     # data = {'C': 20, 'C++': 15, 'Java': 30,
     #         'Python': 35}
@@ -136,7 +162,8 @@ def bar_chart():
     data = Counter(values)
     print(data)
 
+
 if __name__ == '__main__':
-    main()
+    main("upx")
     # linear_regression()
     # bar_chart()
