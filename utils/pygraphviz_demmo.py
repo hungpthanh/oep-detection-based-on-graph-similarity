@@ -7,10 +7,10 @@ name_file = "upx_accesschk.exe_model.dot"
 name_file = "packed_unikey32.exe_model.dot"
 name_file = "packed_Cacheset.exe_model.dot"
 G = pgv.AGraph("/home/hungpt/workspace/research/oep-detection/utils/{}".format(name_file))
-print(G.nodes())
-print(G.edges())
-print(len(G.nodes()))
-print(len(G.edges()))
+# print(G.nodes())
+# print(G.edges())
+# print(len(G.nodes()))
+# print(len(G.edges()))
 
 
 class Node:
@@ -80,11 +80,11 @@ def dfs(u):
             dfs(v)
 
 
-dfs(start_node)
-print(visited)
-with open(name_file + ".asm", "w") as f:
-    for node in visited:
-        f.writelines("{}: {}\n".format(node, label[node]))
+# dfs(start_node)
+# print(visited)
+# with open(name_file + ".asm", "w") as f:
+#     for node in visited:
+#         f.writelines("{}: {}\n".format(node, label[node]))
 
 
 class BPCFG():
@@ -93,23 +93,29 @@ class BPCFG():
         self.start_node = -1
         self.adj = {}
         self.label = {}
-        for idx, node in enumerate(G.nodes()):
+        for idx, node in enumerate(self.G.nodes()):
             address, opcode = get_node_information(node)
-            if not address in adj:
-                adj[address] = []
-                label[address] = opcode
+            if not address in self.adj:
+                self.adj[address] = []
+                self.label[address] = opcode
             if idx == 0:
                 self.start_node = address
 
-        for edge in G.edges():
+        for edge in self.G.edges():
             source, target = edge
+
             source, target = get_node_information(source), get_node_information(target)
-            if not (target[0] in adj[source[0]]):
+            # print("st: {} {}".format(source, target))
+            if not (target[0] in self.adj[source[0]]):
                 self.adj[source[0]].append(target[0])
 
     def get_incoming_node(self, node_address):
+        print("node_address = {}".format(node_address))
+        # print("adj list")
+        # print(self.adj)
         results = []
         for key, value in self.adj.items():
+            # print("node: {}, adj: {}".format(node, value))
             if node_address in value:
                 results.append(key)
         return results

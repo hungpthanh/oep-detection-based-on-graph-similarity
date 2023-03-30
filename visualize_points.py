@@ -2,16 +2,17 @@ from collections import Counter
 
 from sklearn.ensemble import RandomForestRegressor
 
-from utils.preprocess_be_pum import update_information_UPX
+from utils.preprocess_be_pum import update_information_UPX, update_information_FSG
 import matplotlib.pyplot as plt
 from sklearn.svm import SVR
 import numpy as np
 from sklearn import preprocessing
 
-packed_list_path = "data/packed_files.txt"
+packed_list_path = ""
 
 
 def get_X_y():
+    print("UPX")
     information = update_information_UPX(packed_list_path)
     print(information)
     print(len(information))
@@ -36,9 +37,10 @@ def get_X_y():
 
 
 def get_X_y_FSG():
-    information = update_information_UPX(packed_list_path)
-    print(information)
-    print(len(information))
+    print("FSG")
+    information = update_information_FSG(packed_list_path)
+    # print(information)
+    # print(len(information))
 
     with open(packed_list_path, "r") as f:
         packed_file = [line.strip() for line in f]
@@ -47,8 +49,8 @@ def get_X_y_FSG():
     for name in packed_file:
         if not (name in information):
             continue
-        print(name)
-        print(information[name])
+        # print(name)
+        # print(information[name])
         if not ("end_unpacking" in information[name]):
             continue
         if not ("previous_OEP" in information[name]):
@@ -60,9 +62,13 @@ def get_X_y_FSG():
 
 
 def main(packer_name):
+    global packed_list_path
+    print("Go to main")
     if packer_name == "upx":
+        packed_list_path = "data/packed_files.txt"
         X, y = get_X_y()
     else:
+        packed_list_path = "data/packed_files_FSG.txt"
         X, y = get_X_y_FSG()
     fig, ax = plt.subplots(figsize=(12, 8))
     colors = []
@@ -80,8 +86,8 @@ def main(packer_name):
     plt.title("Previous OEP and the address determined")
     plt.show()
 
-    # plt.scatter(x, y)
-    # plt.show()
+    plt.scatter(x, y)
+    plt.show()
 
 
 def linear_regression():
@@ -164,6 +170,6 @@ def bar_chart():
 
 
 if __name__ == '__main__':
-    main("upx")
+    main("fsg")
     # linear_regression()
     # bar_chart()
