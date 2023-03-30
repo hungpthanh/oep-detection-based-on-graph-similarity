@@ -2,7 +2,7 @@ import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin'
 
 from graphviz import Source
-path = 'utils/packed_Cacheset.exe_model.dot'
+path = 'utils/upx_ADExplorer.exe_model.dot'
 s = Source.from_file(path)
 s.view()
 
