@@ -70,7 +70,7 @@ def main(packer_name):
         X, y = get_X_y()
     else:
         packed_list_path = "data/packed_files_FSG.txt"
-        X, y = get_X_y_FSG()
+        X, y, z = get_X_y_FSG()
     fig, ax = plt.subplots(figsize=(12, 8))
     colors = []
     for index in range(len(X)):
@@ -82,9 +82,9 @@ def main(packer_name):
         # ax.text(X[index], y[index], v, size=8)
     plt.scatter(X, y, color=colors)
     # plt.show()
-    plt.xlabel("The address determined")
-    plt.ylabel("Previous OEP")
-    plt.title("Previous OEP and the address determined")
+    plt.xlabel("Matched Signature")
+    plt.ylabel("Preceding OEP")
+    plt.title("Preceding OEP and Matched Signature")
     plt.show()
 
     plt.scatter(x, y)
@@ -177,6 +177,6 @@ def bar_chart(packer_name):
 
 
 if __name__ == '__main__':
-    # main("fsg")
+    main("upx")
     # linear_regression()
-    bar_chart("fsg")
+    # bar_chart("fsg")

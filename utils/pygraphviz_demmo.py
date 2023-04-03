@@ -1,11 +1,11 @@
 import pygraphviz as pgv
 
 visited = []
-name_file = "fsg_Cacheset.exe_model.dot"
-name_file = "fsg_accesschk.exe_model.dot"
-name_file = "upx_accesschk.exe_model.dot"
-name_file = "packed_unikey32.exe_model.dot"
-name_file = "packed_Cacheset.exe_model.dot"
+name_file = "outputs/fsg_Cacheset.exe_model.dot"
+name_file = "outputs/fsg_accesschk.exe_model.dot"
+name_file = "outputs/upx_accesschk.exe_model.dot"
+name_file = "outputs/packed_unikey32.exe_model.dot"
+name_file = "outputs/packed_Cacheset.exe_model.dot"
 G = pgv.AGraph("/home/hungpt/workspace/research/oep-detection/utils/{}".format(name_file))
 # print(G.nodes())
 # print(G.edges())
