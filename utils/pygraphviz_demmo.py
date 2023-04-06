@@ -1,3 +1,5 @@
+import time
+
 import pygraphviz as pgv
 
 visited = []
@@ -7,6 +9,8 @@ name_file = "outputs/upx_accesschk.exe_model.dot"
 name_file = "outputs/packed_unikey32.exe_model.dot"
 name_file = "outputs/packed_Cacheset.exe_model.dot"
 G = pgv.AGraph("/home/hungpt/workspace/research/oep-detection/utils/{}".format(name_file))
+
+
 # print(G.nodes())
 # print(G.edges())
 # print(len(G.nodes()))
@@ -92,11 +96,14 @@ class BPCFG():
         self.G = pgv.AGraph(dot_file)
         self.start_node = -1
         self.adj = {}
+        self.rev_adj = {}
         self.label = {}
+        self.bfs_order = []
         for idx, node in enumerate(self.G.nodes()):
             address, opcode = get_node_information(node)
             if not address in self.adj:
                 self.adj[address] = []
+                self.rev_adj[address] = []
                 self.label[address] = opcode
             if idx == 0:
                 self.start_node = address
@@ -105,9 +112,12 @@ class BPCFG():
             source, target = edge
 
             source, target = get_node_information(source), get_node_information(target)
+
             # print("st: {} {}".format(source, target))
             if not (target[0] in self.adj[source[0]]):
                 self.adj[source[0]].append(target[0])
+            if not (source[0] in self.rev_adj[target[0]]):
+                self.rev_adj[target[0]].append(source[0])
 
     def get_incoming_node(self, node_address):
         print("node_address = {}".format(node_address))
@@ -119,3 +129,45 @@ class BPCFG():
             if node_address in value:
                 results.append(key)
         return results
+
+    def get_bfs_order(self):
+        if len(self.bfs_order) != 0:
+            return self.bfs_order
+        self.bfs_order.append(self.start_node)
+        cnt = 0
+        while cnt < len(self.bfs_order):
+            current_address = self.bfs_order[cnt]
+
+    def get_rev_path_from(self, address):
+        results = []
+        path = [address]
+        def dfs(u):
+            # print("u = {}".format(u))
+            # time.sleep(0.5)
+            if u == self.start_node:
+                results.append(path.copy())
+                print(path.copy())
+                return
+            for v in self.rev_adj[u]:
+                if not (v in path):
+                    path.append(v)
+                    dfs(v)
+                    path.remove(v)
+        dfs(address)
+        return results
+
+    def clear_cycle(self):
+        visited = []
+        def dfs(u):
+            visited.append(u)
+            # if u == self.start_node:
+            #     results.append(path.copy())
+            #     print(path.copy())
+            #     return
+            for v in self.adj[u]:
+                if v in visited:
+                    self.adj[u].remove(v)
+                    self.rev_adj[v].remove(u)
+                else:
+                    dfs(v)
+        dfs(self.start_node)
