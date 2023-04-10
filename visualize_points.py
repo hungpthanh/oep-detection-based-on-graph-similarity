@@ -2,7 +2,7 @@ from collections import Counter
 
 from sklearn.ensemble import RandomForestRegressor
 
-from utils.preprocess_be_pum import update_information_UPX, update_information_FSG
+from utils.preprocess_be_pum import update_information_UPX, update_information_FSG, update_information_ASPACK
 import matplotlib.pyplot as plt
 from sklearn.svm import SVR
 import numpy as np
@@ -61,6 +61,32 @@ def get_X_y_FSG():
         z.append(int(information[name]["OEP"], base=16))
     return x, y, z
 
+def get_X_y_ASPACK():
+    print("ASPACK")
+    information = update_information_ASPACK(packed_list_path)
+    print(information)
+    print(len(information))
+
+    with open(packed_list_path, "r") as f:
+        packed_file = [line.strip() for line in f]
+    x = []
+    y = []
+    z = []
+    names = []
+    for name in packed_file:
+        if not (name in information):
+            continue
+        # print(name)
+        # print(information[name])
+        if not ("end_unpacking" in information[name]):
+            continue
+        if not ("previous_OEP" in information[name]):
+            continue
+        x.append(int(information[name]["end_unpacking"], base=16))
+        y.append(int(information[name]["previous_OEP"], base=16))
+        z.append(int(information[name]["OEP"], base=16))
+        names.append(name)
+    return x, y, z, names
 
 def main(packer_name):
     global packed_list_path
@@ -68,9 +94,12 @@ def main(packer_name):
     if packer_name == "upx":
         packed_list_path = "data/packed_files.txt"
         X, y = get_X_y()
-    else:
+    elif packer_name == "fsg":
         packed_list_path = "data/packed_files_FSG.txt"
         X, y, z = get_X_y_FSG()
+    else:
+        packed_list_path = "data/packed_files_ASPACK.txt"
+        X, y, z, names = get_X_y_ASPACK()
     fig, ax = plt.subplots(figsize=(12, 8))
     colors = []
     for index in range(len(X)):
@@ -87,8 +116,8 @@ def main(packer_name):
     plt.title("Preceding OEP and Matched Signature")
     plt.show()
 
-    plt.scatter(x, y)
-    plt.show()
+    # plt.scatter(x, y)
+    # plt.show()
 
 
 def linear_regression():
@@ -150,15 +179,21 @@ def bar_chart(packer_name):
     #         'Python': 35}
     # courses = list(data.keys())
     # values = list(data.values())
-
+    names = None
     if packer_name == "upx":
         packed_list_path = "data/packed_files.txt"
         x, y = get_X_y()
-    else:
+    elif packer_name == "fsg":
         packed_list_path = "data/packed_files_FSG.txt"
         x, y, z = get_X_y_FSG()
+    else:
+        packed_list_path = "data/packed_files_ASPACK.txt"
+        x, y, z, names = get_X_y_ASPACK()
     courses = list(range(1, len(x) + 1))
     values = list(1 * (np.asarray(y) - np.asarray(x)))
+
+    for idx in range(0, len(names)):
+        print("name: {}, distance: {}".format(names[idx], values[idx]))
     plt.figure(figsize=(10, 5))
 
     # creating the bar plot
@@ -177,6 +212,6 @@ def bar_chart(packer_name):
 
 
 if __name__ == '__main__':
-    main("upx")
+    # main("aspack")
     # linear_regression()
-    # bar_chart("fsg")
+    bar_chart("aspack")
