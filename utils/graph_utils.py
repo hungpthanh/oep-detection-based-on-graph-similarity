@@ -27,7 +27,7 @@ def relabel_graph(G):
     return nG
 
 
-def remove_back_edege(cfg):
+def remove_back_edge(cfg):
     new_cfg = deepcopy(cfg)
     visited = []
 

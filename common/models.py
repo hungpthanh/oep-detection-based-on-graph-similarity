@@ -5,7 +5,7 @@ import networkx as nx
 from matplotlib import pyplot as plt
 from networkx.drawing.nx_agraph import read_dot
 
-from utils.graph_utils import relabel_graph
+from utils.graph_utils import relabel_graph, remove_back_edge
 
 
 class CFG():
@@ -57,11 +57,8 @@ class CFG():
             self.rev_adj[address2].append(address1)
 
 
-
-
-
 if __name__ == '__main__':
     cfg = relabel_graph(nx.DiGraph(read_dot(path="data/asm_cfg/upx/upx_accesschk.exe_model.dot")))
-    new_cfg = remove_back_edege(cfg)
+    new_cfg = remove_back_edge(cfg)
     print(new_cfg.nodes)
     nx.nx_agraph.write_dot(new_cfg, "my_graph.dot")
