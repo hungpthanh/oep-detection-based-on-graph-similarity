@@ -1,6 +1,10 @@
 import time
 
+import networkx as nx
 import pygraphviz as pgv
+from networkx.drawing.nx_agraph import read_dot
+
+from utils.graph_utils import relabel_graph
 
 visited = []
 name_file = "outputs/fsg_Cacheset.exe_model.dot"
@@ -74,21 +78,6 @@ for key, value in adj.items():
     value = sorted(value, key=lambda x: label[x])
 
 
-# print(adj)
-
-def dfs(u):
-    global visited
-    visited.append(u)
-    for v in adj[u]:
-        if not v in visited:
-            dfs(v)
-
-
-# dfs(start_node)
-# print(visited)
-# with open(name_file + ".asm", "w") as f:
-#     for node in visited:
-#         f.writelines("{}: {}\n".format(node, label[node]))
 
 
 class BPCFG():
@@ -141,6 +130,7 @@ class BPCFG():
     def get_rev_path_from(self, address):
         results = []
         path = [address]
+
         def dfs(u):
             # print("u = {}".format(u))
             # time.sleep(0.5)
@@ -153,11 +143,13 @@ class BPCFG():
                     path.append(v)
                     dfs(v)
                     path.remove(v)
+
         dfs(address)
         return results
 
     def clear_cycle(self):
         visited = []
+
         def dfs(u):
             visited.append(u)
             # if u == self.start_node:
@@ -170,4 +162,5 @@ class BPCFG():
                     self.rev_adj[v].remove(u)
                 else:
                     dfs(v)
+
         dfs(self.start_node)
