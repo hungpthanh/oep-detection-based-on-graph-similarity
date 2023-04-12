@@ -1,4 +1,5 @@
 import time
+from collections import Counter
 from copy import deepcopy
 from node2vec import Node2Vec
 
@@ -12,6 +13,8 @@ from sklearn.preprocessing import MinMaxScaler
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
+from utils.graph_similarity_utils import weisfeiler_lehman_kernel, get_WLK, cosine_similarity
 from utils.graph_utils import relabel_graph, remove_back_edge, get_sub_graph_from
 from grakel import GraphKernel, graph_from_networkx, WeisfeilerLehman, VertexHistogram
 import time
@@ -197,25 +200,36 @@ def create_subgraph(dot_file, address, from_specific_node=True):
     return new_cfg
 
 
-if __name__ == '__main__':
+def test1():
     cfg = relabel_graph(nx.DiGraph(read_dot(path="data/asm_cfg/upx/upx_Dbgview.exe_model.dot")))
+    cfg = relabel_graph(nx.DiGraph(read_dot(path="data/asm_cfg/aspack/aspack_ADInsight.exe_model.dot")))
+    cfg = relabel_graph(nx.DiGraph(read_dot(path="data/asm_cfg/upx/upx_AccessEnum.exe_model.dot")))
+
     new_cfg = remove_back_edge(cfg)
-    # print(new_cfg.nodes)
-    subgraph = get_sub_graph_from(new_cfg, "0x00415757")
-    start_node = list(new_cfg.nodes)[0]
+    print(new_cfg.nodes)
+    subgraph = get_sub_graph_from(new_cfg, "0x00407a98")
+    # 0x004c2425 accesschk
+    # 0x00826425 ADInsight
+    # 0x00407a98 ADNum
+    # start_node = list(new_cfg.nodes)[0]
     # print(start_node)
     # for path in nx.all_simple_paths(subgraph, source=start_node, target="0x00415757"):
     #     print(path)
-    # nx.nx_agraph.write_dot(new_cfg, "my_graph_upx_Dbgview.dot")
-    # nx.nx_agraph.write_dot(subgraph, "sub_graph_upx_Dbgview.dot")
+    nx.nx_agraph.write_dot(subgraph, "my_graph_upx_AccessEnum.dot")
+    return
+    nx.nx_agraph.write_dot(subgraph, "sub_graph_upx_Dbgview.dot")
 
     G1 = nx.DiGraph(read_dot(path="sub_graph.dot"))
-    # G2 = nx.DiGraph(read_dot(path="sub_graph.dot"))
-    G2 = nx.DiGraph(read_dot(path="sub_graph_upx_Dbgview.dot"))
+    G1 = nx.DiGraph(read_dot(path="my_graph_aspack_accesschk.dot"))
+    G2 = nx.DiGraph(read_dot(path="my_graph_aspack_ADInsight.dot"))
+
+    kernel_value = weisfeiler_lehman_kernel(G1, G2, 2)
+    similarity = kernel_value
+    print(similarity)
 
     G1 = create_subgraph(dot_file="data/asm_cfg/upx/upx_Dbgview.exe_model.dot", address="0x00415757")
 
-    print(nx.get_node_attributes(G1, "opcode"))
+    # print(nx.get_node_attributes(G1, "opcode"))
 
     # generate node embeddings using Node2Vec
     node2vec = {}
@@ -229,18 +243,19 @@ if __name__ == '__main__':
     embeddings["G1"] = model["G1"].wv.vectors
     node_to_index["G1"] = model["G1"].wv.key_to_index
 
-
-
     A = embeddings["G1"][node_to_index["G1"]["0x00415757"]]
 
     max_value = -1
     saveAddress = -1
     node_list = list(create_subgraph(dot_file="data/asm_cfg/upx/upx_accesschk.exe_model.dot", address="-1",
-                         from_specific_node=False).nodes)
+                                     from_specific_node=False).nodes)
     for node in node_list:
         # if node != "0x"
+        if node != "0x004c4a7b":
+            continue
         G2 = create_subgraph(dot_file="data/asm_cfg/upx/upx_accesschk.exe_model.dot", address=node,
                              from_specific_node=True)
+        nx.nx_agraph.write_dot(subgraph, "sub_graph_upx_accesschk.dot")
         node2vec["G2"] = Node2Vec(G2, dimensions=64, walk_length=60, num_walks=2, seed=23)
         model["G2"] = node2vec["G2"].fit(window=10, min_count=1, workers=4)
 
@@ -255,3 +270,94 @@ if __name__ == '__main__':
     print("saveAddress = {}".format(saveAddress))
     print("maxvalue = {}".format(max_value))
     # print("Cosine Similarity:", cosine)
+
+
+def test2():
+    G1 = create_subgraph(dot_file="data/asm_cfg/upx/upx_Dbgview.exe_model.dot", address="0x00415757")
+    node_list = list(create_subgraph(dot_file="data/asm_cfg/upx/upx_AccessEnum.exe_model.dot", address="-1",
+                                     from_specific_node=False).nodes)
+    best_similarity = 0
+    for node in node_list:
+        if node != "0x00407a98" and node != "0x0042b86c":
+            continue
+        # if node != "0x"
+
+        G2 = create_subgraph(dot_file="data/asm_cfg/upx/upx_AccessEnum.exe_model.dot", address=node,
+                             from_specific_node=True)
+
+        kernel_value, h1, h2 = weisfeiler_lehman_kernel(G1, G2, 2)
+        similarity = kernel_value
+
+        if node == "0x00407a98" or node == "0x0042b86c":
+            print(h1)
+            print(h2)
+            print("sim: {}".format(similarity))
+        if similarity > best_similarity:
+            best_similarity = similarity
+            save_add = node
+
+
+    print("save_add = {}".format(save_add))
+    print("best similarity = {}".format(best_similarity))
+
+
+def test3():
+    G1 = create_subgraph(dot_file="data/asm_cfg/upx/upx_Dbgview.exe_model.dot", address="0x0048b89c")
+    node_list = list(create_subgraph(dot_file="data/asm_cfg/upx/upx_AccessEnum.exe_model.dot", address="-1",
+                                     from_specific_node=False).nodes)
+
+    node_labels = {}
+    node_labels['G1'] = get_WLK(G1, 2)
+
+    for node in node_list:
+        G2 = create_subgraph(dot_file="data/asm_cfg/upx/upx_AccessEnum.exe_model.dot", address=node,
+                             from_specific_node=True)
+        node_labels[node] = get_WLK(G2, 2)
+
+    unique_labels = []
+    print(node_labels['G1'])
+    for key, value in node_labels.items():
+        # print(value)
+        if key == "0x00407a98" or key == "0x0042b86c":
+            print("key: {}".format(key))
+            print(node_labels[key])
+        unique_labels = unique_labels + list(value.values())
+    unique_labels = sorted(list(set(unique_labels)))
+    print(unique_labels)
+    # return
+    histograms = {}
+
+    for idx, label in enumerate(unique_labels):
+        for name in ['G1'] + node_list:
+            data = Counter(list(node_labels[name].values()))
+            # print(data)
+            if not (name in histograms):
+                histograms[name] = []
+            if label in data:
+                histograms[name].append(data[label])
+            else:
+                histograms[name].append(0)
+
+    best_similarity = 0
+    save_add = "-1"
+    print(histograms['G1'])
+    for name in node_list:
+        if name != "0x00407a98" and name != "0x0042b86c":
+            continue
+        # print(histograms['G1'])
+        print(histograms[name])
+        sim = cosine_similarity(histograms['G1'], histograms[name])
+        if sim > best_similarity:
+            best_similarity = sim
+            save_add = name
+
+    for idx, label in enumerate(unique_labels):
+        if (histograms["0x00407a98"][idx] != histograms["0x0042b86c"][idx]) and (histograms["0x00407a98"][idx] == histograms['G1'][idx] or histograms["0x0042b86c"][idx] == histograms['G1'][idx]):
+            print("diff: {}".format(label))
+    print("save_add = {}".format(save_add))
+    print("best similarity = {}".format(best_similarity))
+
+
+if __name__ == '__main__':
+    # test1()
+    test3()
