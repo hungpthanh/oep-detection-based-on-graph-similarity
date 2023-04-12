@@ -91,7 +91,7 @@ def update_node_labels(G, node_labels):
         label = node_labels[n]
 
         # Get sorted list of neighbor labels
-        neighbor_labels = sorted([node_labels[v] for v in G.neighbors(n)])
+        neighbor_labels = sorted([node_labels[v] for v in G.predecessors(n)])
 
         # Concatenate label and neighbor labels
         new_label = label + ''.join(neighbor_labels)
