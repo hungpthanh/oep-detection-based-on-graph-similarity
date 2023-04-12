@@ -19,11 +19,11 @@ def relabel_graph(G):
     label_mapping = {}
     for node in G.nodes:
         address, opcode = get_node_information(node)
-        attribution_mapping[address] = {"opcode": opcode}
+        attribution_mapping[address] = {"label": opcode.split("_")[0]}
         label_mapping[node] = address
     nG = nx.relabel_nodes(G, label_mapping)
     nx.set_node_attributes(nG, attribution_mapping)
-    print(attribution_mapping)
+    # print(attribution_mapping)
     return nG
 
 
@@ -72,3 +72,25 @@ def remove_back_edge(cfg):
 
     dfs(start_node)
     return new_cfg
+
+
+def get_sub_graph_from(G, node):
+    def dfs(start_node):
+        stack = []
+        visited = []
+        stack.append(start_node)
+        while len(stack) > 0:
+            u = stack[-1]
+            visited.append(u)
+            exist_node = False
+            for v in list(G.predecessors(u)):
+                if not (v in visited):
+                    exist_node = True
+                    stack.append(v)
+                    break
+            if not exist_node:
+                stack.pop()
+        return visited
+
+    subset_of_node = dfs(node)
+    return G.subgraph(subset_of_node)
