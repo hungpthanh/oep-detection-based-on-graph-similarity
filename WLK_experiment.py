@@ -14,8 +14,7 @@ data_folder_path = "data"
 
 def main():
     log_file = open("logs/log2.txt", "w")
-    packer_names = ["aspack", "upx", "fsg"]
-    packer_names = ["aspack", "upx", "fsg"]
+    packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked"]
     sample_file = "Dbgview.exe"
 
     for packer_name in packer_names:
