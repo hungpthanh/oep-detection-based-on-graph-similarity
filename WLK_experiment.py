@@ -71,7 +71,6 @@ def main():
                         else:
                             histograms[name].append(0)
 
-
                 print("Searching for best matching graph:")
                 best_similarity = 0
                 save_address = "-1"
