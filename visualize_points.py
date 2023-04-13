@@ -2,7 +2,8 @@ from collections import Counter
 
 from sklearn.ensemble import RandomForestRegressor
 
-from utils.preprocess_be_pum import update_information_UPX, update_information_FSG, update_information_ASPACK
+from utils.preprocess_be_pum import update_information_UPX, update_information_FSG, update_information_ASPACK, \
+    update_information_MPRESS
 import matplotlib.pyplot as plt
 from sklearn.svm import SVR
 import numpy as np
@@ -61,6 +62,7 @@ def get_X_y_FSG():
         z.append(int(information[name]["OEP"], base=16))
     return x, y, z
 
+
 def get_X_y_ASPACK():
     print("ASPACK")
     information = update_information_ASPACK(packed_list_path)
@@ -88,6 +90,35 @@ def get_X_y_ASPACK():
         names.append(name)
     return x, y, z, names
 
+
+def get_X_y_MPRESS():
+    print("MPRESS")
+    information = update_information_MPRESS(packed_list_path)
+    print(information)
+    print(len(information))
+
+    with open(packed_list_path, "r") as f:
+        packed_file = [line.strip() for line in f]
+    x = []
+    y = []
+    z = []
+    names = []
+    for name in packed_file:
+        if not (name in information):
+            continue
+        # print(name)
+        # print(information[name])
+        if not ("end_unpacking" in information[name]):
+            continue
+        if not ("previous_OEP" in information[name]):
+            continue
+        x.append(int(information[name]["end_unpacking"], base=16))
+        y.append(int(information[name]["previous_OEP"], base=16))
+        z.append(int(information[name]["OEP"], base=16))
+        names.append(name)
+    return x, y, z, names
+
+
 def main(packer_name):
     global packed_list_path
     print("Go to main")
@@ -97,9 +128,12 @@ def main(packer_name):
     elif packer_name == "fsg":
         packed_list_path = "data/packed_files_FSG.txt"
         X, y, z = get_X_y_FSG()
-    else:
+    elif packer_name == "aspack":
         packed_list_path = "data/packed_files_ASPACK.txt"
         X, y, z, names = get_X_y_ASPACK()
+    else:
+        packed_list_path = "data/packed_files_MPRESS.txt"
+        X, y, z, names = get_X_y_MPRESS()
     fig, ax = plt.subplots(figsize=(12, 8))
     colors = []
     for index in range(len(X)):
@@ -120,9 +154,6 @@ def main(packer_name):
     # plt.show()
 
 
-
-
-
 def bar_chart(packer_name):
     global packed_list_path
     # data = {'C': 20, 'C++': 15, 'Java': 30,
@@ -136,9 +167,12 @@ def bar_chart(packer_name):
     elif packer_name == "fsg":
         packed_list_path = "data/packed_files_FSG.txt"
         x, y, z = get_X_y_FSG()
-    else:
+    elif packer_name == "aspack":
         packed_list_path = "data/packed_files_ASPACK.txt"
         x, y, z, names = get_X_y_ASPACK()
+    else:
+        packed_list_path = "data/packed_files_MPRESS.txt"
+        x, y, z, names = get_X_y_MPRESS()
     courses = list(range(1, len(x) + 1))
     values = list(1 * (np.asarray(y) - np.asarray(x)))
 
@@ -162,5 +196,5 @@ def bar_chart(packer_name):
 
 
 if __name__ == '__main__':
-    # main("aspack")
-    bar_chart("aspack")
+    # main("mpress")
+    bar_chart("mpress")

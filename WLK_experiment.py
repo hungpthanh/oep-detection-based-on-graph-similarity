@@ -96,6 +96,7 @@ def main():
                 pass
         print("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
         log_file.writelines("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
+        del node_labels, data, unique_labels, G1, G2
 
 
 if __name__ == '__main__':
