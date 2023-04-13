@@ -1,6 +1,8 @@
+import argparse
 import os
 import time
 from collections import Counter
+import gc
 
 from tqdm import tqdm
 
@@ -8,16 +10,27 @@ from common.models import create_subgraph
 from utils.graph_similarity_utils import get_WLK, cosine_similarity
 from utils.oep_utils import get_oep_dataset, get_preceding_oep
 
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--packer_name', default="upx", type=str)
+parser.add_argument('--file_name', default="accesschk.exe", type=str)
+
+# Get the arguments
+args = parser.parse_args()
+gc.enable()
 oep_dictionary = get_oep_dataset()
 data_folder_path = "data"
 
 
 def main():
-    log_file = open("logs/log2.txt", "w")
+    log_file = open("logs/log2_{}_{}.txt".format(args.packer_name, args.file_name), "w")
     packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked"]
     sample_file = "Dbgview.exe"
 
+    G1, G2 = None, None
     for packer_name in packer_names:
+        if packer_name != args.packer_name:
+            continue
         print("packer name: {}".format(packer_name))
         log_file.writelines("packer name: {}".format(packer_name))
         sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
@@ -28,7 +41,7 @@ def main():
         total_sample = 0
         correct_sample = 0
         for file_name, oep_address in oep_dictionary.items():
-            if file_name == sample_file or file_name == "name":
+            if file_name == sample_file or file_name == "name" or file_name != args.file_name:
                 continue
             # if file_name != "Cacheset.exe":
             #     continue
@@ -56,7 +69,7 @@ def main():
                     node_labels = get_WLK(G2, 2)
                     unique_labels = unique_labels + list(node_labels.values())
                     data[node] = Counter(list(node_labels.values()))
-
+                    # del G2
                 unique_labels = sorted(list(set(unique_labels)))
 
                 histograms = {}
@@ -90,13 +103,18 @@ def main():
                                                                                                   file_name,
                                                                                                   preceding_oep,
                                                                                                   save_address))
+                # node_labels, data, unique_labels, G2 = None, None, None, None
+                # del node_labels, data, unique_labels, G2
+                # gc.collect()
             except Exception as e:
                 print("Error in packer {} of {}: {}".format(packer_name, file_name, e))
                 log_file.writelines("Error in packer {} of {}: {}".format(packer_name, file_name, e))
                 pass
         print("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
         log_file.writelines("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
-        del node_labels, data, unique_labels, G1, G2
+        # node_labels, data, unique_labels, G1, G2 = None, None, None, None
+        # del node_labels, data, unique_labels, G1, G2
+        # gc.collect()
 
 
 if __name__ == '__main__':
