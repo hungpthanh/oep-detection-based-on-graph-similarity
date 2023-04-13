@@ -1,4 +1,5 @@
 import os
+import time
 from collections import Counter
 
 from tqdm import tqdm
@@ -12,13 +13,14 @@ data_folder_path = "data"
 
 
 def main():
+    log_file = open("logs/log2.txt", "w")
     packer_names = ["aspack", "upx", "fsg"]
-    packer_names = ["aspack"]
+    packer_names = ["aspack", "upx", "fsg"]
     sample_file = "Dbgview.exe"
-
 
     for packer_name in packer_names:
         print("packer name: {}".format(packer_name))
+        log_file.writelines("packer name: {}".format(packer_name))
         sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                         "{}_{}_model.dot".format(packer_name, sample_file))
         preceding_sample_file = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
@@ -29,16 +31,17 @@ def main():
         for file_name, oep_address in oep_dictionary.items():
             if file_name == sample_file or file_name == "name":
                 continue
-            if file_name != "Cacheset.exe":
-                continue
+            # if file_name != "Cacheset.exe":
+            #     continue
             try:
                 print("File name: {}".format(file_name))
+                # log_file.writelines("File name: {}".format(file_name))
                 packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                                "{}_{}_model.dot".format(packer_name, file_name))
                 if not os.path.exists(packed_dot_file):
                     continue
 
-                print("packed_dot_file: {}".format(packed_dot_file))
+                # print("packed_dot_file: {}".format(packed_dot_file))
                 preceding_oep = get_preceding_oep(packed_dot_file, oep_address)
                 node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
                                                  from_specific_node=False).nodes)
@@ -47,6 +50,7 @@ def main():
                 unique_labels = list(node_labels.values())
                 data = {'G1': Counter(list(node_labels.values()))}
                 print("Generating subgraph of {} nodes:".format(len(node_list)))
+                # log_file.writelines("Generating subgraph of {} nodes:".format(len(node_list)))
                 for node in tqdm(node_list):
                     G2 = create_subgraph(dot_file=packed_dot_file, address=node,
                                          from_specific_node=True)
@@ -57,15 +61,18 @@ def main():
                 unique_labels = sorted(list(set(unique_labels)))
 
                 histograms = {}
-                for idx, label in tqdm(enumerate(unique_labels)):
+                print("Calculating histogram:")
+                for idx, label in enumerate(unique_labels):
                     for name in ['G1'] + node_list:
                         if not (name in histograms):
                             histograms[name] = []
-                        if label in data:
+                        if label in data[name]:
                             histograms[name].append(data[name][label])
                         else:
                             histograms[name].append(0)
 
+
+                print("Searching for best matching graph:")
                 best_similarity = 0
                 save_address = "-1"
                 for name in tqdm(node_list):
@@ -80,10 +87,17 @@ def main():
                                                                                                     file_name,
                                                                                                     preceding_oep,
                                                                                                     save_address))
+                log_file.writelines(
+                    "packer: {}, file: {}, preceding_oep: {}, predicted_preceding_oep: {}".format(packer_name,
+                                                                                                  file_name,
+                                                                                                  preceding_oep,
+                                                                                                  save_address))
             except Exception as e:
                 print("Error in packer {} of {}: {}".format(packer_name, file_name, e))
+                log_file.writelines("Error in packer {} of {}: {}".format(packer_name, file_name, e))
                 pass
         print("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
+        log_file.writelines("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
 
 
 if __name__ == '__main__':
