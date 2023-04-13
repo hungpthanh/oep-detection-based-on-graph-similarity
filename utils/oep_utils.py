@@ -1,5 +1,7 @@
 # from utils.preprocess_be_pum import get_OEP_of_UPX
+import os
 
+from common.models import BPCFG
 
 packed_file_path = "data/packed_files.txt"
 
@@ -48,4 +50,15 @@ def get_oep_dataset():
             results[name] = oep
     return results
 
-# get_oep_dataset()
+
+def get_preceding_oep(file_path, oep_address):
+    dot_file = file_path
+    if not os.path.exists(dot_file):
+        return False
+    try:
+        cfg = BPCFG(dot_file)
+    except Exception as e:
+        print(e)
+        return False
+    preceding_oep = cfg.get_incoming_node(oep_address)
+    return preceding_oep[0]
