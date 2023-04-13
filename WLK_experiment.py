@@ -42,26 +42,27 @@ def main():
                 preceding_oep = get_preceding_oep(packed_dot_file, oep_address)
                 node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
                                                  from_specific_node=False).nodes)
-                node_labels = {'G1': get_WLK(G1, 2)}
+
+                node_labels = get_WLK(G1, 2)
+                unique_labels = list(node_labels.values())
+                data = {'G1': Counter(list(node_labels.values()))}
                 print("Generating subgraph of {} nodes:".format(len(node_list)))
                 for node in tqdm(node_list):
                     G2 = create_subgraph(dot_file=packed_dot_file, address=node,
                                          from_specific_node=True)
-                    node_labels[node] = get_WLK(G2, 2)
+                    node_labels = get_WLK(G2, 2)
+                    unique_labels = unique_labels + list(node_labels.values())
+                    data[node] = Counter(list(node_labels.values()))
 
-                unique_labels = []
-                for _, value in node_labels.items():
-                    unique_labels = unique_labels + list(value.values())
                 unique_labels = sorted(list(set(unique_labels)))
 
                 histograms = {}
-                for idx, label in enumerate(unique_labels):
+                for idx, label in tqdm(enumerate(unique_labels)):
                     for name in ['G1'] + node_list:
-                        data = Counter(list(node_labels[name].values()))
                         if not (name in histograms):
                             histograms[name] = []
                         if label in data:
-                            histograms[name].append(data[label])
+                            histograms[name].append(data[name][label])
                         else:
                             histograms[name].append(0)
 
