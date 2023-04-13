@@ -1,6 +1,8 @@
 import os
 from collections import Counter
 
+from tqdm import tqdm
+
 from common.models import create_subgraph
 from utils.graph_similarity_utils import get_WLK, cosine_similarity
 from utils.oep_utils import get_oep_dataset, get_preceding_oep
@@ -11,6 +13,7 @@ data_folder_path = "data"
 
 def main():
     packer_names = ["aspack", "upx", "fsg"]
+    packer_names = ["aspack"]
     sample_file = "Dbgview.exe"
 
 
@@ -26,6 +29,8 @@ def main():
         for file_name, oep_address in oep_dictionary.items():
             if file_name == sample_file or file_name == "name":
                 continue
+            if file_name != "Cacheset.exe":
+                continue
             try:
                 print("File name: {}".format(file_name))
                 packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
@@ -38,13 +43,14 @@ def main():
                 node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
                                                  from_specific_node=False).nodes)
                 node_labels = {'G1': get_WLK(G1, 2)}
-                for node in node_list:
+                print("Generating subgraph of {} nodes:".format(len(node_list)))
+                for node in tqdm(node_list):
                     G2 = create_subgraph(dot_file=packed_dot_file, address=node,
                                          from_specific_node=True)
                     node_labels[node] = get_WLK(G2, 2)
 
                 unique_labels = []
-                for file_name, value in node_labels.items():
+                for _, value in node_labels.items():
                     unique_labels = unique_labels + list(value.values())
                 unique_labels = sorted(list(set(unique_labels)))
 
@@ -61,7 +67,7 @@ def main():
 
                 best_similarity = 0
                 save_address = "-1"
-                for name in node_list:
+                for name in tqdm(node_list):
                     sim = cosine_similarity(histograms['G1'], histograms[name])
                     if sim > best_similarity:
                         best_similarity = sim
