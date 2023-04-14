@@ -231,7 +231,7 @@ def update_information_petitepacked(packed_file_path):
         if not name[13:] in oep_dictionary:
             print("Dont have the OEP of {}".format(name))
             continue
-        OEP = oep_dictionary[name[7:]]
+        OEP = oep_dictionary[name[13:]]
         previous_OEP = cfg.get_incoming_node(OEP)
         print("OEP = {}".format(OEP))
         print("previous OEP = {}".format(previous_OEP))
