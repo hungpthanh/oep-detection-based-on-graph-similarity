@@ -4,6 +4,8 @@ import os
 from common.models import BPCFG
 
 packed_file_path = "data/packed_files.txt"
+packedSignature_path = "data/packerSignature.txt"
+positionDetail_path = "data/positionDetail.txt"
 
 
 # def build_OEP_dataset(packed_file_path):
@@ -61,4 +63,46 @@ def get_preceding_oep(file_path, oep_address):
         print(e)
         return False
     preceding_oep = cfg.get_incoming_node(oep_address)
+    if len(preceding_oep) == 0:
+        return False
     return preceding_oep[0]
+
+
+def get_matched_signature(file_path):
+    file = os.path.join(file_path)
+    if not os.path.exists(file):
+        return None
+    with open(file, "r") as f:
+        last_line = f.readlines()[-1]
+        if "Packer Identified" in last_line:
+            words = last_line.split("\t")
+            for word in words:
+                if word.startswith("0x"):
+                    matched_signature = word
+                    return matched_signature
+    return None
+
+
+def get_obfuscation_technique_sequence(packer_name, filename):
+    def get_sequence(file_name):
+        # print("file_name = {}".format(file_name))
+        with open(file_name, "r") as f:
+            for line in f.readlines()[::-1]:
+                if (packer_name in line) and (filename in line): # and ("Packer Detected" in line) :
+                    # print("ok")
+                    # print(line)
+                    # print(line.split(" "))
+                    # print("------")
+                    # print(line.split("\t")[2])
+                    # print("------")
+                    sequence = line.split("\t")[2]
+                    return sequence
+        return None
+    print("sequence")
+    obfuscation_technique_sequence = get_sequence(packedSignature_path)
+    print("address")
+    obfuscation_technique_address = get_sequence(positionDetail_path)
+    print("seq: {}".format(obfuscation_technique_sequence))
+    print("add: {}".format(obfuscation_technique_address))
+    # assert len(obfuscation_technique_sequence.split('_')) == len(obfuscation_technique_address.split('_'))
+    return obfuscation_technique_sequence, obfuscation_technique_address

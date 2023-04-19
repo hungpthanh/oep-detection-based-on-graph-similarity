@@ -118,6 +118,7 @@ def get_X_y_MPRESS():
         names.append(name)
     return x, y, z, names
 
+
 def get_X_y_PETITEPACKED():
     print("PETITEPACKED")
     information = update_information_petitepacked(packed_list_path)
@@ -144,6 +145,7 @@ def get_X_y_PETITEPACKED():
         z.append(int(information[name]["OEP"], base=16))
         names.append(name)
     return x, y, z, names
+
 
 def main(packer_name):
     global packed_list_path
