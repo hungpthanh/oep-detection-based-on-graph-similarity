@@ -1,14 +1,18 @@
 import os
 
+import networkx as nx
+from networkx.drawing.nx_agraph import read_dot
+
+from utils.graph_utils import color_graph
 from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_matched_signature, \
     get_obfuscation_technique_sequence, get_sequence_by_address
+from utils.string_utils import insert_string
 
 oep_dictionary = get_oep_dataset()
 data_folder_path = "data"
 
 
-def insert_string(string, added_string, index):
-    return string[:index] + added_string + string[index:]
+
 
 
 def main():
@@ -44,6 +48,8 @@ def main():
             new_seq, new_add = get_sequence_by_address(matched_signature.strip(), obfuscation_technique_sequence,
                                                        obfuscation_technique_address)
 
+            G = nx.DiGraph(read_dot(path=packed_dot_file))
+            color_graph(G, obfuscation_technique_sequence, obfuscation_technique_address, os.path.basename(packed_dot_file))
             new_record = {
                 'distance': end_unpacking_oep_base10 - matched_signature_base10,
                 'packer_name': packer_name,

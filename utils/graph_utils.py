@@ -1,6 +1,27 @@
+import os.path
 from copy import deepcopy
 
 import networkx as nx
+
+from utils.string_utils import insert_string
+
+color_mapping = {
+    '0': 'red',
+    '1': 'blue',
+    '2': 'skyblue',
+    '3': 'seagreen',
+    '4': 'purple',
+    '5': 'olivedrab1',
+    '6': 'lawngreen',
+    '7': 'navy',
+    '8': 'yellowgreen',
+    '9': 'tan2',
+    '10': 'pink',
+    '11': 'orange',
+    '12': 'peru',
+    '13': 'turquoise',
+    '14': 'grey'
+}
 
 
 def get_node_information(s):
@@ -94,3 +115,34 @@ def get_sub_graph_from(G, node):
 
     subset_of_node = dfs(node)
     return G.subgraph(subset_of_node)
+
+
+def color_graph(G, obfuscation_tech_sequence, obfuscation_address_sequence, name_dot_file):
+    # tech_seq = obfuscation_tech_sequence.split("_")
+    # add_seq = obfuscation_address_sequence.split("_")
+    # for idx, address in enumerate(add_seq):
+    #     address = insert_string(address, "00", 2)
+    #     if len(address) != 10:
+    #         continue
+    #     for node in G.nodes:
+    #         # print("node: {}, add: {}".format(node, address))
+    #         if address in node:
+    #             # print("pass")
+    #             # print(tech_seq[idx])
+    #             if tech_seq[idx] in color_mapping:
+    #                 G.nodes[node]["color"] = color_mapping[tech_seq[idx]].strip()
+    #                 print("color: {}".format(color_mapping[tech_seq[idx]]))
+    #                 G.nodes[node]['fillcolor'] = color_mapping[tech_seq[idx]].strip()
+    nx.nx_agraph.write_dot(G, os.path.join("logs/log_graph_color", "colored_{}".format(name_dot_file)))
+    # import re
+    #
+    # # read in the DOT file
+    # with open(os.path.join("logs/log_graph_color", "colored_{}".format(name_dot_file)), 'r') as f:
+    #     dot_data = f.read()
+    #
+    # # remove the escape characters from the attribute values
+    # dot_data = re.sub(r'\\(.)', r'\1', dot_data)
+    # dot_data = re.sub(r'\\', '', dot_data)
+    # # save the modified DOT file
+    # with open(os.path.join("logs/log_graph_color", "colored_{}".format(name_dot_file)), 'w') as f:
+    #     f.write(dot_data)
