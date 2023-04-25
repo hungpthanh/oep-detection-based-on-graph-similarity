@@ -1,7 +1,7 @@
 import os
 
 from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_matched_signature, \
-    get_obfuscation_technique_sequence
+    get_obfuscation_technique_sequence, get_sequence_by_address
 
 oep_dictionary = get_oep_dataset()
 data_folder_path = "data"
@@ -12,7 +12,7 @@ def insert_string(string, added_string, index):
 
 
 def main():
-    packer_names = ["aspack", "fsg", "upx", "MPRESS", "petitepacked"]
+    packer_names = ["aspack", "fsg", "upx", "MPRESS", "petitepacked", "pecompact"]
     for packer_name in packer_names:
         print("packer name: {}".format(packer_name))
         data = []
@@ -40,17 +40,30 @@ def main():
                 packer_name, file_name)
             end_unpacking_oep_base10 = int(end_unpacking_oep, base=16)
             matched_signature_base10 = int(matched_signature, base=16)
+
+            new_seq, new_add = get_sequence_by_address(matched_signature.strip(), obfuscation_technique_sequence,
+                                                       obfuscation_technique_address)
+
             new_record = {
                 'distance': end_unpacking_oep_base10 - matched_signature_base10,
                 'packer_name': packer_name,
                 'file_name': file_name,
-                'obfuscation_technique_sequence': obfuscation_technique_sequence,
-                'obfuscation_technique_address': obfuscation_technique_address,
+                'obfuscation_technique_sequence': new_seq,
+                'obfuscation_technique_address': new_add,
             }
+
+
+            # print("New seq: {}".format(new_seq))
+            # print("New add: {}".format(new_add))
+            # if packer_name == "upx" and file_name == "cpuz_x32.exe":
+            #     print("Found")
+            #     print("Matched signature: {}".format(matched_signature))
             if new_record['distance'] in data_by_distance:
-                data_by_distance[new_record['distance']].append(new_record['obfuscation_technique_sequence'])
+                data_by_distance[new_record['distance']].append(
+                    (new_record['obfuscation_technique_sequence'], new_record['file_name']))
             else:
-                data_by_distance[new_record['distance']] = [new_record['obfuscation_technique_sequence']]
+                data_by_distance[new_record['distance']] = [
+                    (new_record['obfuscation_technique_sequence'], new_record['file_name'])]
             data.append(new_record)
             # except Exception as e:
             #     print(e)
@@ -60,10 +73,10 @@ def main():
             print(record)
 
         for key, values in data_by_distance.items():
-            with open("logs/log_obfuscation_technique/{}_{}.txt".format(packer_name, key), "w") as fout:
+            with open("logs/log_obfuscation_technique_matched/{}_{}.txt".format(packer_name, key), "w") as fout:
                 values = sorted(values)
                 for value in values:
-                    fout.writelines(value + "\n")
+                    fout.writelines(value[0] + " {}\n".format(value[1]))
 
 
 if __name__ == '__main__':

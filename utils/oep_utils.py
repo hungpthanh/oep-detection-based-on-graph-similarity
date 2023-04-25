@@ -88,21 +88,27 @@ def get_obfuscation_technique_sequence(packer_name, filename):
         # print("file_name = {}".format(file_name))
         with open(file_name, "r") as f:
             for line in f.readlines()[::-1]:
-                if (packer_name in line) and (filename in line): # and ("Packer Detected" in line) :
-                    # print("ok")
-                    # print(line)
-                    # print(line.split(" "))
-                    # print("------")
-                    # print(line.split("\t")[2])
-                    # print("------")
+                if (packer_name in line) and (filename in line):  # and ("Packer Detected" in line) :
                     sequence = line.split("\t")[2]
                     return sequence
         return None
-    print("sequence")
+
+    # print("sequence")
     obfuscation_technique_sequence = get_sequence(packedSignature_path)
-    print("address")
+    # print("address")
     obfuscation_technique_address = get_sequence(positionDetail_path)
-    print("seq: {}".format(obfuscation_technique_sequence))
-    print("add: {}".format(obfuscation_technique_address))
+    # print("seq: {}".format(obfuscation_technique_sequence))
+    # print("add: {}".format(obfuscation_technique_address))
+    # print("Diff length: {} {} {}".format(
+    #     len(obfuscation_technique_sequence.split('_')) == len(obfuscation_technique_address.split('_')),
+    #     len(obfuscation_technique_sequence.split('_')), len(obfuscation_technique_address.split('_'))))
     # assert len(obfuscation_technique_sequence.split('_')) == len(obfuscation_technique_address.split('_'))
     return obfuscation_technique_sequence, obfuscation_technique_address
+
+
+def get_sequence_by_address(address, obfuscation_technique_sequence, obfuscation_address_sequence):
+    tech_seq = obfuscation_technique_sequence.split("_")
+    add_seq = obfuscation_address_sequence.split("_")
+
+    idx = add_seq.index(address[0:2] + address[4:])
+    return "_".join(tech_seq[:idx + 1]), "_".join(add_seq[:idx + 1])
