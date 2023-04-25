@@ -118,21 +118,20 @@ def get_sub_graph_from(G, node):
 
 
 def color_graph(G, obfuscation_tech_sequence, obfuscation_address_sequence, name_dot_file):
-    # tech_seq = obfuscation_tech_sequence.split("_")
-    # add_seq = obfuscation_address_sequence.split("_")
-    # for idx, address in enumerate(add_seq):
-    #     address = insert_string(address, "00", 2)
-    #     if len(address) != 10:
-    #         continue
-    #     for node in G.nodes:
-    #         # print("node: {}, add: {}".format(node, address))
-    #         if address in node:
-    #             # print("pass")
-    #             # print(tech_seq[idx])
-    #             if tech_seq[idx] in color_mapping:
-    #                 G.nodes[node]["color"] = color_mapping[tech_seq[idx]].strip()
-    #                 print("color: {}".format(color_mapping[tech_seq[idx]]))
-    #                 G.nodes[node]['fillcolor'] = color_mapping[tech_seq[idx]].strip()
+    tech_seq = obfuscation_tech_sequence.split("_")
+    add_seq = obfuscation_address_sequence.split("_")
+    for idx, address in enumerate(add_seq):
+        address = insert_string(address, "00", 2)
+        if len(address) != 10:
+            continue
+        for node in G.nodes:
+            # print("node: {}, add: {}".format(node, address))
+            if address in node:
+                # print("pass")
+                # print(tech_seq[idx])
+                if tech_seq[idx] in color_mapping:
+                    G.nodes[node]["color"] = color_mapping[tech_seq[idx]].strip()
+                    G.nodes[node]['fillcolor'] = color_mapping[tech_seq[idx]].strip()
     nx.nx_agraph.write_dot(G, os.path.join("logs/log_graph_color", "colored_{}".format(name_dot_file)))
     # import re
     #
