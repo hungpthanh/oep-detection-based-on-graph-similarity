@@ -6,6 +6,8 @@ from tqdm import tqdm
 os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin'
 
 from graphviz import Source
+
+
 # path = 'utils/aspack_ADInsight.exe_model.dot'
 # path = 'utils/colored_aspack_accesschk.exe_model.dot'
 # s = Source.from_file(path)
@@ -13,10 +15,14 @@ from graphviz import Source
 
 def generate_graph():
     paths = glob.glob("logs/log_graph_color/*.*")
-    for path in tqdm(paths):
-        s = Source.from_file(path)
-        # s.save(directory="logs/log_graph_color")
-        s.render()
+    for packer in ["aspack"]:
+        paths = glob.glob("logs/log_graph_color/colored_{}*".format(packer))
+        for path in tqdm(paths[:10]):
+            if path[-3:] == "dot":
+                s = Source.from_file(path)
+                # s.save(directory="logs/log_graph_color")
+                s.render()
+
 
 if __name__ == '__main__':
     generate_graph()
