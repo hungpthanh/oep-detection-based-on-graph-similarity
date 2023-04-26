@@ -1,3 +1,4 @@
+import argparse
 import glob
 import os
 
@@ -7,7 +8,14 @@ os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin'
 
 from graphviz import Source
 
+parser = argparse.ArgumentParser()
+# parser.add_argument('--mode', default="evaluation", type=str)
+parser.add_argument("--packers", nargs="+", default=["upx"])
+# parser.add_argument('--packer_name', default="upx", type=str)
+# parser.add_argument('--file_name', default="accesschk.exe", type=str)
 
+# Get the arguments
+args = parser.parse_args()
 # path = 'utils/aspack_ADInsight.exe_model.dot'
 # path = 'utils/colored_aspack_accesschk.exe_model.dot'
 # s = Source.from_file(path)
@@ -15,7 +23,8 @@ from graphviz import Source
 
 def generate_graph():
     paths = glob.glob("logs/log_graph_color/*.*")
-    for packer in ["aspack"]:
+    # print(args.packers)
+    for packer in args.packers:
         paths = glob.glob("logs/log_graph_color/colored_{}*".format(packer))
         for path in tqdm(paths[:10]):
             if path[-3:] == "dot":
