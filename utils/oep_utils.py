@@ -84,9 +84,9 @@ def get_matched_signature(file_path):
 
 
 def get_obfuscation_technique_sequence(packer_name, filename):
-    def get_sequence(file_name):
+    def get_sequence(source_file, filename):
         # print("file_name = {}".format(file_name))
-        with open(file_name, "r") as f:
+        with open(source_file, "r") as f:
             for line in f.readlines()[::-1]:
                 if (packer_name in line) and (filename in line):  # and ("Packer Detected" in line) :
                     sequence = line.split("\t")[2]
@@ -94,9 +94,9 @@ def get_obfuscation_technique_sequence(packer_name, filename):
         return None
 
     # print("sequence")
-    obfuscation_technique_sequence = get_sequence(packedSignature_path)
+    obfuscation_technique_sequence = get_sequence(packedSignature_path, filename)
     # print("address")
-    obfuscation_technique_address = get_sequence(positionDetail_path)
+    obfuscation_technique_address = get_sequence(positionDetail_path, filename)
     # print("seq: {}".format(obfuscation_technique_sequence))
     # print("add: {}".format(obfuscation_technique_address))
     # print("Diff length: {} {} {}".format(
