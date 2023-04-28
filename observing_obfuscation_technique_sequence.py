@@ -12,9 +12,6 @@ oep_dictionary = get_oep_dataset()
 data_folder_path = "data"
 
 
-
-
-
 def main():
     packer_names = ["aspack", "fsg", "upx", "MPRESS", "petitepacked", "pecompact"]
     for packer_name in packer_names:
@@ -49,7 +46,8 @@ def main():
                                                        obfuscation_technique_address)
 
             G = nx.DiGraph(read_dot(path=packed_dot_file))
-            color_graph(G, obfuscation_technique_sequence, obfuscation_technique_address, os.path.basename(packed_dot_file))
+            color_graph(G, obfuscation_technique_sequence, obfuscation_technique_address,
+                        os.path.basename(packed_dot_file))
             new_record = {
                 'distance': end_unpacking_oep_base10 - matched_signature_base10,
                 'packer_name': packer_name,
@@ -57,7 +55,6 @@ def main():
                 'obfuscation_technique_sequence': new_seq,
                 'obfuscation_technique_address': new_add,
             }
-
 
             # print("New seq: {}".format(new_seq))
             # print("New add: {}".format(new_add))
