@@ -120,8 +120,9 @@ def main():
                 log_file.writelines("Error in packer {} of {}: {}".format(packer_name, file_name, e))
                 pass
         if total_sample == 0:
-            print("packer: {}, no samples valid".format(packer_name))
-            log_file.writelines("packer: {}, no samples valid".format(packer_name))
+            print("packer: {}, no samples valid or this file is sample file: {}".format(packer_name, args.sample_file))
+            log_file.writelines(
+                "packer: {}, no samples valid or this file is sample file: {}".format(packer_name, args.sample_file))
             continue
         print("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
         log_file.writelines("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
