@@ -56,14 +56,17 @@ def get_oep_dataset():
 def get_preceding_oep(file_path, oep_address):
     dot_file = file_path
     if not os.path.exists(dot_file):
+        # print("File not exist")
         return False
     try:
         cfg = BPCFG(dot_file)
     except Exception as e:
+        # print("exception")
         print(e)
         return False
     preceding_oep = cfg.get_incoming_node(oep_address)
     if len(preceding_oep) == 0:
+        # print("no incoming")
         return False
     return preceding_oep[0]
 

@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_name', default="upx", type=str)
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
-
+parser.add_argument('--sample_file', default="AccessEnum.exe", type=str)
 # Get the arguments
 args = parser.parse_args()
 gc.enable()
@@ -25,18 +25,20 @@ data_folder_path = "data"
 
 def main():
     log_file = open("logs/log2_{}_{}.txt".format(args.packer_name, args.file_name), "w")
-    packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked", "yodaC"]
-    sample_file = "Dbgview.exe"
-
+    packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked", "yodaC", "pecompact", "winupack"]
+    # packer_names = ["pecompact"]
+    sample_file = args.sample_file
+    # pecompact: AccessEnum
     G1, G2 = None, None
     for packer_name in packer_names:
         if packer_name != args.packer_name:
             continue
         print("packer name: {}".format(packer_name))
-        log_file.writelines("packer name: {}".format(packer_name))
+        log_file.writelines("packer name: {}\n".format(packer_name))
         sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                         "{}_{}_model.dot".format(packer_name, sample_file))
         preceding_sample_file = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
+
         G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
                              address=preceding_sample_file)
         total_sample = 0
@@ -52,10 +54,15 @@ def main():
                 packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                                "{}_{}_model.dot".format(packer_name, file_name))
                 if not os.path.exists(packed_dot_file):
+                    log_file.writelines("{}: This file do not have dot file from BE-PUM\n".format(file_name))
                     continue
 
                 # print("packed_dot_file: {}".format(packed_dot_file))
                 preceding_oep = get_preceding_oep(packed_dot_file, oep_address)
+
+                if not preceding_oep:
+                    log_file.writelines("{}: Something wrong with preceding OEP\n".format(file_name))
+                    continue
                 node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
                                                  from_specific_node=False).nodes)
 
@@ -93,6 +100,7 @@ def main():
                         best_similarity = sim
                         save_address = name
                 total_sample += 1
+
                 if save_address == preceding_oep:
                     correct_sample += 1
                 print("packer: {}, file: {}, preceding_oep: {}, predicted_preceding_oep: {}".format(packer_name,
@@ -111,6 +119,10 @@ def main():
                 print("Error in packer {} of {}: {}".format(packer_name, file_name, e))
                 log_file.writelines("Error in packer {} of {}: {}".format(packer_name, file_name, e))
                 pass
+        if total_sample == 0:
+            print("packer: {}, no samples valid".format(packer_name))
+            log_file.writelines("packer: {}, no samples valid".format(packer_name))
+            continue
         print("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
         log_file.writelines("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
         # node_labels, data, unique_labels, G1, G2 = None, None, None, None

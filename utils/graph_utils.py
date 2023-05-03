@@ -26,8 +26,8 @@ color_mapping = {
 
 def get_node_information(s):
     if not s.startswith('a0x'):
-        address = s
-        opcode = "API"
+        address = s.upper()
+        opcode = s.upper()
         return address, opcode
     address = s[1:11]
     opcode = s[11:]
