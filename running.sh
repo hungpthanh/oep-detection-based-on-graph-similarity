@@ -1,492 +1,107 @@
-python WLK_experiment.py --packer_name aspack --file_name hex2dec.exe
-python WLK_experiment.py --packer_name aspack --file_name HWMonitorPro_x32.exe
-python WLK_experiment.py --packer_name aspack --file_name InstalledPackagesView.exe
-python WLK_experiment.py --packer_name aspack --file_name junction.exe
-python WLK_experiment.py --packer_name aspack --file_name LastActivityView.exe
-python WLK_experiment.py --packer_name aspack --file_name ldmdump.exe
-python WLK_experiment.py --packer_name aspack --file_name Listdlls.exe
-python WLK_experiment.py --packer_name aspack --file_name livekd.exe
-python WLK_experiment.py --packer_name aspack --file_name LoadOrdC.exe
-python WLK_experiment.py --packer_name aspack --file_name LoadOrd.exe
-python WLK_experiment.py --packer_name aspack --file_name logonsessions.exe
-python WLK_experiment.py --packer_name aspack --file_name MailbirdInstaller.exe
-python WLK_experiment.py --packer_name aspack --file_name md5summer.exe
-python WLK_experiment.py --packer_name aspack --file_name movefile.exe
-python WLK_experiment.py --packer_name aspack --file_name notmyfaultc.exe
-python WLK_experiment.py --packer_name aspack --file_name notmyfault.exe
-python WLK_experiment.py --packer_name aspack --file_name ntfsinfo.exe
-python WLK_experiment.py --packer_name aspack --file_name OpenedFilesView.exe
-python WLK_experiment.py --packer_name aspack --file_name PAGEANT_32.EXE
-python WLK_experiment.py --packer_name aspack --file_name pagedfrg.exe
-python WLK_experiment.py --packer_name aspack --file_name pendmoves.exe
-python WLK_experiment.py --packer_name aspack --file_name PEview.exe
-python WLK_experiment.py --packer_name aspack --file_name pipelist.exe
-python WLK_experiment.py --packer_name aspack --file_name PortableWinCDEmu-4.0.exe
-python WLK_experiment.py --packer_name aspack --file_name portmon.exe
-python WLK_experiment.py --packer_name aspack --file_name procdump.exe
-python WLK_experiment.py --packer_name aspack --file_name Procmon.exe
-python WLK_experiment.py --packer_name aspack --file_name ProduKey.exe
-python WLK_experiment.py --packer_name aspack --file_name PsExec.exe
-python WLK_experiment.py --packer_name aspack --file_name psfile.exe
-python WLK_experiment.py --packer_name aspack --file_name PsGetsid.exe
-python WLK_experiment.py --packer_name aspack --file_name PsInfo.exe
-python WLK_experiment.py --packer_name aspack --file_name pskill.exe
-python WLK_experiment.py --packer_name aspack --file_name pslist.exe
-python WLK_experiment.py --packer_name aspack --file_name PsLoggedon.exe
-python WLK_experiment.py --packer_name aspack --file_name psloglist.exe
-python WLK_experiment.py --packer_name aspack --file_name pspasswd.exe
-python WLK_experiment.py --packer_name aspack --file_name psping.exe
-python WLK_experiment.py --packer_name aspack --file_name PsService.exe
-python WLK_experiment.py --packer_name aspack --file_name psshutdown.exe
-python WLK_experiment.py --packer_name aspack --file_name pssuspend.exe
-python WLK_experiment.py --packer_name aspack --file_name puttytel_32.exe
-python WLK_experiment.py --packer_name aspack --file_name RAMMap.exe
-python WLK_experiment.py --packer_name aspack --file_name RegDelNull.exe
-python WLK_experiment.py --packer_name aspack --file_name RegDllView.exe
-python WLK_experiment.py --packer_name aspack --file_name regjump.exe
-python WLK_experiment.py --packer_name aspack --file_name ru.exe
-python WLK_experiment.py --packer_name aspack --file_name sdelete.exe
-python WLK_experiment.py --packer_name aspack --file_name SearchMyFiles.exe
-python WLK_experiment.py --packer_name aspack --file_name ShareEnum.exe
-python WLK_experiment.py --packer_name aspack --file_name ShellRunas.exe
-python WLK_experiment.py --packer_name aspack --file_name shexview.exe
-python WLK_experiment.py --packer_name aspack --file_name shmnview.exe
-python WLK_experiment.py --packer_name aspack --file_name streams.exe
-python WLK_experiment.py --packer_name aspack --file_name strings.exe
-python WLK_experiment.py --packer_name aspack --file_name sync.exe
-python WLK_experiment.py --packer_name aspack --file_name sysexp.exe
-python WLK_experiment.py --packer_name aspack --file_name Sysmon.exe
-python WLK_experiment.py --packer_name aspack --file_name TaskSchedulerView.exe
-python WLK_experiment.py --packer_name aspack --file_name Tcpvcon.exe
-python WLK_experiment.py --packer_name aspack --file_name Tcpview.exe
-python WLK_experiment.py --packer_name aspack --file_name Testlimit.exe
-python WLK_experiment.py --packer_name aspack --file_name TurnedOnTimesView.exe
-python WLK_experiment.py --packer_name aspack --file_name USBDeview.exe
-python WLK_experiment.py --packer_name aspack --file_name vmmap.exe
-python WLK_experiment.py --packer_name aspack --file_name Volumeid.exe
-python WLK_experiment.py --packer_name aspack --file_name WhatIsHang.exe
-python WLK_experiment.py --packer_name aspack --file_name whois.exe
-python WLK_experiment.py --packer_name upx --file_name accesschk.exe
-python WLK_experiment.py --packer_name upx --file_name AccessEnum.exe
-python WLK_experiment.py --packer_name upx --file_name ADExplorer.exe
-python WLK_experiment.py --packer_name upx --file_name ADInsight.exe
-python WLK_experiment.py --packer_name upx --file_name  adrestore.exe
-python WLK_experiment.py --packer_name upx --file_name  Autologon.exe
-python WLK_experiment.py --packer_name upx --file_name BatteryInfoView.exe
-python WLK_experiment.py --packer_name upx --file_name Bginfo.exe
-python WLK_experiment.py --packer_name upx --file_name BlueScreenView.exe
-python WLK_experiment.py --packer_name upx --file_name Cacheset.exe
-python WLK_experiment.py --packer_name upx --file_name Clockres.exe
-python WLK_experiment.py --packer_name upx --file_name ComIntRep.exe
-python WLK_experiment.py --packer_name upx --file_name Contig.exe
-python WLK_experiment.py --packer_name upx --file_name Coreinfo.exe
-python WLK_experiment.py --packer_name upx --file_name ctrl2cap.exe
-python WLK_experiment.py --packer_name upx --file_name Dbgview.exe
-python WLK_experiment.py --packer_name upx --file_name Desktops.exe
-python WLK_experiment.py --packer_name upx --file_name disk2vhd.exe
-python WLK_experiment.py --packer_name upx --file_name diskext.exe
-python WLK_experiment.py --packer_name upx --file_name Diskmon.exe
-python WLK_experiment.py --packer_name upx --file_name DiskView.exe
-python WLK_experiment.py --packer_name upx --file_name DriverView.exe
-python WLK_experiment.py --packer_name upx --file_name du.exe
-python WLK_experiment.py --packer_name upx --file_name dxwebsetup.exe
-python WLK_experiment.py --packer_name upx --file_name efsdump.exe
-python WLK_experiment.py --packer_name upx --file_name ESEDatabaseView.exe
-python WLK_experiment.py --packer_name upx --file_name EventLogChannelsView.exe
-python WLK_experiment.py --packer_name upx --file_name FastHash_kr.exe
-python WLK_experiment.py --packer_name upx --file_name FileTypesMan.exe
-python WLK_experiment.py --packer_name upx --file_name FindLinks.exe
-python WLK_experiment.py --packer_name upx --file_name FolderTimeUpdate.exe
-python WLK_experiment.py --packer_name upx --file_name FullEventLogView.exe
-python WLK_experiment.py --packer_name upx --file_name geek.exe
-python WLK_experiment.py --packer_name upx --file_name grepWin-1.9.0_portable.exe
-python WLK_experiment.py --packer_name upx --file_name handle.exe
-python WLK_experiment.py --packer_name upx --file_name HashCalc.exe
-python WLK_experiment.py --packer_name upx --file_name Hasher.exe
-python WLK_experiment.py --packer_name upx --file_name Hash.exe
-python WLK_experiment.py --packer_name upx --file_name hex2dec.exe
-python WLK_experiment.py --packer_name upx --file_name HWMonitorPro_x32.exe
-python WLK_experiment.py --packer_name upx --file_name InstalledPackagesView.exe
-python WLK_experiment.py --packer_name upx --file_name junction.exe
-python WLK_experiment.py --packer_name upx --file_name LastActivityView.exe
-python WLK_experiment.py --packer_name upx --file_name ldmdump.exe
-python WLK_experiment.py --packer_name upx --file_name Listdlls.exe
-python WLK_experiment.py --packer_name upx --file_name livekd.exe
-python WLK_experiment.py --packer_name upx --file_name LoadOrdC.exe
-python WLK_experiment.py --packer_name upx --file_name LoadOrd.exe
-python WLK_experiment.py --packer_name upx --file_name logonsessions.exe
-python WLK_experiment.py --packer_name upx --file_name MailbirdInstaller.exe
-python WLK_experiment.py --packer_name upx --file_name md5summer.exe
-python WLK_experiment.py --packer_name upx --file_name movefile.exe
-python WLK_experiment.py --packer_name upx --file_name notmyfaultc.exe
-python WLK_experiment.py --packer_name upx --file_name notmyfault.exe
-python WLK_experiment.py --packer_name upx --file_name ntfsinfo.exe
-python WLK_experiment.py --packer_name upx --file_name OpenedFilesView.exe
-python WLK_experiment.py --packer_name upx --file_name PAGEANT_32.EXE
-python WLK_experiment.py --packer_name upx --file_name pagedfrg.exe
-python WLK_experiment.py --packer_name upx --file_name pendmoves.exe
-python WLK_experiment.py --packer_name upx --file_name PEview.exe
-python WLK_experiment.py --packer_name upx --file_name pipelist.exe
-python WLK_experiment.py --packer_name upx --file_name PortableWinCDEmu-4.0.exe
-python WLK_experiment.py --packer_name upx --file_name portmon.exe
-python WLK_experiment.py --packer_name upx --file_name procdump.exe
-python WLK_experiment.py --packer_name upx --file_name Procmon.exe
-python WLK_experiment.py --packer_name upx --file_name ProduKey.exe
-python WLK_experiment.py --packer_name upx --file_name PsExec.exe
-python WLK_experiment.py --packer_name upx --file_name psfile.exe
-python WLK_experiment.py --packer_name upx --file_name PsGetsid.exe
-python WLK_experiment.py --packer_name upx --file_name PsInfo.exe
-python WLK_experiment.py --packer_name upx --file_name pskill.exe
-python WLK_experiment.py --packer_name upx --file_name pslist.exe
-python WLK_experiment.py --packer_name upx --file_name PsLoggedon.exe
-python WLK_experiment.py --packer_name upx --file_name psloglist.exe
-python WLK_experiment.py --packer_name upx --file_name pspasswd.exe
-python WLK_experiment.py --packer_name upx --file_name psping.exe
-python WLK_experiment.py --packer_name upx --file_name PsService.exe
-python WLK_experiment.py --packer_name upx --file_name psshutdown.exe
-python WLK_experiment.py --packer_name upx --file_name pssuspend.exe
-python WLK_experiment.py --packer_name upx --file_name puttytel_32.exe
-python WLK_experiment.py --packer_name upx --file_name RAMMap.exe
-python WLK_experiment.py --packer_name upx --file_name RegDelNull.exe
-python WLK_experiment.py --packer_name upx --file_name RegDllView.exe
-python WLK_experiment.py --packer_name upx --file_name regjump.exe
-python WLK_experiment.py --packer_name upx --file_name ru.exe
-python WLK_experiment.py --packer_name upx --file_name sdelete.exe
-python WLK_experiment.py --packer_name upx --file_name SearchMyFiles.exe
-python WLK_experiment.py --packer_name upx --file_name ShareEnum.exe
-python WLK_experiment.py --packer_name upx --file_name ShellRunas.exe
-python WLK_experiment.py --packer_name upx --file_name shexview.exe
-python WLK_experiment.py --packer_name upx --file_name shmnview.exe
-python WLK_experiment.py --packer_name upx --file_name streams.exe
-python WLK_experiment.py --packer_name upx --file_name strings.exe
-python WLK_experiment.py --packer_name upx --file_name sync.exe
-python WLK_experiment.py --packer_name upx --file_name sysexp.exe
-python WLK_experiment.py --packer_name upx --file_name Sysmon.exe
-python WLK_experiment.py --packer_name upx --file_name TaskSchedulerView.exe
-python WLK_experiment.py --packer_name upx --file_name Tcpvcon.exe
-python WLK_experiment.py --packer_name upx --file_name Tcpview.exe
-python WLK_experiment.py --packer_name upx --file_name Testlimit.exe
-python WLK_experiment.py --packer_name upx --file_name TurnedOnTimesView.exe
-python WLK_experiment.py --packer_name upx --file_name USBDeview.exe
-python WLK_experiment.py --packer_name upx --file_name vmmap.exe
-python WLK_experiment.py --packer_name upx --file_name Volumeid.exe
-python WLK_experiment.py --packer_name upx --file_name WhatIsHang.exe
-python WLK_experiment.py --packer_name upx --file_name whois.exe
-python WLK_experiment.py --packer_name MPRESS --file_name accesschk.exe
-python WLK_experiment.py --packer_name MPRESS --file_name AccessEnum.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ADExplorer.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ADInsight.exe
-python WLK_experiment.py --packer_name MPRESS --file_name  adrestore.exe
-python WLK_experiment.py --packer_name MPRESS --file_name  Autologon.exe
-python WLK_experiment.py --packer_name MPRESS --file_name BatteryInfoView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Bginfo.exe
-python WLK_experiment.py --packer_name MPRESS --file_name BlueScreenView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Cacheset.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Clockres.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ComIntRep.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Contig.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Coreinfo.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ctrl2cap.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Dbgview.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Desktops.exe
-python WLK_experiment.py --packer_name MPRESS --file_name disk2vhd.exe
-python WLK_experiment.py --packer_name MPRESS --file_name diskext.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Diskmon.exe
-python WLK_experiment.py --packer_name MPRESS --file_name DiskView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name DriverView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name du.exe
-python WLK_experiment.py --packer_name MPRESS --file_name dxwebsetup.exe
-python WLK_experiment.py --packer_name MPRESS --file_name efsdump.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ESEDatabaseView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name EventLogChannelsView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name FastHash_kr.exe
-python WLK_experiment.py --packer_name MPRESS --file_name FileTypesMan.exe
-python WLK_experiment.py --packer_name MPRESS --file_name FindLinks.exe
-python WLK_experiment.py --packer_name MPRESS --file_name FolderTimeUpdate.exe
-python WLK_experiment.py --packer_name MPRESS --file_name FullEventLogView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name geek.exe
-python WLK_experiment.py --packer_name MPRESS --file_name grepWin-1.9.0_portable.exe
-python WLK_experiment.py --packer_name MPRESS --file_name handle.exe
-python WLK_experiment.py --packer_name MPRESS --file_name HashCalc.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Hasher.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Hash.exe
-python WLK_experiment.py --packer_name MPRESS --file_name hex2dec.exe
-python WLK_experiment.py --packer_name MPRESS --file_name HWMonitorPro_x32.exe
-python WLK_experiment.py --packer_name MPRESS --file_name InstalledPackagesView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name junction.exe
-python WLK_experiment.py --packer_name MPRESS --file_name LastActivityView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ldmdump.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Listdlls.exe
-python WLK_experiment.py --packer_name MPRESS --file_name livekd.exe
-python WLK_experiment.py --packer_name MPRESS --file_name LoadOrdC.exe
-python WLK_experiment.py --packer_name MPRESS --file_name LoadOrd.exe
-python WLK_experiment.py --packer_name MPRESS --file_name logonsessions.exe
-python WLK_experiment.py --packer_name MPRESS --file_name MailbirdInstaller.exe
-python WLK_experiment.py --packer_name MPRESS --file_name md5summer.exe
-python WLK_experiment.py --packer_name MPRESS --file_name movefile.exe
-python WLK_experiment.py --packer_name MPRESS --file_name notmyfaultc.exe
-python WLK_experiment.py --packer_name MPRESS --file_name notmyfault.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ntfsinfo.exe
-python WLK_experiment.py --packer_name MPRESS --file_name OpenedFilesView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name PAGEANT_32.EXE
-python WLK_experiment.py --packer_name MPRESS --file_name pagedfrg.exe
-python WLK_experiment.py --packer_name MPRESS --file_name pendmoves.exe
-python WLK_experiment.py --packer_name MPRESS --file_name PEview.exe
-python WLK_experiment.py --packer_name MPRESS --file_name pipelist.exe
-python WLK_experiment.py --packer_name MPRESS --file_name PortableWinCDEmu-4.0.exe
-python WLK_experiment.py --packer_name MPRESS --file_name portmon.exe
-python WLK_experiment.py --packer_name MPRESS --file_name procdump.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Procmon.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ProduKey.exe
-python WLK_experiment.py --packer_name MPRESS --file_name PsExec.exe
-python WLK_experiment.py --packer_name MPRESS --file_name psfile.exe
-python WLK_experiment.py --packer_name MPRESS --file_name PsGetsid.exe
-python WLK_experiment.py --packer_name MPRESS --file_name PsInfo.exe
-python WLK_experiment.py --packer_name MPRESS --file_name pskill.exe
-python WLK_experiment.py --packer_name MPRESS --file_name pslist.exe
-python WLK_experiment.py --packer_name MPRESS --file_name PsLoggedon.exe
-python WLK_experiment.py --packer_name MPRESS --file_name psloglist.exe
-python WLK_experiment.py --packer_name MPRESS --file_name pspasswd.exe
-python WLK_experiment.py --packer_name MPRESS --file_name psping.exe
-python WLK_experiment.py --packer_name MPRESS --file_name PsService.exe
-python WLK_experiment.py --packer_name MPRESS --file_name psshutdown.exe
-python WLK_experiment.py --packer_name MPRESS --file_name pssuspend.exe
-python WLK_experiment.py --packer_name MPRESS --file_name puttytel_32.exe
-python WLK_experiment.py --packer_name MPRESS --file_name RAMMap.exe
-python WLK_experiment.py --packer_name MPRESS --file_name RegDelNull.exe
-python WLK_experiment.py --packer_name MPRESS --file_name RegDllView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name regjump.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ru.exe
-python WLK_experiment.py --packer_name MPRESS --file_name sdelete.exe
-python WLK_experiment.py --packer_name MPRESS --file_name SearchMyFiles.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ShareEnum.exe
-python WLK_experiment.py --packer_name MPRESS --file_name ShellRunas.exe
-python WLK_experiment.py --packer_name MPRESS --file_name shexview.exe
-python WLK_experiment.py --packer_name MPRESS --file_name shmnview.exe
-python WLK_experiment.py --packer_name MPRESS --file_name streams.exe
-python WLK_experiment.py --packer_name MPRESS --file_name strings.exe
-python WLK_experiment.py --packer_name MPRESS --file_name sync.exe
-python WLK_experiment.py --packer_name MPRESS --file_name sysexp.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Sysmon.exe
-python WLK_experiment.py --packer_name MPRESS --file_name TaskSchedulerView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Tcpvcon.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Tcpview.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Testlimit.exe
-python WLK_experiment.py --packer_name MPRESS --file_name TurnedOnTimesView.exe
-python WLK_experiment.py --packer_name MPRESS --file_name USBDeview.exe
-python WLK_experiment.py --packer_name MPRESS --file_name vmmap.exe
-python WLK_experiment.py --packer_name MPRESS --file_name Volumeid.exe
-python WLK_experiment.py --packer_name MPRESS --file_name WhatIsHang.exe
-python WLK_experiment.py --packer_name MPRESS --file_name whois.exe
-python WLK_experiment.py --packer_name fsg --file_name accesschk.exe
-python WLK_experiment.py --packer_name fsg --file_name AccessEnum.exe
-python WLK_experiment.py --packer_name fsg --file_name ADExplorer.exe
-python WLK_experiment.py --packer_name fsg --file_name ADInsight.exe
-python WLK_experiment.py --packer_name fsg --file_name  adrestore.exe
-python WLK_experiment.py --packer_name fsg --file_name  Autologon.exe
-python WLK_experiment.py --packer_name fsg --file_name BatteryInfoView.exe
-python WLK_experiment.py --packer_name fsg --file_name Bginfo.exe
-python WLK_experiment.py --packer_name fsg --file_name BlueScreenView.exe
-python WLK_experiment.py --packer_name fsg --file_name Cacheset.exe
-python WLK_experiment.py --packer_name fsg --file_name Clockres.exe
-python WLK_experiment.py --packer_name fsg --file_name ComIntRep.exe
-python WLK_experiment.py --packer_name fsg --file_name Contig.exe
-python WLK_experiment.py --packer_name fsg --file_name Coreinfo.exe
-python WLK_experiment.py --packer_name fsg --file_name ctrl2cap.exe
-python WLK_experiment.py --packer_name fsg --file_name Dbgview.exe
-python WLK_experiment.py --packer_name fsg --file_name Desktops.exe
-python WLK_experiment.py --packer_name fsg --file_name disk2vhd.exe
-python WLK_experiment.py --packer_name fsg --file_name diskext.exe
-python WLK_experiment.py --packer_name fsg --file_name Diskmon.exe
-python WLK_experiment.py --packer_name fsg --file_name DiskView.exe
-python WLK_experiment.py --packer_name fsg --file_name DriverView.exe
-python WLK_experiment.py --packer_name fsg --file_name du.exe
-python WLK_experiment.py --packer_name fsg --file_name dxwebsetup.exe
-python WLK_experiment.py --packer_name fsg --file_name efsdump.exe
-python WLK_experiment.py --packer_name fsg --file_name ESEDatabaseView.exe
-python WLK_experiment.py --packer_name fsg --file_name EventLogChannelsView.exe
-python WLK_experiment.py --packer_name fsg --file_name FastHash_kr.exe
-python WLK_experiment.py --packer_name fsg --file_name FileTypesMan.exe
-python WLK_experiment.py --packer_name fsg --file_name FindLinks.exe
-python WLK_experiment.py --packer_name fsg --file_name FolderTimeUpdate.exe
-python WLK_experiment.py --packer_name fsg --file_name FullEventLogView.exe
-python WLK_experiment.py --packer_name fsg --file_name geek.exe
-python WLK_experiment.py --packer_name fsg --file_name grepWin-1.9.0_portable.exe
-python WLK_experiment.py --packer_name fsg --file_name handle.exe
-python WLK_experiment.py --packer_name fsg --file_name HashCalc.exe
-python WLK_experiment.py --packer_name fsg --file_name Hasher.exe
-python WLK_experiment.py --packer_name fsg --file_name Hash.exe
-python WLK_experiment.py --packer_name fsg --file_name hex2dec.exe
-python WLK_experiment.py --packer_name fsg --file_name HWMonitorPro_x32.exe
-python WLK_experiment.py --packer_name fsg --file_name InstalledPackagesView.exe
-python WLK_experiment.py --packer_name fsg --file_name junction.exe
-python WLK_experiment.py --packer_name fsg --file_name LastActivityView.exe
-python WLK_experiment.py --packer_name fsg --file_name ldmdump.exe
-python WLK_experiment.py --packer_name fsg --file_name Listdlls.exe
-python WLK_experiment.py --packer_name fsg --file_name livekd.exe
-python WLK_experiment.py --packer_name fsg --file_name LoadOrdC.exe
-python WLK_experiment.py --packer_name fsg --file_name LoadOrd.exe
-python WLK_experiment.py --packer_name fsg --file_name logonsessions.exe
-python WLK_experiment.py --packer_name fsg --file_name MailbirdInstaller.exe
-python WLK_experiment.py --packer_name fsg --file_name md5summer.exe
-python WLK_experiment.py --packer_name fsg --file_name movefile.exe
-python WLK_experiment.py --packer_name fsg --file_name notmyfaultc.exe
-python WLK_experiment.py --packer_name fsg --file_name notmyfault.exe
-python WLK_experiment.py --packer_name fsg --file_name ntfsinfo.exe
-python WLK_experiment.py --packer_name fsg --file_name OpenedFilesView.exe
-python WLK_experiment.py --packer_name fsg --file_name PAGEANT_32.EXE
-python WLK_experiment.py --packer_name fsg --file_name pagedfrg.exe
-python WLK_experiment.py --packer_name fsg --file_name pendmoves.exe
-python WLK_experiment.py --packer_name fsg --file_name PEview.exe
-python WLK_experiment.py --packer_name fsg --file_name pipelist.exe
-python WLK_experiment.py --packer_name fsg --file_name PortableWinCDEmu-4.0.exe
-python WLK_experiment.py --packer_name fsg --file_name portmon.exe
-python WLK_experiment.py --packer_name fsg --file_name procdump.exe
-python WLK_experiment.py --packer_name fsg --file_name Procmon.exe
-python WLK_experiment.py --packer_name fsg --file_name ProduKey.exe
-python WLK_experiment.py --packer_name fsg --file_name PsExec.exe
-python WLK_experiment.py --packer_name fsg --file_name psfile.exe
-python WLK_experiment.py --packer_name fsg --file_name PsGetsid.exe
-python WLK_experiment.py --packer_name fsg --file_name PsInfo.exe
-python WLK_experiment.py --packer_name fsg --file_name pskill.exe
-python WLK_experiment.py --packer_name fsg --file_name pslist.exe
-python WLK_experiment.py --packer_name fsg --file_name PsLoggedon.exe
-python WLK_experiment.py --packer_name fsg --file_name psloglist.exe
-python WLK_experiment.py --packer_name fsg --file_name pspasswd.exe
-python WLK_experiment.py --packer_name fsg --file_name psping.exe
-python WLK_experiment.py --packer_name fsg --file_name PsService.exe
-python WLK_experiment.py --packer_name fsg --file_name psshutdown.exe
-python WLK_experiment.py --packer_name fsg --file_name pssuspend.exe
-python WLK_experiment.py --packer_name fsg --file_name puttytel_32.exe
-python WLK_experiment.py --packer_name fsg --file_name RAMMap.exe
-python WLK_experiment.py --packer_name fsg --file_name RegDelNull.exe
-python WLK_experiment.py --packer_name fsg --file_name RegDllView.exe
-python WLK_experiment.py --packer_name fsg --file_name regjump.exe
-python WLK_experiment.py --packer_name fsg --file_name ru.exe
-python WLK_experiment.py --packer_name fsg --file_name sdelete.exe
-python WLK_experiment.py --packer_name fsg --file_name SearchMyFiles.exe
-python WLK_experiment.py --packer_name fsg --file_name ShareEnum.exe
-python WLK_experiment.py --packer_name fsg --file_name ShellRunas.exe
-python WLK_experiment.py --packer_name fsg --file_name shexview.exe
-python WLK_experiment.py --packer_name fsg --file_name shmnview.exe
-python WLK_experiment.py --packer_name fsg --file_name streams.exe
-python WLK_experiment.py --packer_name fsg --file_name strings.exe
-python WLK_experiment.py --packer_name fsg --file_name sync.exe
-python WLK_experiment.py --packer_name fsg --file_name sysexp.exe
-python WLK_experiment.py --packer_name fsg --file_name Sysmon.exe
-python WLK_experiment.py --packer_name fsg --file_name TaskSchedulerView.exe
-python WLK_experiment.py --packer_name fsg --file_name Tcpvcon.exe
-python WLK_experiment.py --packer_name fsg --file_name Tcpview.exe
-python WLK_experiment.py --packer_name fsg --file_name Testlimit.exe
-python WLK_experiment.py --packer_name fsg --file_name TurnedOnTimesView.exe
-python WLK_experiment.py --packer_name fsg --file_name USBDeview.exe
-python WLK_experiment.py --packer_name fsg --file_name vmmap.exe
-python WLK_experiment.py --packer_name fsg --file_name Volumeid.exe
-python WLK_experiment.py --packer_name fsg --file_name WhatIsHang.exe
-python WLK_experiment.py --packer_name fsg --file_name whois.exe
-python WLK_experiment.py --packer_name petitepacked --file_name accesschk.exe
-python WLK_experiment.py --packer_name petitepacked --file_name AccessEnum.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ADExplorer.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ADInsight.exe
-python WLK_experiment.py --packer_name petitepacked --file_name  adrestore.exe
-python WLK_experiment.py --packer_name petitepacked --file_name  Autologon.exe
-python WLK_experiment.py --packer_name petitepacked --file_name BatteryInfoView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Bginfo.exe
-python WLK_experiment.py --packer_name petitepacked --file_name BlueScreenView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Cacheset.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Clockres.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ComIntRep.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Contig.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Coreinfo.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ctrl2cap.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Dbgview.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Desktops.exe
-python WLK_experiment.py --packer_name petitepacked --file_name disk2vhd.exe
-python WLK_experiment.py --packer_name petitepacked --file_name diskext.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Diskmon.exe
-python WLK_experiment.py --packer_name petitepacked --file_name DiskView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name DriverView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name du.exe
-python WLK_experiment.py --packer_name petitepacked --file_name dxwebsetup.exe
-python WLK_experiment.py --packer_name petitepacked --file_name efsdump.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ESEDatabaseView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name EventLogChannelsView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name FastHash_kr.exe
-python WLK_experiment.py --packer_name petitepacked --file_name FileTypesMan.exe
-python WLK_experiment.py --packer_name petitepacked --file_name FindLinks.exe
-python WLK_experiment.py --packer_name petitepacked --file_name FolderTimeUpdate.exe
-python WLK_experiment.py --packer_name petitepacked --file_name FullEventLogView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name geek.exe
-python WLK_experiment.py --packer_name petitepacked --file_name grepWin-1.9.0_portable.exe
-python WLK_experiment.py --packer_name petitepacked --file_name handle.exe
-python WLK_experiment.py --packer_name petitepacked --file_name HashCalc.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Hasher.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Hash.exe
-python WLK_experiment.py --packer_name petitepacked --file_name hex2dec.exe
-python WLK_experiment.py --packer_name petitepacked --file_name HWMonitorPro_x32.exe
-python WLK_experiment.py --packer_name petitepacked --file_name InstalledPackagesView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name junction.exe
-python WLK_experiment.py --packer_name petitepacked --file_name LastActivityView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ldmdump.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Listdlls.exe
-python WLK_experiment.py --packer_name petitepacked --file_name livekd.exe
-python WLK_experiment.py --packer_name petitepacked --file_name LoadOrdC.exe
-python WLK_experiment.py --packer_name petitepacked --file_name LoadOrd.exe
-python WLK_experiment.py --packer_name petitepacked --file_name logonsessions.exe
-python WLK_experiment.py --packer_name petitepacked --file_name MailbirdInstaller.exe
-python WLK_experiment.py --packer_name petitepacked --file_name md5summer.exe
-python WLK_experiment.py --packer_name petitepacked --file_name movefile.exe
-python WLK_experiment.py --packer_name petitepacked --file_name notmyfaultc.exe
-python WLK_experiment.py --packer_name petitepacked --file_name notmyfault.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ntfsinfo.exe
-python WLK_experiment.py --packer_name petitepacked --file_name OpenedFilesView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name PAGEANT_32.EXE
-python WLK_experiment.py --packer_name petitepacked --file_name pagedfrg.exe
-python WLK_experiment.py --packer_name petitepacked --file_name pendmoves.exe
-python WLK_experiment.py --packer_name petitepacked --file_name PEview.exe
-python WLK_experiment.py --packer_name petitepacked --file_name pipelist.exe
-python WLK_experiment.py --packer_name petitepacked --file_name PortableWinCDEmu-4.0.exe
-python WLK_experiment.py --packer_name petitepacked --file_name portmon.exe
-python WLK_experiment.py --packer_name petitepacked --file_name procdump.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Procmon.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ProduKey.exe
-python WLK_experiment.py --packer_name petitepacked --file_name PsExec.exe
-python WLK_experiment.py --packer_name petitepacked --file_name psfile.exe
-python WLK_experiment.py --packer_name petitepacked --file_name PsGetsid.exe
-python WLK_experiment.py --packer_name petitepacked --file_name PsInfo.exe
-python WLK_experiment.py --packer_name petitepacked --file_name pskill.exe
-python WLK_experiment.py --packer_name petitepacked --file_name pslist.exe
-python WLK_experiment.py --packer_name petitepacked --file_name PsLoggedon.exe
-python WLK_experiment.py --packer_name petitepacked --file_name psloglist.exe
-python WLK_experiment.py --packer_name petitepacked --file_name pspasswd.exe
-python WLK_experiment.py --packer_name petitepacked --file_name psping.exe
-python WLK_experiment.py --packer_name petitepacked --file_name PsService.exe
-python WLK_experiment.py --packer_name petitepacked --file_name psshutdown.exe
-python WLK_experiment.py --packer_name petitepacked --file_name pssuspend.exe
-python WLK_experiment.py --packer_name petitepacked --file_name puttytel_32.exe
-python WLK_experiment.py --packer_name petitepacked --file_name RAMMap.exe
-python WLK_experiment.py --packer_name petitepacked --file_name RegDelNull.exe
-python WLK_experiment.py --packer_name petitepacked --file_name RegDllView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name regjump.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ru.exe
-python WLK_experiment.py --packer_name petitepacked --file_name sdelete.exe
-python WLK_experiment.py --packer_name petitepacked --file_name SearchMyFiles.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ShareEnum.exe
-python WLK_experiment.py --packer_name petitepacked --file_name ShellRunas.exe
-python WLK_experiment.py --packer_name petitepacked --file_name shexview.exe
-python WLK_experiment.py --packer_name petitepacked --file_name shmnview.exe
-python WLK_experiment.py --packer_name petitepacked --file_name streams.exe
-python WLK_experiment.py --packer_name petitepacked --file_name strings.exe
-python WLK_experiment.py --packer_name petitepacked --file_name sync.exe
-python WLK_experiment.py --packer_name petitepacked --file_name sysexp.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Sysmon.exe
-python WLK_experiment.py --packer_name petitepacked --file_name TaskSchedulerView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Tcpvcon.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Tcpview.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Testlimit.exe
-python WLK_experiment.py --packer_name petitepacked --file_name TurnedOnTimesView.exe
-python WLK_experiment.py --packer_name petitepacked --file_name USBDeview.exe
-python WLK_experiment.py --packer_name petitepacked --file_name vmmap.exe
-python WLK_experiment.py --packer_name petitepacked --file_name Volumeid.exe
-python WLK_experiment.py --packer_name petitepacked --file_name WhatIsHang.exe
-python WLK_experiment.py --packer_name petitepacked --file_name whois.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name DriverView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name efsdump.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name accesschk.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name AccessEnum.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ADExplorer.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ADInsight.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name  adrestore.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name  Autologon.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name BatteryInfoView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Bginfo.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name BlueScreenView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Cacheset.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Clockres.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ComIntRep.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Contig.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Coreinfo.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ctrl2cap.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Dbgview.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Desktops.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name disk2vhd.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name diskext.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Diskmon.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name DiskView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name DriverView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name du.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name dxwebsetup.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ESEDatabaseView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name EventLogChannelsView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name FastHash_kr.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name FileTypesMan.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name FindLinks.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name FolderTimeUpdate.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name FullEventLogView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name geek.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name grepWin-1.9.0_portable.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name handle.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name HashCalc.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Hasher.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Hash.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name hex2dec.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name HWMonitorPro_x32.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name InstalledPackagesView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name junction.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name LastActivityView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ldmdump.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Listdlls.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name livekd.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name LoadOrdC.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name LoadOrd.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name logonsessions.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name MailbirdInstaller.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name md5summer.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name movefile.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name notmyfaultc.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name notmyfault.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ntfsinfo.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name OpenedFilesView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name PAGEANT_32.EXE
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name pagedfrg.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name pendmoves.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name PEview.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name pipelist.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name PortableWinCDEmu-4.0.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name portmon.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name procdump.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Procmon.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ProduKey.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name PsExec.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name psfile.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name PsGetsid.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name PsInfo.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name pskill.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name pslist.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name PsLoggedon.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name psloglist.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name pspasswd.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name psping.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name PsService.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name psshutdown.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name pssuspend.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name puttytel_32.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name RAMMap.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name RegDelNull.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name RegDllView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name regjump.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ru.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name sdelete.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name SearchMyFiles.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ShareEnum.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name ShellRunas.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name shexview.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name shmnview.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name streams.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name strings.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name sync.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name sysexp.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Sysmon.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name TaskSchedulerView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Tcpvcon.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Tcpview.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Testlimit.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name TurnedOnTimesView.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name USBDeview.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name vmmap.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name Volumeid.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name WhatIsHang.exe
+python WLK_experiment.py --packer_name pecompact --mode detection  --file_name whois.exe

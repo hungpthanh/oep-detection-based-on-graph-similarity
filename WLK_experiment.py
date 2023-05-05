@@ -25,7 +25,7 @@ data_folder_path = "data"
 
 def main():
     log_file = open("logs/log2_{}_{}.txt".format(args.packer_name, args.file_name), "w")
-    packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked", "yodaC", "pecompact", "winupack"]
+    packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked", "yodaC", "pecompact", "winupack", "mew"]
     # packer_names = ["pecompact"]
     sample_file = args.sample_file
     # pecompact: AccessEnum
@@ -132,22 +132,22 @@ def main():
 
 
 def evaluate():
-    packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked", "yodaC", "pecompact"]
+    packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked", "yodaC", "pecompact", "winupack"]
     for packer_name in packer_names:
         total = 0
         corrected_sample = 0
         for file_name, oep_address in oep_dictionary.items():
             if file_name == "name":
                 continue
-            log_file = "logs/log2_{}_{}.txt".format(packer_name, file_name)
+            log_file = "logs/WLK_API_corrected/log2_{}_{}.txt".format(packer_name, file_name)
             with open(log_file, "r") as f:
-                line = f.readlines()[0]
+                # line = f.readlines()[0]
                 # print("packer_name: {}, file_name: {}, line: {}".format(packer_name, file_name, line))
-
-                if "The accuracy of packer:" in line:
-                    total += 1
-                    if "1.0" in line:
-                        corrected_sample += 1
+                for line in f:
+                    if "The accuracy of packer:" in line:
+                        total += 1
+                        if "1.0" in line:
+                            corrected_sample += 1
 
         print("Accuracy of {}: {} on {} samples".format(packer_name, 1.0 * corrected_sample / total, total))
 

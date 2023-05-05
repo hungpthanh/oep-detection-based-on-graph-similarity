@@ -103,4 +103,4 @@ python WLK_experiment.py --packer_name pecompact  --mode detection --file_name U
 python WLK_experiment.py --packer_name pecompact  --mode detection --file_name vmmap.exe
 python WLK_experiment.py --packer_name pecompact  --mode detection --file_name Volumeid.exe
 python WLK_experiment.py --packer_name pecompact  --mode detection --file_name WhatIsHang.exe
-python WLK_experiment.py --packer_name pecompact  --mode detection --file_name whois.exe.exe
+python WLK_experiment.py --packer_name pecompact  --mode detection --file_name whois.exe
