@@ -13,7 +13,7 @@ data_folder_path = "data"
 
 
 def main():
-    packer_names = ["aspack", "fsg", "upx", "MPRESS", "petitepacked", "pecompact"]
+    packer_names = ["aspack", "fsg", "upx", "MPRESS", "petitepacked", "pecompact", "mew"]
     for packer_name in packer_names:
         print("packer name: {}".format(packer_name))
         data = []
