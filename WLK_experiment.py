@@ -28,38 +28,39 @@ log_file.writelines("Sample files: {}\n".format(args.sample_files))
 log_file.writelines("File name: {}\n".format(args.file_name))
 
 
-def get_histogram()
-def end_of_unpacking_prediction(packer_name, sample_file, file_name):
+def convert_graph_to_vector(packer_name, sample_file, address, from_specific_node=True):
     sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                     "{}_{}_model.dot".format(packer_name, sample_file))
-    preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
-
     G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
-                         address=preceding_sample_file)
+                         address=address, from_specific_node=from_specific_node)
+    node_list = G1.nodes
+    node_labels = get_WLK(G1, 2)
+    return node_list, node_labels
+
+
+def build_subgraph_vector(packer_name, file_name):
+    packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
+                                   "{}_{}_model.dot".format(packer_name, file_name))
+    if not os.path.exists(packed_dot_file):
+        return None, None, "This file do not have dot file from BE-PUM"
+
+    node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
+                                     from_specific_node=False).nodes)
+    data = {}
+    unique_labels = []
+    print("Generating subgraph of {} nodes of {} packed by {}:".format(len(node_list), file_name, packer_name))
+    for node in tqdm(node_list):
+        node_list, node_labels = convert_graph_to_vector(packer_name, file_name, address=node, from_specific_node=True)
+        unique_labels = unique_labels + list(node_labels.values())
+        data[node] = Counter(list(node_labels.values()))
+    unique_labels = sorted(list(set(unique_labels)))
+    return data, unique_labels, node_list, "success"
+
+
+def end_of_unpacking_prediction(node_list, unique_labels, data):
     best_similarity = 0
     save_address = None
     try:
-        packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
-                                       "{}_{}_model.dot".format(packer_name, file_name))
-        if not os.path.exists(packed_dot_file):
-            return None, None, "This file do not have dot file from BE-PUM"
-
-        node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
-                                         from_specific_node=False).nodes)
-
-        node_labels = get_WLK(G1, 2)
-        unique_labels = list(node_labels.values())
-        data = {'G1': Counter(list(node_labels.values()))}
-        print("Generating subgraph of {} nodes of {} packed by {}:".format(len(node_list), file_name, packer_name))
-        for node in tqdm(node_list):
-            G2 = create_subgraph(dot_file=packed_dot_file, address=node,
-                                 from_specific_node=True)
-            node_labels = get_WLK(G2, 2)
-            unique_labels = unique_labels + list(node_labels.values())
-            data[node] = Counter(list(node_labels.values()))
-            # del G2
-        unique_labels = sorted(list(set(unique_labels)))
-
         histograms = {}
         print("Calculating histogram:")
         for idx, label in enumerate(unique_labels):
@@ -72,7 +73,6 @@ def end_of_unpacking_prediction(packer_name, sample_file, file_name):
                     histograms[name].append(0)
 
         print("Searching for best matching graph:")
-
         for name in tqdm(node_list):
             sim = cosine_similarity(histograms['G1'], histograms[name])
             if sim > best_similarity:
@@ -111,9 +111,32 @@ def main():
             final_address = None
             final_score = 0
 
+            # create information of packed file
+            data, unique_labels, node_list, msg = build_subgraph_vector(packer_name, file_name)
+            if data is None:
+                print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
+                log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
+                continue
 
             for sample_file in sample_files:
-                predicted_address, score, msg = end_of_unpacking_prediction(packer_name, sample_file, file_name)
+                # create graph for sample file
+                sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
+                                                "{}_{}_model.dot".format(packer_name, sample_file))
+                preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
+                node_list_sample_file, node_labels_sample_file = convert_graph_to_vector(packer_name, sample_file,
+                                                                                         address=preceding_sample_file)
+
+                # update information of sample file
+                data['G1'] = Counter(list(node_labels_sample_file.values()))
+
+                # create unique labels of G1 and sub graphs
+                merged_unique_labels = sorted(list(set(unique_labels + node_labels_sample_file)))
+
+                # Finding end-of-unpacking
+                predicted_address, score, msg = end_of_unpacking_prediction(node_list=node_list,
+                                                                            unique_labels=merged_unique_labels,
+                                                                            data=data)
+
                 if score is None:
                     print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
                     log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
