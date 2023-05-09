@@ -96,14 +96,14 @@ def main():
             if file_name in args.sample_files:
                 print("Packer: {}, file_name: {}, msg: This file is sample file".format(packer_name, file_name))
                 log_file.writelines(
-                    "Packer: {}, file_name: {}, msg: This file is sample file".format(packer_name, file_name))
+                    "Packer: {}, file_name: {}, msg: This file is sample file.\n".format(packer_name, file_name))
                 continue
             packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                            "{}_{}_model.dot".format(packer_name, file_name))
             preceding_oep, msg = get_preceding_oep(packed_dot_file, oep_address)
             if not preceding_oep:
                 print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
-                log_file.writelines("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
+                log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
                 continue
 
             total_sample += 1
@@ -113,19 +113,27 @@ def main():
                 predicted_address, score, msg = end_of_unpacking_prediction(packer_name, sample_file, file_name)
                 if score is None:
                     print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
-                    log_file.writelines("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
+                    log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
                 if score > final_score:
                     final_score = score
                     final_address = predicted_address
                 print(
-                    "Packer: {}, file_name: {}, sample_file: {}, end-of-unpacking: {}, predicted-end-of-unpacking".format(
-                        packer_name, file_name, sample_file, preceding_oep, predicted_address))
-            print("Final decision, Packer: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking".format(
-                packer_name, file_name, preceding_oep, final_address))
+                    "Packer: {}, file_name: {}, sample_file: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}".format(
+                        packer_name, file_name, sample_file, preceding_oep, predicted_address, score))
+                log_file.writelines(
+                    "Packer: {}, file_name: {}, sample_file: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
+                        packer_name, file_name, sample_file, preceding_oep, predicted_address, score))
+            print(
+                "Final decision, Packer: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}".format(
+                    packer_name, file_name, preceding_oep, final_address, final_score))
+            log_file.writelines(
+                "Final decision, Packer: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
+                    packer_name, file_name, preceding_oep, final_address, final_score))
             if final_address == preceding_oep:
                 correct_sample += 1
         print("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
-        log_file.writelines("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
+        log_file.writelines(
+            "The accuracy of packer: {} is {}\n".format(packer_name, 1.0 * correct_sample / total_sample))
 
 
 def evaluate():
