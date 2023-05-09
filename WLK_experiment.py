@@ -129,6 +129,10 @@ def main():
                 # update information of sample file
                 data['G1'] = Counter(list(node_labels_sample_file.values()))
 
+                print(unique_labels)
+                print(type(unique_labels))
+                print(node_labels_sample_file.values())
+                print(type(node_labels_sample_file.values()))
                 # create unique labels of G1 and sub graphs
                 merged_unique_labels = sorted(list(set(unique_labels + node_labels_sample_file.values())))
 
