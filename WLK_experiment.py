@@ -130,7 +130,7 @@ def main():
                 data['G1'] = Counter(list(node_labels_sample_file.values()))
 
                 # create unique labels of G1 and sub graphs
-                merged_unique_labels = sorted(list(set(unique_labels + node_labels_sample_file)))
+                merged_unique_labels = sorted(list(set(unique_labels + node_labels_sample_file.values())))
 
                 # Finding end-of-unpacking
                 predicted_address, score, msg = end_of_unpacking_prediction(node_list=node_list,
