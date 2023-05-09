@@ -151,7 +151,8 @@ def main():
                     "Packer: {}, file_name: {}, sample_file: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
                         packer_name, file_name, sample_file, preceding_oep, predicted_address, score))
             print(
-                "Final decision, Packer: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}".format(
+                "Final decision: {}, Packer: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
+                    bool(preceding_oep == final_address),
                     packer_name, file_name, preceding_oep, final_address, final_score))
             log_file.writelines(
                 "Final decision: {}, Packer: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
