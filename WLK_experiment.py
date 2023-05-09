@@ -129,10 +129,6 @@ def main():
                 # update information of sample file
                 data['G1'] = Counter(list(node_labels_sample_file.values()))
 
-                print(unique_labels)
-                print(type(unique_labels))
-                print(node_labels_sample_file.values())
-                print(type(node_labels_sample_file.values()))
                 # create unique labels of G1 and sub graphs
                 merged_unique_labels = sorted(list(set(unique_labels + list(node_labels_sample_file.values()))))
 
@@ -158,7 +154,8 @@ def main():
                 "Final decision, Packer: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}".format(
                     packer_name, file_name, preceding_oep, final_address, final_score))
             log_file.writelines(
-                "Final decision, Packer: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
+                "Final decision: {}, Packer: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
+                    bool(preceding_oep == final_address),
                     packer_name, file_name, preceding_oep, final_address, final_score))
             if final_address == preceding_oep:
                 correct_sample += 1
