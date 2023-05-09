@@ -42,7 +42,7 @@ def build_subgraph_vector(packer_name, file_name):
     packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                    "{}_{}_model.dot".format(packer_name, file_name))
     if not os.path.exists(packed_dot_file):
-        return None, None, "This file do not have dot file from BE-PUM"
+        return None, None, None, "This file do not have dot file from BE-PUM"
 
     node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
                                      from_specific_node=False).nodes)
