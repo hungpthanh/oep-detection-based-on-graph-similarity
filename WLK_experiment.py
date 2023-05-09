@@ -50,7 +50,7 @@ def build_subgraph_vector(packer_name, file_name):
     unique_labels = []
     print("Generating subgraph of {} nodes of {} packed by {}:".format(len(node_list), file_name, packer_name))
     for node in tqdm(node_list):
-        node_list, node_labels = convert_graph_to_vector(packer_name, file_name, address=node, from_specific_node=True)
+        _, node_labels = convert_graph_to_vector(packer_name, file_name, address=node, from_specific_node=True)
         unique_labels = unique_labels + list(node_labels.values())
         data[node] = Counter(list(node_labels.values()))
     unique_labels = sorted(list(set(unique_labels)))
