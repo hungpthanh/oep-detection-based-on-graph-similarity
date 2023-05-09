@@ -1,4 +1,5 @@
-python WLK_experiment.py --packer_name yodaC  --mode detection --file_name accesschk.exe
+python WLK_experiment.py --mode detection --packer_names aspack
+:'python WLK_experiment.py --packer_name yodaC  --mode detection --file_name accesschk.exe
 python WLK_experiment.py --packer_name yodaC  --mode detection --file_name AccessEnum.exe
 python WLK_experiment.py --packer_name yodaC  --mode detection --file_name ADExplorer.exe
 python WLK_experiment.py --packer_name yodaC  --mode detection --file_name ADInsight.exe
@@ -103,4 +104,4 @@ python WLK_experiment.py --packer_name yodaC  --mode detection --file_name USBDe
 python WLK_experiment.py --packer_name yodaC  --mode detection --file_name vmmap.exe
 python WLK_experiment.py --packer_name yodaC  --mode detection --file_name Volumeid.exe
 python WLK_experiment.py --packer_name yodaC  --mode detection --file_name WhatIsHang.exe
-python WLK_experiment.py --packer_name yodaC  --mode detection --file_name whois.exe
+python WLK_experiment.py --packer_name yodaC  --mode detection --file_name whois.exe'
