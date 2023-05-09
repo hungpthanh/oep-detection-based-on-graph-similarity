@@ -191,3 +191,4 @@ if __name__ == '__main__':
         main()
     else:
         evaluate()
+    log_file.close()
