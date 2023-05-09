@@ -56,19 +56,15 @@ def get_oep_dataset():
 def get_preceding_oep(file_path, oep_address):
     dot_file = file_path
     if not os.path.exists(dot_file):
-        # print("File not exist")
-        return False
+        return False, "Dot file not exist"
     try:
         cfg = BPCFG(dot_file)
     except Exception as e:
-        # print("exception")
-        print(e)
-        return False
+        return False, str(e)
     preceding_oep = cfg.get_incoming_node(oep_address)
     if len(preceding_oep) == 0:
-        # print("no incoming")
-        return False
-    return preceding_oep[0]
+        return False, "Not found end-of-unpacking"
+    return preceding_oep[0], "Success"
 
 
 def get_matched_signature(file_path):
