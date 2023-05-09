@@ -28,6 +28,7 @@ log_file.writelines("Sample files: {}\n".format(args.sample_files))
 log_file.writelines("File name: {}\n".format(args.file_name))
 
 
+def get_histogram()
 def end_of_unpacking_prediction(packer_name, sample_file, file_name):
     sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                     "{}_{}_model.dot".format(packer_name, sample_file))
@@ -108,12 +109,15 @@ def main():
 
             total_sample += 1
             final_address = None
-            final_score = None
+            final_score = 0
+
+
             for sample_file in sample_files:
                 predicted_address, score, msg = end_of_unpacking_prediction(packer_name, sample_file, file_name)
                 if score is None:
                     print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
                     log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
+                    continue
                 if score > final_score:
                     final_score = score
                     final_address = predicted_address
