@@ -1,19 +1,19 @@
-from utils.graph_utils import relabel_graph, remove_back_edge, get_sub_graph_from
+from utils.graph_utils import remove_back_edge, get_sub_graph_from, get_node_information
 import networkx as nx
 import pygraphviz as pgv
 from networkx.drawing.nx_agraph import read_dot
 from utils.graph_utils import relabel_graph
 
 
-def get_node_information(s):
-    if not s.startswith('a0x'):
-        address = s
-        opcode = "API"
-        return address, opcode
-    address = s[1:11]
-    opcode = s[11:]
-
-    return address, opcode
+# def get_node_information(s):
+#     if not s.startswith('a0x'):
+#         address = s
+#         opcode = "API"
+#         return address, opcode
+#     address = s[1:11]
+#     opcode = s[11:]
+#
+#     return address, opcode
 
 
 class BPCFG():
