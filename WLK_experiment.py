@@ -1,6 +1,7 @@
 import argparse
 import glob
 import os
+import re
 import time
 from collections import Counter
 import gc
@@ -16,6 +17,7 @@ parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+", default=["AccessEnum.exe"])
+parser.add_argument('--log_path', default="logs/WLK_WINUPACK_2_sample_files", type=str)
 # Get the arguments
 args = parser.parse_args()
 gc.enable()
@@ -165,25 +167,47 @@ def main():
             "The accuracy of packer: {} is {}\n".format(packer_name, 1.0 * correct_sample / total_sample))
 
 
-def evaluate():
-    packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked", "yodaC", "pecompact", "winupack"]
-    for packer_name in packer_names:
-        total = 0
-        corrected_sample = 0
-        for file_name, oep_address in oep_dictionary.items():
-            if file_name == "name":
-                continue
-            log_file = "logs/WLK_API_corrected/log2_{}_{}.txt".format(packer_name, file_name)
-            with open(log_file, "r") as f:
-                # line = f.readlines()[0]
-                # print("packer_name: {}, file_name: {}, line: {}".format(packer_name, file_name, line))
-                for line in f:
-                    if "The accuracy of packer:" in line:
-                        total += 1
-                        if "1.0" in line:
-                            corrected_sample += 1
+def get_result(s):
+    pattern_packer = r'The accuracy of packer: (.*?) is'
+    pattern_accuracy = r'is\s+(.*)$'
+    match_packer = re.search(pattern_packer, s)
+    match_accuracy = re.search(pattern_accuracy, s)
+    if match_packer:
+        result_packer = match_packer.group(1)
+        result_accuracy = match_accuracy.group(1)
+        return result_packer, result_accuracy
+    return None, None
 
-        print("Accuracy of {}: {} on {} samples".format(packer_name, 1.0 * corrected_sample / total, total))
+
+def evaluate():
+    log_files = glob.glob(args.log_path + '/*.*')
+    results = {}
+    for log_file in log_files:
+        with open(log_file, "r") as f:
+            for line in f:
+                if "The accuracy of packer" in line:
+                    packer_name, accuracy = get_result(line)
+                    results[packer_name] = accuracy
+    print(results)
+
+    # packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked", "yodaC", "pecompact", "winupack"]
+    # for packer_name in packer_names:
+    #     total = 0
+    #     corrected_sample = 0
+    #     for file_name, oep_address in oep_dictionary.items():
+    #         if file_name == "name":
+    #             continue
+    #         log_file = "logs/WLK_API_corrected/log2_{}_{}.txt".format(packer_name, file_name)
+    #         with open(log_file, "r") as f:
+    #             # line = f.readlines()[0]
+    #             # print("packer_name: {}, file_name: {}, line: {}".format(packer_name, file_name, line))
+    #             for line in f:
+    #                 if "The accuracy of packer:" in line:
+    #                     total += 1
+    #                     if "1.0" in line:
+    #                         corrected_sample += 1
+    #
+    #     print("Accuracy of {}: {} on {} samples".format(packer_name, 1.0 * corrected_sample / total, total))
 
 
 if __name__ == '__main__':
