@@ -44,7 +44,6 @@ def relabel_graph(G):
         label_mapping[node] = address
     nG = nx.relabel_nodes(G, label_mapping)
     nx.set_node_attributes(nG, attribution_mapping)
-    # print(attribution_mapping)
     return nG
 
 
@@ -147,12 +146,12 @@ def color_graph(G, obfuscation_tech_sequence, obfuscation_address_sequence, name
     #     f.write(dot_data)
 
 
-def get_node_information(s):
-    if not s.startswith('a0x'):
-        address = s
-        opcode = "API"
-        return address, opcode
-    address = s[1:11]
-    opcode = s[11:]
-
-    return address, opcode
+# def get_node_information(s):
+#     if not s.startswith('a0x'):
+#         address = s
+#         opcode = "API"
+#         return address, opcode
+#     address = s[1:11]
+#     opcode = s[11:]
+#
+#     return address, opcode
