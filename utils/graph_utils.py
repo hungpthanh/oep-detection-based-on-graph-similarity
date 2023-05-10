@@ -145,3 +145,14 @@ def color_graph(G, obfuscation_tech_sequence, obfuscation_address_sequence, name
     # # save the modified DOT file
     # with open(os.path.join("logs/log_graph_color", "colored_{}".format(name_dot_file)), 'w') as f:
     #     f.write(dot_data)
+
+
+def get_node_information(s):
+    if not s.startswith('a0x'):
+        address = s
+        opcode = "API"
+        return address, opcode
+    address = s[1:11]
+    opcode = s[11:]
+
+    return address, opcode

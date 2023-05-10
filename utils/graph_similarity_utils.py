@@ -1,8 +1,13 @@
+import os
 from collections import Counter
 
 import networkx as nx
 import numpy as np
+from tqdm import tqdm
 
+from common.models import create_subgraph
+
+data_folder_path = "data"
 
 def get_WLK(G, h):
     node_labels = {n: G.nodes[n]["label"] for n in G.nodes}
@@ -10,6 +15,7 @@ def get_WLK(G, h):
         # Update node labels for each graph
         node_labels = update_node_labels(G, node_labels)
     return node_labels
+
 
 def weisfeiler_lehman_kernel(G1, G2, h):
     """
@@ -139,3 +145,32 @@ def cosine_similarity(hist1, hist2):
     cosine = dot_product / (mag1 * mag2)
 
     return cosine
+
+
+def convert_graph_to_vector(packer_name, sample_file, address, from_specific_node=True):
+    sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
+                                    "{}_{}_model.dot".format(packer_name, sample_file))
+    G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
+                         address=address, from_specific_node=from_specific_node)
+    node_list = G1.nodes
+    node_labels = get_WLK(G1, 2)
+    return node_list, node_labels
+
+
+def build_subgraph_vector(packer_name, file_name):
+    packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
+                                   "{}_{}_model.dot".format(packer_name, file_name))
+    if not os.path.exists(packed_dot_file):
+        return None, None, None, "This file do not have dot file from BE-PUM"
+
+    node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
+                                     from_specific_node=False).nodes)
+    data = {}
+    unique_labels = []
+    print("Generating subgraph of {} nodes of {} packed by {}:".format(len(node_list), file_name, packer_name))
+    for node in tqdm(node_list):
+        _, node_labels = convert_graph_to_vector(packer_name, file_name, address=node, from_specific_node=True)
+        unique_labels = unique_labels + list(node_labels.values())
+        data[node] = Counter(list(node_labels.values()))
+    unique_labels = sorted(list(set(unique_labels)))
+    return data, unique_labels, node_list, "success"

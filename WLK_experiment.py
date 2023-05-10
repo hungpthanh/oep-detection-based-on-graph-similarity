@@ -8,8 +8,7 @@ import gc
 
 from tqdm import tqdm
 
-from common.models import create_subgraph
-from utils.graph_similarity_utils import get_WLK, cosine_similarity
+from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector
 from utils.oep_utils import get_oep_dataset, get_preceding_oep
 
 parser = argparse.ArgumentParser()
@@ -28,35 +27,6 @@ log_file = open("logs/WLK_WINUPACK_2_sample_files/{}.txt".format(args.packer_nam
 log_file.writelines("Packer names: {}\n".format(args.packer_names))
 log_file.writelines("Sample files: {}\n".format(args.sample_files))
 log_file.writelines("File name: {}\n".format(args.file_name))
-
-
-def convert_graph_to_vector(packer_name, sample_file, address, from_specific_node=True):
-    sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
-                                    "{}_{}_model.dot".format(packer_name, sample_file))
-    G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
-                         address=address, from_specific_node=from_specific_node)
-    node_list = G1.nodes
-    node_labels = get_WLK(G1, 2)
-    return node_list, node_labels
-
-
-def build_subgraph_vector(packer_name, file_name):
-    packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
-                                   "{}_{}_model.dot".format(packer_name, file_name))
-    if not os.path.exists(packed_dot_file):
-        return None, None, None, "This file do not have dot file from BE-PUM"
-
-    node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
-                                     from_specific_node=False).nodes)
-    data = {}
-    unique_labels = []
-    print("Generating subgraph of {} nodes of {} packed by {}:".format(len(node_list), file_name, packer_name))
-    for node in tqdm(node_list):
-        _, node_labels = convert_graph_to_vector(packer_name, file_name, address=node, from_specific_node=True)
-        unique_labels = unique_labels + list(node_labels.values())
-        data[node] = Counter(list(node_labels.values()))
-    unique_labels = sorted(list(set(unique_labels)))
-    return data, unique_labels, node_list, "success"
 
 
 def end_of_unpacking_prediction(node_list, unique_labels, data):
