@@ -64,7 +64,7 @@ def get_preceding_oep(file_path, oep_address):
     preceding_oep = cfg.get_incoming_node(oep_address)
     if len(preceding_oep) == 0:
         return False, "Not found end-of-unpacking"
-    return preceding_oep[0], "Success"
+    return preceding_oep[0], "success"
 
 
 def get_matched_signature(file_path):
