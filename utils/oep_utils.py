@@ -1,7 +1,10 @@
 # from utils.preprocess_be_pum import get_OEP_of_UPX
 import os
 
-from common.models import BPCFG
+import networkx as nx
+from networkx.drawing.nx_agraph import read_dot
+
+from common.models import BPCFG, create_subgraph
 
 packed_file_path = "data/packed_files.txt"
 packedSignature_path = "data/packerSignature.txt"
@@ -111,3 +114,48 @@ def get_sequence_by_address(address, obfuscation_technique_sequence, obfuscation
 
     idx = add_seq.index(address[0:2] + address[4:])
     return "_".join(tech_seq[:idx + 1]), "_".join(add_seq[:idx + 1])
+
+
+def get_end_of_unpacking_in_original_graph(G, node):
+    for original_node in G.nodes:
+        if node in original_node:
+            return original_node
+    return None
+
+
+def get_OEP(packer_name, file_name, end_of_unpacking_address):
+    def get_address_format(s):
+        return s[1:11]
+    packed_program_dot_file = os.path.join("data", "asm_cfg", packer_name,
+                                           "{}_{}_model.dot".format(packer_name, file_name))
+    original_graph = nx.DiGraph(read_dot(path=packed_program_dot_file))
+    packed_program_graph = create_subgraph(dot_file=os.path.join(packed_program_dot_file),
+                                           address="-1", from_specific_node=False)
+
+    end_unpacking_node_name = "a{}{}".format(end_of_unpacking_address,
+                                                       packed_program_graph.nodes[end_of_unpacking_address]["label"])
+    print(end_unpacking_node_name)
+    original_end_of_unpacking_node = get_end_of_unpacking_in_original_graph(original_graph,
+                                                                            end_unpacking_node_name)
+    # print(original_graph.successors(original_end_of_unpacking_node))
+    n_child = 0
+    child_nodes = []
+    for child_node in original_graph.successors(original_end_of_unpacking_node):
+        n_child += 1
+        child_nodes.append(child_node)
+
+    if n_child == 0:
+        return None, "not found OEP"
+    if n_child == 1:
+        return get_address_format(child_nodes[0]), "success"
+
+    if n_child == 2:
+        for child_node in child_nodes:
+            if original_graph[original_end_of_unpacking_node][child_node]["label"] == "T":
+                return get_address_format(child_node), "success"
+
+    return None, "too many candidates"
+
+
+
+
