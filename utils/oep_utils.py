@@ -134,10 +134,10 @@ def get_OEP(packer_name, file_name, end_of_unpacking_address):
 
     end_unpacking_node_name = "a{}{}".format(end_of_unpacking_address,
                                                        packed_program_graph.nodes[end_of_unpacking_address]["label"])
-    print(end_unpacking_node_name)
+
     original_end_of_unpacking_node = get_end_of_unpacking_in_original_graph(original_graph,
                                                                             end_unpacking_node_name)
-    # print(original_graph.successors(original_end_of_unpacking_node))
+
     n_child = 0
     child_nodes = []
     for child_node in original_graph.successors(original_end_of_unpacking_node):
@@ -149,10 +149,13 @@ def get_OEP(packer_name, file_name, end_of_unpacking_address):
     if n_child == 1:
         return get_address_format(child_nodes[0]), "success"
 
-    if n_child == 2:
-        for child_node in child_nodes:
-            if original_graph[original_end_of_unpacking_node][child_node]["label"] == "T":
-                return get_address_format(child_node), "success"
+    try:
+        if n_child == 2:
+            for child_node in child_nodes:
+                if original_graph[original_end_of_unpacking_node][child_node]["label"] == "T":
+                    return get_address_format(child_node), "success"
+    except Exception as e:
+        return None, str(e)
 
     return None, "too many candidates"
 

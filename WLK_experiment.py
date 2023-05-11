@@ -9,7 +9,7 @@ import gc
 from tqdm import tqdm
 
 from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector
-from utils.oep_utils import get_oep_dataset, get_preceding_oep
+from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--mode', default="evaluation", type=str)
@@ -149,35 +149,50 @@ def get_result(s):
     return None, None
 
 
+def get_final_decision(text):
+    import re
+    end_of_unpacking_result = re.search(r'Final decision: ([^,]+)', text).group(1)
+    packer = re.search(r'Packer: ([^,]+)', text).group(1)
+    file_name = re.search(r'file_name: ([^,]+)', text).group(1)
+    predicted_end_of_unpacking = re.search(r'predicted-end-of-unpacking: ([^,]+)', text).group(1)
+    score = re.search(r'score: ([\d.]+)', text).group(1)
+    return end_of_unpacking_result, packer, file_name, predicted_end_of_unpacking, score
+
+
 def evaluate():
     log_files = glob.glob(args.log_path + '/*.*')
     results = {}
+    count_sample = {}
+    count_correctd_sample = {}
+
+    prediction_data = {}
     for log_file in log_files:
+        print("Processing on {}".format(log_file))
         with open(log_file, "r") as f:
-            for line in f:
+            lines = [line for line in f]
+            for line in tqdm(lines):
                 if "The accuracy of packer" in line:
                     packer_name, accuracy = get_result(line)
                     results[packer_name] = accuracy
-    print(results)
-
-    # packer_names = ["aspack", "upx", "fsg", "MPRESS", "petitepacked", "yodaC", "pecompact", "winupack"]
-    # for packer_name in packer_names:
-    #     total = 0
-    #     corrected_sample = 0
-    #     for file_name, oep_address in oep_dictionary.items():
-    #         if file_name == "name":
-    #             continue
-    #         log_file = "logs/WLK_API_corrected/log2_{}_{}.txt".format(packer_name, file_name)
-    #         with open(log_file, "r") as f:
-    #             # line = f.readlines()[0]
-    #             # print("packer_name: {}, file_name: {}, line: {}".format(packer_name, file_name, line))
-    #             for line in f:
-    #                 if "The accuracy of packer:" in line:
-    #                     total += 1
-    #                     if "1.0" in line:
-    #                         corrected_sample += 1
-    #
-    #     print("Accuracy of {}: {} on {} samples".format(packer_name, 1.0 * corrected_sample / total, total))
+                if "Final decision" in line:
+                    end_of_unpacking_result, packer_name, file_name, predicted_end_of_unpacking, score = get_final_decision(
+                        line)
+                    predicted_oep, msg = get_OEP(packer_name, file_name, predicted_end_of_unpacking)
+                    if not packer_name in prediction_data:
+                        prediction_data[packer_name] = {}
+                    if end_of_unpacking_result == "True":
+                        prediction_data[packer_name][file_name] = predicted_oep
+                    else:
+                        prediction_data[packer_name][file_name] = None
+    for packer_name, file_names in prediction_data.items():
+        n_sample = len(prediction_data[packer_name])
+        n_correct = 0
+        for filename, predicted_oep in file_names.items():
+            if (predicted_oep is not None) and (predicted_oep == oep_dictionary[filename]):
+                n_correct += 1
+        print("Packer: {}, end-of-unpacking accuracy: {:.3f}, OEP detection accuracy: {:.3f}".format(packer_name,
+                                                                                             float(results[packer_name]),
+                                                                                             1.0 * n_correct / n_sample))
 
 
 if __name__ == '__main__':
