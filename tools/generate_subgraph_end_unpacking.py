@@ -34,7 +34,7 @@ def main():
             # print("packer name: {}, {}".format(packer_name, msg))
             if msg == "success":
                 G1 = create_subgraph(dot_file=os.path.join(file_path),
-                                     address=preceding_of_file, from_specific_node=True)
+                                     address=preceding_of_file, from_specific_node=True, label_with_address=True)
                 nx.nx_agraph.write_dot(G1, "logs/log_subgraph/{}_{}.dot".format(packer_name, file_name))
 
 

@@ -35,12 +35,15 @@ def get_node_information(s):
     return address, opcode
 
 
-def relabel_graph(G):
+def relabel_graph(G, label_with_address=False):
     attribution_mapping = {}
     label_mapping = {}
     for node in G.nodes:
         address, opcode = get_node_information(node)
-        attribution_mapping[address] = {"label": opcode.split("_")[0]}
+        if not label_with_address:
+            attribution_mapping[address] = {"label": opcode.split("_")[0]}
+        else:
+            attribution_mapping[address] = {"label": address + '\n' + opcode.split("_")[0]}
         label_mapping[node] = address
     nG = nx.relabel_nodes(G, label_mapping)
     nx.set_node_attributes(nG, attribution_mapping)
