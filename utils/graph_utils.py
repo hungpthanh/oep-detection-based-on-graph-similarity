@@ -28,6 +28,7 @@ def get_node_information(s):
     if not s.startswith('a0x'):
         address = s.upper()
         opcode = s.upper()
+        opcode = "-".join(opcode.split("_"))
         return address, opcode
     address = s[1:11]
     opcode = s[11:]
