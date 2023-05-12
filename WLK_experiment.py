@@ -6,6 +6,7 @@ import time
 from collections import Counter
 import gc
 
+import numpy as np
 from tqdm import tqdm
 
 from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector
@@ -170,6 +171,7 @@ def evaluate():
         print("Processing on {}".format(log_file))
         with open(log_file, "r") as f:
             lines = [line for line in f]
+            avg_score = []
             for line in tqdm(lines):
                 if "The accuracy of packer" in line:
                     packer_name, accuracy = get_result(line)
@@ -178,21 +180,25 @@ def evaluate():
                     end_of_unpacking_result, packer_name, file_name, predicted_end_of_unpacking, score = get_final_decision(
                         line)
                     predicted_oep, msg = get_OEP(packer_name, file_name, predicted_end_of_unpacking)
+                    if end_of_unpacking_result == "True":
+                        avg_score.append(float(score))
                     if not packer_name in prediction_data:
                         prediction_data[packer_name] = {}
                     if end_of_unpacking_result == "True":
                         prediction_data[packer_name][file_name] = predicted_oep
                     else:
                         prediction_data[packer_name][file_name] = None
+            print("avarage score is {}".format(np.mean(avg_score)))
     for packer_name, file_names in prediction_data.items():
         n_sample = len(prediction_data[packer_name])
         n_correct = 0
         for filename, predicted_oep in file_names.items():
             if (predicted_oep is not None) and (predicted_oep == oep_dictionary[filename]):
                 n_correct += 1
-        print("Packer: {}, end-of-unpacking accuracy: {:.3f}, OEP detection accuracy: {:.3f}".format(packer_name,
-                                                                                             float(results[packer_name]),
-                                                                                             1.0 * n_correct / n_sample))
+        print("Packer: {}, end-of-unpacking accuracy: {:.3f}, OEP detection accuracy: {:.3f}, of sample: {}".format(
+            packer_name,
+            float(results[packer_name]),
+            1.0 * n_correct / n_sample, n_sample))
 
 
 if __name__ == '__main__':
