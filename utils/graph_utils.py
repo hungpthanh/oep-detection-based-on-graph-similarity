@@ -41,15 +41,20 @@ def relabel_graph(G, label_with_address=False):
     label_mapping = {}
     for node in G.nodes:
         address, opcode = get_node_information(node)
+        nNode = address if not node.startswith('a0x') else node
         if not label_with_address:
-            attribution_mapping[node] = {"label": opcode.split("_")[0]}
+            attribution_mapping[nNode] = {"label": opcode.split("_")[0]}
         else:
-            attribution_mapping[node] = {"label": address + '\n' + opcode.split("_")[0]}
-        label_mapping[node] = address
-    # nG = nx.relabel_nodes(G, label_mapping) # keep orginal node identity
-    # nx.set_node_attributes(nG, attribution_mapping)
-    nx.set_node_attributes(G, attribution_mapping)
-    return G
+            attribution_mapping[nNode] = {"label": address + '\n' + opcode.split("_")[0]}
+        if not node.startswith('a0x'):
+            # print("update API: {}".format(node))
+            label_mapping[node] = node.upper()
+        # else:
+        #     label_mapping[node] = node
+    nG = nx.relabel_nodes(G, label_mapping) # keep orginal node identity
+    nx.set_node_attributes(nG, attribution_mapping)
+    # nx.set_node_attributes(G, attribution_mapping)
+    return nG
 
 
 def remove_back_edge(cfg):
