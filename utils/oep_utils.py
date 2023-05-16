@@ -61,11 +61,16 @@ def get_preceding_oep(file_path, oep_address):
     if not os.path.exists(dot_file):
         return False, "Dot file not exist"
     try:
-        cfg = BPCFG(dot_file)
+        cfg = nx.DiGraph(read_dot(path=dot_file))
+        # cfg = BPCFG(dot_file)
     except Exception as e:
         return False, str(e)
-    preceding_oep = cfg.get_incoming_node(oep_address)
-    if len(preceding_oep) == 0:
+    preceding_oep = None
+    for node in cfg.nodes:
+        if "a" + oep_address in node:
+            preceding_oep = [v for v in cfg.predecessors(node)]
+    # preceding_oep = cfg.get_incoming_node(oep_address)
+    if preceding_oep is None:
         return False, "Not found end-of-unpacking"
     return preceding_oep[0], "success"
 
