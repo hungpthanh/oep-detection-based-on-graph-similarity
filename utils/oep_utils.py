@@ -70,7 +70,7 @@ def get_preceding_oep(file_path, oep_address):
         if "a" + oep_address in node:
             preceding_oep = [v for v in cfg.predecessors(node)]
     # preceding_oep = cfg.get_incoming_node(oep_address)
-    if preceding_oep is None:
+    if preceding_oep is None or len(preceding_oep) == 0:
         return False, "Not found end-of-unpacking"
     return preceding_oep[0], "success"
 
