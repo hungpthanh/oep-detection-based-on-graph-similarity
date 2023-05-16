@@ -42,13 +42,14 @@ def relabel_graph(G, label_with_address=False):
     for node in G.nodes:
         address, opcode = get_node_information(node)
         if not label_with_address:
-            attribution_mapping[address] = {"label": opcode.split("_")[0]}
+            attribution_mapping[node] = {"label": opcode.split("_")[0]}
         else:
-            attribution_mapping[address] = {"label": address + '\n' + opcode.split("_")[0]}
+            attribution_mapping[node] = {"label": address + '\n' + opcode.split("_")[0]}
         label_mapping[node] = address
-    nG = nx.relabel_nodes(G, label_mapping)
-    nx.set_node_attributes(nG, attribution_mapping)
-    return nG
+    # nG = nx.relabel_nodes(G, label_mapping) # keep orginal node identity
+    # nx.set_node_attributes(nG, attribution_mapping)
+    nx.set_node_attributes(G, attribution_mapping)
+    return G
 
 
 def remove_back_edge(cfg):
@@ -148,7 +149,6 @@ def color_graph(G, obfuscation_tech_sequence, obfuscation_address_sequence, name
     # # save the modified DOT file
     # with open(os.path.join("logs/log_graph_color", "colored_{}".format(name_dot_file)), 'w') as f:
     #     f.write(dot_data)
-
 
 # def get_node_information(s):
 #     if not s.startswith('a0x'):

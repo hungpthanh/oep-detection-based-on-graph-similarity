@@ -17,14 +17,14 @@ parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+", default=["AccessEnum.exe"])
-parser.add_argument('--log_path', default="logs/WLK_WINUPACK_2_sample_files", type=str)
+parser.add_argument('--log_path', default="logs/WLK_original_identity", type=str)
 # Get the arguments
 args = parser.parse_args()
 gc.enable()
 oep_dictionary = get_oep_dataset()
 data_folder_path = "data"
 
-log_file = open("logs/WLK_WINUPACK_2_sample_files/{}.txt".format(args.packer_names), "w")
+log_file = open(args.log_path + "/{}.txt".format(args.packer_names), "w")
 log_file.writelines("Packer names: {}\n".format(args.packer_names))
 log_file.writelines("Sample files: {}\n".format(args.sample_files))
 log_file.writelines("File name: {}\n".format(args.file_name))
@@ -96,6 +96,7 @@ def main():
                 sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                                 "{}_{}_model.dot".format(packer_name, sample_file))
                 preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
+                print("preceding_sample_file: {}".format(preceding_sample_file))
                 node_list_sample_file, node_labels_sample_file = convert_graph_to_vector(packer_name, sample_file,
                                                                                          address=preceding_sample_file)
 
