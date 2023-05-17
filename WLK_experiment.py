@@ -61,12 +61,14 @@ def end_of_unpacking_prediction(node_list, unique_labels, data):
 def main():
     packer_names = args.packer_names
     sample_files = args.sample_files
-
+    debug_log = open("debug.txt", "w")
     print(packer_names)
     for packer_name in packer_names:
         total_sample = 0
         correct_sample = 0
         for file_name, oep_address in oep_dictionary.items():
+            if file_name != "md5summer.exe" or file_name != "ldmdump.exe":
+                continue
             if file_name in args.sample_files:
                 print("Packer: {}, file_name: {}, msg: This file is sample file".format(packer_name, file_name))
                 log_file.writelines(
@@ -86,6 +88,12 @@ def main():
 
             # create information of packed file
             data, unique_labels, node_list, msg = build_subgraph_vector(packer_name, file_name)
+            # debug
+            debug_log.writelines("filename: {}\n".format(file_name))
+            for key, value in data.items():
+                debug_log.writelines("{} \n{}\n".format(key, value))
+            # end of debug
+
             if data is None:
                 print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
                 log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
@@ -103,6 +111,10 @@ def main():
 
                 # update information of sample file
                 data['G1'] = Counter(list(node_labels_sample_file.values()) + original_labels_sample_file)
+                # debug
+                debug_log.writelines("sample: {}\n".format(sample_file))
+                debug_log.writelines("{} \n{}\n".format("G1", data["G1"]))
+                # end of debug
 
                 # create unique labels of G1 and sub graphs
                 merged_unique_labels = sorted(
@@ -112,7 +124,7 @@ def main():
                 predicted_address, score, msg = end_of_unpacking_prediction(node_list=node_list,
                                                                             unique_labels=merged_unique_labels,
                                                                             data=data)
-
+                debug_log.writelines("score: {}\n".format(score))
                 if score is None:
                     print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
                     log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
@@ -140,7 +152,7 @@ def main():
         log_file.writelines(
             "The accuracy of packer: {} is {}\n".format(packer_name, 1.0 * correct_sample / total_sample))
 
-
+    debug_log.close()
 def get_result(s):
     pattern_packer = r'The accuracy of packer: (.*?) is'
     pattern_accuracy = r'is\s+(.*)$'
