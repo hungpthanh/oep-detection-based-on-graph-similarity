@@ -67,8 +67,6 @@ def main():
         total_sample = 0
         correct_sample = 0
         for file_name, oep_address in oep_dictionary.items():
-            if file_name != "md5summer.exe":
-                continue
             if file_name in args.sample_files:
                 print("Packer: {}, file_name: {}, msg: This file is sample file".format(packer_name, file_name))
                 log_file.writelines(
