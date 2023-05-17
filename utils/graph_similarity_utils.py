@@ -9,6 +9,7 @@ from common.models import create_subgraph
 
 data_folder_path = "data"
 
+
 def get_WLK(G, h):
     node_labels = {n: G.nodes[n]["label"] for n in G.nodes}
     for i in range(h):
@@ -152,9 +153,10 @@ def convert_graph_to_vector(packer_name, sample_file, address, from_specific_nod
                                     "{}_{}_model.dot".format(packer_name, sample_file))
     G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
                          address=address, from_specific_node=from_specific_node)
+    original_labels = [G1.nodes[node]["label"] for node in G1.nodes]
     node_list = G1.nodes
     node_labels = get_WLK(G1, 2)
-    return node_list, node_labels
+    return node_list, node_labels, original_labels
 
 
 def build_subgraph_vector(packer_name, file_name):
@@ -169,8 +171,9 @@ def build_subgraph_vector(packer_name, file_name):
     unique_labels = []
     print("Generating subgraph of {} nodes of {} packed by {}:".format(len(node_list), file_name, packer_name))
     for node in tqdm(node_list):
-        _, node_labels = convert_graph_to_vector(packer_name, file_name, address=node, from_specific_node=True)
-        unique_labels = unique_labels + list(node_labels.values())
-        data[node] = Counter(list(node_labels.values()))
+        _, node_labels, original_labels = convert_graph_to_vector(packer_name, file_name, address=node,
+                                                                  from_specific_node=True)
+        unique_labels = unique_labels + list(node_labels.values()) + original_labels
+        data[node] = Counter(list(node_labels.values()) + original_labels)  # may add original nodes here
     unique_labels = sorted(list(set(unique_labels)))
     return data, unique_labels, node_list, "success"

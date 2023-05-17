@@ -17,7 +17,7 @@ parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+", default=["AccessEnum.exe"])
-parser.add_argument('--log_path', default="logs/WLK_original_identity", type=str)
+parser.add_argument('--log_path', default="logs/WLK_original_identity_new_WLK", type=str)
 # Get the arguments
 args = parser.parse_args()
 gc.enable()
@@ -67,6 +67,8 @@ def main():
         total_sample = 0
         correct_sample = 0
         for file_name, oep_address in oep_dictionary.items():
+            if file_name != "md5summer.exe":
+                continue
             if file_name in args.sample_files:
                 print("Packer: {}, file_name: {}, msg: This file is sample file".format(packer_name, file_name))
                 log_file.writelines(
@@ -97,14 +99,16 @@ def main():
                                                 "{}_{}_model.dot".format(packer_name, sample_file))
                 preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
                 print("preceding_sample_file: {}".format(preceding_sample_file))
-                node_list_sample_file, node_labels_sample_file = convert_graph_to_vector(packer_name, sample_file,
-                                                                                         address=preceding_sample_file)
+                node_list_sample_file, node_labels_sample_file, original_labels_sample_file = convert_graph_to_vector(
+                    packer_name, sample_file,
+                    address=preceding_sample_file)
 
                 # update information of sample file
-                data['G1'] = Counter(list(node_labels_sample_file.values()))
+                data['G1'] = Counter(list(node_labels_sample_file.values()) + original_labels_sample_file)
 
                 # create unique labels of G1 and sub graphs
-                merged_unique_labels = sorted(list(set(unique_labels + list(node_labels_sample_file.values()))))
+                merged_unique_labels = sorted(
+                    list(set(unique_labels + list(node_labels_sample_file.values()) + original_labels_sample_file)))
 
                 # Finding end-of-unpacking
                 predicted_address, score, msg = end_of_unpacking_prediction(node_list=node_list,
