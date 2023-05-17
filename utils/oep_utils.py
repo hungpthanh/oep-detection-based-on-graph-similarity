@@ -137,14 +137,17 @@ def get_OEP(packer_name, file_name, end_of_unpacking_address):
     packed_program_graph = create_subgraph(dot_file=os.path.join(packed_program_dot_file),
                                            address="-1", from_specific_node=False)
 
-    end_unpacking_node_name = "a{}{}".format(end_of_unpacking_address,
-                                                       packed_program_graph.nodes[end_of_unpacking_address]["label"])
+    # end_unpacking_node_name = "a{}{}".format(end_of_unpacking_address,
+    #                                                    packed_program_graph.nodes[end_of_unpacking_address]["label"])
 
+    end_unpacking_node_name = end_of_unpacking_address  # if node identity is pair <add, instruction>
     original_end_of_unpacking_node = get_end_of_unpacking_in_original_graph(original_graph,
                                                                             end_unpacking_node_name)
 
     n_child = 0
     child_nodes = []
+    # print("original")
+    # print(original_end_of_unpacking_node)
     for child_node in original_graph.successors(original_end_of_unpacking_node):
         n_child += 1
         child_nodes.append(child_node)
