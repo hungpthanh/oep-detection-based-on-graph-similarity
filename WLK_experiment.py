@@ -25,7 +25,7 @@ gc.enable()
 oep_dictionary = get_oep_dataset()
 data_folder_path = "data"
 
-log_file = open("logs/WLK_WINUPACK_2_sample_files/{}.txt".format(args.packer_names), "w")
+log_file = open(args.log_path + "/{}.txt".format(args.packer_names), "w")
 log_file.writelines("Packer names: {}\n".format(args.packer_names))
 log_file.writelines("Sample files: {}\n".format(args.sample_files))
 log_file.writelines("File name: {}\n".format(args.file_name))
