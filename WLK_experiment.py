@@ -67,7 +67,7 @@ def main():
         total_sample = 0
         correct_sample = 0
         for file_name, oep_address in oep_dictionary.items():
-            if file_name != "md5summer.exe" and file_name != "ldmdump.exe":
+            if file_name != "md5summer.exe":
                 continue
             print("pass")
             if file_name in args.sample_files:
