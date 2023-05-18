@@ -42,9 +42,14 @@ def relabel_graph(G, label_with_address=False, using_opcode_params=False):
         new_label = opcode
         for param_of_node in label_of_node:
             if "%" in param_of_node:
-                new_label += "-reg"
-            else:
+                if param_of_node[0] == "%":
+                    new_label += "-reg"
+                else:
+                    new_label += "-add"
+            elif "$" in param_of_node:
                 new_label += "-val"
+            else:
+                new_label += "-add"
         return new_label
 
     attribution_mapping = {}
