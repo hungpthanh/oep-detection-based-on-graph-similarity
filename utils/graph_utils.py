@@ -36,15 +36,34 @@ def get_node_information(s):
     return address, opcode
 
 
-def relabel_graph(G, label_with_address=False):
+def relabel_graph(G, label_with_address=False, using_opcode_params=False):
+    def get_opcode_params(label_of_node, opcode):
+        label_of_node = label_of_node.split(" ")[1:]
+        new_label = opcode
+        for param_of_node in label_of_node:
+            if "%" in param_of_node:
+                new_label += "_reg"
+            else:
+                new_label += "_val"
+        return new_label
+
     attribution_mapping = {}
     label_mapping = {}
     for node in G.nodes:
         address, opcode = get_node_information(node)
         if not label_with_address:
-            attribution_mapping[address] = {"label": opcode.split("_")[0]}
+            if not using_opcode_params:
+                attribution_mapping[address] = {"label": opcode.split("_")[0]}
+            else:
+                new_label = get_opcode_params(G.nodes[node]["label"], opcode.split("_")[0])
+                attribution_mapping[address] = {"label": new_label}
         else:
-            attribution_mapping[address] = {"label": address + '\n' + opcode.split("_")[0]}
+            if not using_opcode_params:
+                attribution_mapping[address] = {"label": address + '\n' + opcode.split("_")[0]}
+            else:
+                new_label = get_opcode_params(G.nodes[node]["label"], opcode.split("_")[0])
+                attribution_mapping[address] = {"label": address + '\n' + new_label}
+
         label_mapping[node] = address
     nG = nx.relabel_nodes(G, label_mapping)
     nx.set_node_attributes(nG, attribution_mapping)
@@ -148,7 +167,6 @@ def color_graph(G, obfuscation_tech_sequence, obfuscation_address_sequence, name
     # # save the modified DOT file
     # with open(os.path.join("logs/log_graph_color", "colored_{}".format(name_dot_file)), 'w') as f:
     #     f.write(dot_data)
-
 
 # def get_node_information(s):
 #     if not s.startswith('a0x'):

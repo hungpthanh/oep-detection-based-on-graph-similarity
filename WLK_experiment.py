@@ -17,7 +17,8 @@ parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+", default=["AccessEnum.exe"])
-parser.add_argument('--log_path', default="logs/WLK_WINUPACK_2_sample_files", type=str)
+parser.add_argument('--log_path', default="logs/WLK_v1.0_opcode_params", type=str)
+parser.add_argument('--using_opcode_params', default=True, type=bool)
 # Get the arguments
 args = parser.parse_args()
 gc.enable()
@@ -85,7 +86,8 @@ def main():
             final_score = 0
 
             # create information of packed file
-            data, unique_labels, node_list, msg = build_subgraph_vector(packer_name, file_name)
+            data, unique_labels, node_list, msg = build_subgraph_vector(packer_name, file_name,
+                                                                        using_opcode_params=args.using_opcode_params)
             if data is None:
                 print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
                 log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
@@ -97,7 +99,8 @@ def main():
                                                 "{}_{}_model.dot".format(packer_name, sample_file))
                 preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
                 node_list_sample_file, node_labels_sample_file = convert_graph_to_vector(packer_name, sample_file,
-                                                                                         address=preceding_sample_file)
+                                                                                         address=preceding_sample_file,
+                                                                                         using_opcode_params=args.using_opcode_params)
 
                 # update information of sample file
                 data['G1'] = Counter(list(node_labels_sample_file.values()))

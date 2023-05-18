@@ -139,8 +139,8 @@ class CFG():
             self.rev_adj[address2].append(address1)
 
 
-def create_subgraph(dot_file, address, from_specific_node=True, label_with_address=False):
-    G = relabel_graph(nx.DiGraph(read_dot(path=dot_file)), label_with_address)
+def create_subgraph(dot_file, address, from_specific_node=True, label_with_address=False, using_opcode_params=False):
+    G = relabel_graph(nx.DiGraph(read_dot(path=dot_file)), label_with_address, using_opcode_params)
     G = remove_back_edge(G)
     if from_specific_node:
         G = get_sub_graph_from(G, address)
