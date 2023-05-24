@@ -6,9 +6,11 @@ import time
 from collections import Counter
 import gc
 
+import networkx as nx
 import numpy as np
 from tqdm import tqdm
 
+from common.models import create_subgraph
 from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector
 from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP
 
@@ -17,7 +19,7 @@ parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+", default=["AccessEnum.exe"])
-parser.add_argument('--log_path', default="logs/WLK_original_identity_new_WLK", type=str)
+parser.add_argument('--log_path', default="logs/keep_back_edges", type=str)
 # Get the arguments
 args = parser.parse_args()
 gc.enable()
@@ -67,8 +69,6 @@ def main():
         total_sample = 0
         correct_sample = 0
         for file_name, oep_address in oep_dictionary.items():
-            # if file_name != "md5summer.exe":
-            #     continue
             print("pass")
             if file_name in args.sample_files:
                 print("Packer: {}, file_name: {}, msg: This file is sample file".format(packer_name, file_name))
@@ -94,6 +94,12 @@ def main():
             for key, value in data.items():
                 debug_log.writelines("{} \n{}\n".format(key, value))
             # end of debug
+
+            GG = create_subgraph(dot_file=os.path.join(packed_dot_file),
+                                           address=preceding_oep, from_specific_node=True)
+            nx.nx_agraph.write_dot(GG, "logs/keep_back_edges/remove_back_edge_{}_{}.dot".format(packer_name, file_name))
+
+
 
             if data is None:
                 print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
@@ -154,6 +160,8 @@ def main():
             "The accuracy of packer: {} is {}\n".format(packer_name, 1.0 * correct_sample / total_sample))
 
     debug_log.close()
+
+
 def get_result(s):
     pattern_packer = r'The accuracy of packer: (.*?) is'
     pattern_accuracy = r'is\s+(.*)$'
