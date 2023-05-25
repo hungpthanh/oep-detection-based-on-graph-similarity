@@ -30,6 +30,8 @@ gc.enable()
 oep_dictionary = get_oep_dataset()
 data_folder_path = "data"
 
+if not os.path.exists(args.log_path):
+    os.mkdir(args.log_path)
 log_file = open(args.log_path + "/{}.txt".format(args.packer_names), "w")
 log_file.writelines("This experiments intergrate end-of-unpacking sequence to improve the accuracy")
 log_file.writelines("Packer names: {}\n".format(args.packer_names))
