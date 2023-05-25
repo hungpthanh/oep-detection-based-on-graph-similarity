@@ -44,6 +44,7 @@ def load_end_unpacking_sequence():
 
 end_unpacking_sequence_samples = load_end_unpacking_sequence()
 
+
 def get_node_information(s):
     if not s.startswith('a0x'):
         address = s.upper()
@@ -197,30 +198,36 @@ def get_opcode_sequence(G, node):
     return sequences
 
 
-def is_graph_matching_end_unpacking_sequence(packer_name, file_name, address, first_k=-1):
-    if first_k == -1:
-        return True
-    sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
-                                    "{}_{}_model.dot".format(packer_name, file_name))
-    import time
-    start_time = time.time()
-    G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
-                         address=address, from_specific_node=True)
-    print("Create subgraph time: {}".format(time.time() - start_time))
-    # print("seq seq: {}".format(get_opcode_sequence(G1, address)))
-    seq = get_opcode_sequence(G1, address)
-    # print(seq)
-    for end_unpacking_seq in end_unpacking_sequences[packer_name]:
-        print("seq: {}, end-unpackig: {}, res: {}".format(seq[:first_k], end_unpacking_seq[:first_k], seq[:first_k] == end_unpacking_seq[:first_k]))
-        if seq[:first_k] == end_unpacking_seq[:first_k]:
-            return True
-    return False
+# def is_graph_matching_end_unpacking_sequence(packer_name, file_name, address, first_k=-1):
+#     if first_k == -1:
+#         return True
+#     sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
+#                                     "{}_{}_model.dot".format(packer_name, file_name))
+#     import time
+#     start_time = time.time()
+#     G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
+#                          address=address, from_specific_node=True)
+#     print("Create subgraph time: {}".format(time.time() - start_time))
+#     # print("seq seq: {}".format(get_opcode_sequence(G1, address)))
+#     seq = get_opcode_sequence(G1, address)
+#     # print(seq)
+#     for end_unpacking_seq in end_unpacking_sequences[packer_name]:
+#         print("seq: {}, end-unpackig: {}, res: {}".format(seq[:first_k], end_unpacking_seq[:first_k], seq[:first_k] == end_unpacking_seq[:first_k]))
+#         if seq[:first_k] == end_unpacking_seq[:first_k]:
+#             return True
+#     return False
 
 
-def create_subgraph(dot_file, address, from_specific_node=True, label_with_address=False):
-    G = relabel_graph(nx.DiGraph(read_dot(path=dot_file)), label_with_address)
-    G = remove_back_edge(G)
+def create_subgraph(removed_back_edge_G, address, from_specific_node=True):
     if from_specific_node:
-        G = get_sub_graph_from(G, address)
+        G = get_sub_graph_from(removed_back_edge_G, address)
         return G
+    return removed_back_edge_G
+
+
+def get_removed_backed_graph(packer_name, file_name, label_with_address=False):
+    file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
+                             "{}_{}_model.dot".format(packer_name, file_name))
+    G = relabel_graph(nx.DiGraph(read_dot(path=file_path)), label_with_address)
+    G = remove_back_edge(G)
     return G

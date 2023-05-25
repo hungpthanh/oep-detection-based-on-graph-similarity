@@ -7,7 +7,7 @@ from collections import Counter
 import gc
 import sys
 
-from utils.graph_utils import create_subgraph, end_unpacking_sequence_samples
+from utils.graph_utils import create_subgraph, end_unpacking_sequence_samples, get_removed_backed_graph
 
 sys.path.append('.')
 import networkx as nx
@@ -22,7 +22,7 @@ parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+", default=["AccessEnum.exe"])
-parser.add_argument('--log_path', default="logs/using_end_unpacking_seq", type=str)
+parser.add_argument('--log_path', default="logs/improved_performance", type=str)
 parser.add_argument('--first_k', default=3, type=int)
 # Get the arguments
 args = parser.parse_args()
@@ -76,7 +76,6 @@ def end_of_unpacking_prediction(packer_name, node_list, unique_labels, data, end
 def main():
     packer_names = args.packer_names
     sample_files = args.sample_files
-    debug_log = open("debug.txt", "w")
     print(packer_names)
     for packer_name in packer_names:
         total_sample = 0
@@ -101,15 +100,6 @@ def main():
 
             # create information of packed file
             data, unique_labels, node_list, end_unpacking_sequences, msg = build_subgraph_vector(packer_name, file_name)
-            # debug
-            debug_log.writelines("filename: {}\n".format(file_name))
-            for key, value in data.items():
-                debug_log.writelines("{} \n{}\n".format(key, value))
-            # end of debug
-
-            GG = create_subgraph(dot_file=os.path.join(packed_dot_file),
-                                 address=preceding_oep, from_specific_node=True)
-            nx.nx_agraph.write_dot(GG, "logs/keep_back_edges/remove_back_edge_{}_{}.dot".format(packer_name, file_name))
 
             if data is None:
                 print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
@@ -120,18 +110,16 @@ def main():
                 # create graph for sample file
                 sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                                 "{}_{}_model.dot".format(packer_name, sample_file))
+
+                sample_graph = get_removed_backed_graph(packer_name, sample_file)
                 preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
                 print("preceding_sample_file: {}".format(preceding_sample_file))
                 node_list_sample_file, node_labels_sample_file, original_labels_sample_file, _ = convert_graph_to_vector(
-                    packer_name, sample_file,
+                    sample_graph,
                     address=preceding_sample_file)
 
                 # update information of sample file
                 data['G1'] = Counter(list(node_labels_sample_file.values()) + original_labels_sample_file)
-                # debug
-                debug_log.writelines("sample: {}\n".format(sample_file))
-                debug_log.writelines("{} \n{}\n".format("G1", data["G1"]))
-                # end of debug
 
                 # create unique labels of G1 and sub graphs
                 merged_unique_labels = sorted(
@@ -144,7 +132,7 @@ def main():
                                                                             data=data,
                                                                             end_unpacking_sequences=end_unpacking_sequences,
                                                                             first_k=args.first_k)
-                debug_log.writelines("score: {}\n".format(score))
+
                 if score is None:
                     print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
                     log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))

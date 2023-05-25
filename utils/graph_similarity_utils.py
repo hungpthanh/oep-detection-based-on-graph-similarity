@@ -5,8 +5,8 @@ import networkx as nx
 import numpy as np
 from tqdm import tqdm
 
-from utils.graph_utils import create_subgraph, get_opcode_sequence
-from utils.graph_utils import is_graph_matching_end_unpacking_sequence
+from utils.graph_utils import create_subgraph, get_opcode_sequence, get_removed_backed_graph
+
 
 data_folder_path = "data"
 
@@ -149,11 +149,8 @@ def cosine_similarity(hist1, hist2):
     return cosine
 
 
-def convert_graph_to_vector(packer_name, sample_file, address, from_specific_node=True):
-    sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
-                                    "{}_{}_model.dot".format(packer_name, sample_file))
-    G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
-                         address=address, from_specific_node=from_specific_node)
+def convert_graph_to_vector(removed_back_edge_G, address, from_specific_node=True):
+    G1 = create_subgraph(removed_back_edge_G, address=address, from_specific_node=from_specific_node)
     end_unpacking_seq = None
     if address != "-1":
         end_unpacking_seq = get_opcode_sequence(G1, address)
@@ -168,15 +165,14 @@ def build_subgraph_vector(packer_name, file_name):
                                    "{}_{}_model.dot".format(packer_name, file_name))
     if not os.path.exists(packed_dot_file):
         return None, None, None, "This file do not have dot file from BE-PUM"
-
-    node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
-                                     from_specific_node=False).nodes)
+    removed_back_edge_G = get_removed_backed_graph(packer_name, file_name)
+    node_list = list(create_subgraph(removed_back_edge_G, address="-1", from_specific_node=False).nodes)
     data = {}
     end_unpacking_sequences = {}
     unique_labels = []
     print("Generating subgraph of {} nodes of {} packed by {}:".format(len(node_list), file_name, packer_name))
     for node in tqdm(node_list):
-        _, node_labels, original_labels, end_unpacking_seq = convert_graph_to_vector(packer_name, file_name,
+        _, node_labels, original_labels, end_unpacking_seq = convert_graph_to_vector(removed_back_edge_G,
                                                                                      address=node,
                                                                                      from_specific_node=True)
         unique_labels = unique_labels + list(node_labels.values()) + original_labels
