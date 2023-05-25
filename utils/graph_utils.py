@@ -2,7 +2,12 @@ import os.path
 from copy import deepcopy
 
 import networkx as nx
+import sys
 
+from networkx.drawing.nx_agraph import read_dot
+
+sys.path.append('.')
+# from common.models import create_subgraph
 from utils.string_utils import insert_string
 
 color_mapping = {
@@ -23,6 +28,21 @@ color_mapping = {
     '14': 'grey'
 }
 
+data_folder_path = "data"
+
+
+def load_end_unpacking_sequence():
+    end_unpacking_sequences = {}
+    with open("configs/end_of_unpacking_sequence.txt", "r") as f:
+        for line in f:
+            packer_name, sequence = line.split(",")
+            if not packer_name in end_unpacking_sequences:
+                end_unpacking_sequences[packer_name] = []
+            end_unpacking_sequences[packer_name].append(sequence.strip().split("_"))
+    return end_unpacking_sequences
+
+
+end_unpacking_sequence_samples = load_end_unpacking_sequence()
 
 def get_node_information(s):
     if not s.startswith('a0x'):
@@ -51,7 +71,7 @@ def relabel_graph(G, label_with_address=False):
             label_mapping[node] = node.upper()
         # else:
         #     label_mapping[node] = node
-    nG = nx.relabel_nodes(G, label_mapping) # keep orginal node identity
+    nG = nx.relabel_nodes(G, label_mapping)  # keep orginal node identity
     nx.set_node_attributes(nG, attribution_mapping)
     # nx.set_node_attributes(G, attribution_mapping)
     return nG
@@ -155,6 +175,7 @@ def color_graph(G, obfuscation_tech_sequence, obfuscation_address_sequence, name
     # with open(os.path.join("logs/log_graph_color", "colored_{}".format(name_dot_file)), 'w') as f:
     #     f.write(dot_data)
 
+
 # def get_node_information(s):
 #     if not s.startswith('a0x'):
 #         address = s
@@ -164,3 +185,42 @@ def color_graph(G, obfuscation_tech_sequence, obfuscation_address_sequence, name
 #     opcode = s[11:]
 #
 #     return address, opcode
+
+def get_opcode_sequence(G, node):
+    predecessor = [pre_node for pre_node in G.predecessors(node)]
+    sequences = []
+    while len(predecessor) == 1:
+        sequences.append(G.nodes[node]["label"])
+        node = predecessor[0]
+        predecessor = [pre_node for pre_node in G.predecessors(node)]
+    sequences.append(G.nodes[node]["label"])
+    return sequences
+
+
+def is_graph_matching_end_unpacking_sequence(packer_name, file_name, address, first_k=-1):
+    if first_k == -1:
+        return True
+    sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name,
+                                    "{}_{}_model.dot".format(packer_name, file_name))
+    import time
+    start_time = time.time()
+    G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
+                         address=address, from_specific_node=True)
+    print("Create subgraph time: {}".format(time.time() - start_time))
+    # print("seq seq: {}".format(get_opcode_sequence(G1, address)))
+    seq = get_opcode_sequence(G1, address)
+    # print(seq)
+    for end_unpacking_seq in end_unpacking_sequences[packer_name]:
+        print("seq: {}, end-unpackig: {}, res: {}".format(seq[:first_k], end_unpacking_seq[:first_k], seq[:first_k] == end_unpacking_seq[:first_k]))
+        if seq[:first_k] == end_unpacking_seq[:first_k]:
+            return True
+    return False
+
+
+def create_subgraph(dot_file, address, from_specific_node=True, label_with_address=False):
+    G = relabel_graph(nx.DiGraph(read_dot(path=dot_file)), label_with_address)
+    G = remove_back_edge(G)
+    if from_specific_node:
+        G = get_sub_graph_from(G, address)
+        return G
+    return G

@@ -4,8 +4,8 @@ import os
 import networkx as nx
 from networkx.drawing.nx_agraph import read_dot
 
-from common.models import BPCFG, create_subgraph
-
+# from common.models import BPCFG, create_subgraph
+from utils.graph_utils import create_subgraph
 packed_file_path = "data/packed_files.txt"
 packedSignature_path = "data/packerSignature.txt"
 positionDetail_path = "data/positionDetail.txt"

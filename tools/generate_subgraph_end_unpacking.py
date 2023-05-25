@@ -8,7 +8,7 @@ import networkx as nx
 from networkx.drawing.nx_agraph import read_dot
 from tqdm import tqdm
 
-from common.models import create_subgraph
+from utils.graph_utils import create_subgraph
 from utils.oep_utils import get_oep_dataset, get_preceding_oep
 
 parser = argparse.ArgumentParser()

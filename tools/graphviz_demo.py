@@ -6,7 +6,7 @@ sys.path.append('.')
 import networkx as nx
 from tqdm import tqdm
 
-from common.models import create_subgraph
+from utils.graph_utils import create_subgraph
 from utils.oep_utils import get_preceding_oep, get_oep_dataset
 
 sys.path.append('.')

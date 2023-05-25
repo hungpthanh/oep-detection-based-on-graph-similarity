@@ -1,11 +1,13 @@
 import sys
 
+from utils.graph_utils import get_opcode_sequence
+
 sys.path.append('.')
 
 import argparse
 import os
 import gc
-from common.models import create_subgraph
+from utils.graph_utils import create_subgraph
 from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP
 
 parser = argparse.ArgumentParser()
@@ -19,23 +21,11 @@ oep_dictionary = get_oep_dataset()
 data_folder_path = "data"
 
 
-def get_opcode_sequence(G, node):
-    print(node)
-    predecessor = [pre_node for pre_node in G.predecessors(node)]
-    sequences = []
-    while len(predecessor) == 1:
-        sequences.append(G.nodes[node]["label"])
-        node = predecessor[0]
-        predecessor = [pre_node for pre_node in G.predecessors(node)]
-    sequences.append(G.nodes[node]["label"])
-    return sequences
-
-
 def main():
     packer_names = args.packer_names
     print(packer_names)
     for packer_name in packer_names:
-        with open(args.log_path + "/{}.txt".format(packer_name), "w") as f:
+        with open(args.log_path + "/node_pair_{}.txt".format(packer_name), "w") as f:
             for file_name, oep_address in oep_dictionary.items():
                 packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                                "{}_{}_model.dot".format(packer_name, file_name))
@@ -47,8 +37,7 @@ def main():
                     continue
 
                 G1 = create_subgraph(dot_file=os.path.join(packed_dot_file),
-                                     address=preceding_oep, from_specific_node=True,
-                                     using_opcode_params=False)
+                                     address=preceding_oep, from_specific_node=True)
                 seq = get_opcode_sequence(G1, preceding_oep)
                 line = "_".join(seq)
                 f.writelines(line + "\n")

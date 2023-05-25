@@ -90,13 +90,13 @@ class BPCFG():
         dfs(self.start_node)
 
 
-def create_subgraph(dot_file, address, from_specific_node=True, label_with_address=False):
-    G = relabel_graph(nx.DiGraph(read_dot(path=dot_file)), label_with_address)
-    # G = remove_back_edge(G)
-    if from_specific_node:
-        G = get_sub_graph_from(G, address)
-        return G
-    return G
+# def create_subgraph(dot_file, address, from_specific_node=True, label_with_address=False):
+#     G = relabel_graph(nx.DiGraph(read_dot(path=dot_file)), label_with_address)
+#     G = remove_back_edge(G)
+#     if from_specific_node:
+#         G = get_sub_graph_from(G, address)
+#         return G
+#     return G
 
 
 if __name__ == '__main__':

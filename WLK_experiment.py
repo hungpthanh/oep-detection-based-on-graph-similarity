@@ -5,12 +5,15 @@ import re
 import time
 from collections import Counter
 import gc
+import sys
 
+from utils.graph_utils import create_subgraph, end_unpacking_sequence_samples
+
+sys.path.append('.')
 import networkx as nx
 import numpy as np
 from tqdm import tqdm
 
-from common.models import create_subgraph
 from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector
 from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP
 
@@ -19,7 +22,8 @@ parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+", default=["AccessEnum.exe"])
-parser.add_argument('--log_path', default="logs/keep_back_edges", type=str)
+parser.add_argument('--log_path', default="logs/using_end_unpacking_seq", type=str)
+parser.add_argument('--first_k', default=3, type=int)
 # Get the arguments
 args = parser.parse_args()
 gc.enable()
@@ -27,12 +31,13 @@ oep_dictionary = get_oep_dataset()
 data_folder_path = "data"
 
 log_file = open(args.log_path + "/{}.txt".format(args.packer_names), "w")
+log_file.writelines("This experiments intergrate end-of-unpacking sequence to improve the accuracy")
 log_file.writelines("Packer names: {}\n".format(args.packer_names))
 log_file.writelines("Sample files: {}\n".format(args.sample_files))
 log_file.writelines("File name: {}\n".format(args.file_name))
 
 
-def end_of_unpacking_prediction(node_list, unique_labels, data):
+def end_of_unpacking_prediction(packer_name, node_list, unique_labels, data, end_unpacking_sequences, first_k=-1):
     best_similarity = 0
     save_address = None
     try:
@@ -49,6 +54,12 @@ def end_of_unpacking_prediction(node_list, unique_labels, data):
 
         print("Searching for best matching graph:")
         for name in tqdm(node_list):
+            check_end_unpacking_sequence = True if first_k == -1 else False
+            for end_unpacking_seq_sample in end_unpacking_sequence_samples[packer_name]:
+                if end_unpacking_sequences[name][:first_k] == end_unpacking_seq_sample[:first_k]:
+                    check_end_unpacking_sequence = True
+            if not check_end_unpacking_sequence:
+                continue
             sim = cosine_similarity(histograms['G1'], histograms[name])
             if sim > best_similarity:
                 best_similarity = sim
@@ -69,7 +80,6 @@ def main():
         total_sample = 0
         correct_sample = 0
         for file_name, oep_address in oep_dictionary.items():
-            print("pass")
             if file_name in args.sample_files:
                 print("Packer: {}, file_name: {}, msg: This file is sample file".format(packer_name, file_name))
                 log_file.writelines(
@@ -88,7 +98,7 @@ def main():
             final_score = 0
 
             # create information of packed file
-            data, unique_labels, node_list, msg = build_subgraph_vector(packer_name, file_name)
+            data, unique_labels, node_list, end_unpacking_sequences, msg = build_subgraph_vector(packer_name, file_name)
             # debug
             debug_log.writelines("filename: {}\n".format(file_name))
             for key, value in data.items():
@@ -96,10 +106,8 @@ def main():
             # end of debug
 
             GG = create_subgraph(dot_file=os.path.join(packed_dot_file),
-                                           address=preceding_oep, from_specific_node=True)
+                                 address=preceding_oep, from_specific_node=True)
             nx.nx_agraph.write_dot(GG, "logs/keep_back_edges/remove_back_edge_{}_{}.dot".format(packer_name, file_name))
-
-
 
             if data is None:
                 print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
@@ -112,7 +120,7 @@ def main():
                                                 "{}_{}_model.dot".format(packer_name, sample_file))
                 preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
                 print("preceding_sample_file: {}".format(preceding_sample_file))
-                node_list_sample_file, node_labels_sample_file, original_labels_sample_file = convert_graph_to_vector(
+                node_list_sample_file, node_labels_sample_file, original_labels_sample_file, _ = convert_graph_to_vector(
                     packer_name, sample_file,
                     address=preceding_sample_file)
 
@@ -128,9 +136,12 @@ def main():
                     list(set(unique_labels + list(node_labels_sample_file.values()) + original_labels_sample_file)))
 
                 # Finding end-of-unpacking
-                predicted_address, score, msg = end_of_unpacking_prediction(node_list=node_list,
+                predicted_address, score, msg = end_of_unpacking_prediction(packer_name=packer_name,
+                                                                            node_list=node_list,
                                                                             unique_labels=merged_unique_labels,
-                                                                            data=data)
+                                                                            data=data,
+                                                                            end_unpacking_sequences=end_unpacking_sequences,
+                                                                            first_k=args.first_k)
                 debug_log.writelines("score: {}\n".format(score))
                 if score is None:
                     print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))

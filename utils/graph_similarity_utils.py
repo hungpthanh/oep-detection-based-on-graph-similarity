@@ -5,7 +5,8 @@ import networkx as nx
 import numpy as np
 from tqdm import tqdm
 
-from common.models import create_subgraph
+from utils.graph_utils import create_subgraph, get_opcode_sequence
+from utils.graph_utils import is_graph_matching_end_unpacking_sequence
 
 data_folder_path = "data"
 
@@ -153,10 +154,13 @@ def convert_graph_to_vector(packer_name, sample_file, address, from_specific_nod
                                     "{}_{}_model.dot".format(packer_name, sample_file))
     G1 = create_subgraph(dot_file=os.path.join(sample_file_path),
                          address=address, from_specific_node=from_specific_node)
+    end_unpacking_seq = None
+    if address != "-1":
+        end_unpacking_seq = get_opcode_sequence(G1, address)
     original_labels = [G1.nodes[node]["label"] for node in G1.nodes]
     node_list = G1.nodes
     node_labels = get_WLK(G1, 2)
-    return node_list, node_labels, original_labels
+    return node_list, node_labels, original_labels, end_unpacking_seq
 
 
 def build_subgraph_vector(packer_name, file_name):
@@ -168,12 +172,15 @@ def build_subgraph_vector(packer_name, file_name):
     node_list = list(create_subgraph(dot_file=packed_dot_file, address="-1",
                                      from_specific_node=False).nodes)
     data = {}
+    end_unpacking_sequences = {}
     unique_labels = []
     print("Generating subgraph of {} nodes of {} packed by {}:".format(len(node_list), file_name, packer_name))
     for node in tqdm(node_list):
-        _, node_labels, original_labels = convert_graph_to_vector(packer_name, file_name, address=node,
-                                                                  from_specific_node=True)
+        _, node_labels, original_labels, end_unpacking_seq = convert_graph_to_vector(packer_name, file_name,
+                                                                                     address=node,
+                                                                                     from_specific_node=True)
         unique_labels = unique_labels + list(node_labels.values()) + original_labels
         data[node] = Counter(list(node_labels.values()) + original_labels)  # may add original nodes here
+        end_unpacking_sequences[node] = end_unpacking_seq
     unique_labels = sorted(list(set(unique_labels)))
-    return data, unique_labels, node_list, "success"
+    return data, unique_labels, node_list, end_unpacking_sequences, "success"
