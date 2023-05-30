@@ -160,8 +160,6 @@ def main():
         log_file.writelines(
             "The accuracy of packer: {} is {}\n".format(packer_name, 1.0 * correct_sample / total_sample))
 
-    debug_log.close()
-
 
 def get_result(s):
     pattern_packer = r'The accuracy of packer: (.*?) is'

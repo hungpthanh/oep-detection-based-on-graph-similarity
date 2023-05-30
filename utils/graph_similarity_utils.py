@@ -7,7 +7,6 @@ from tqdm import tqdm
 
 from utils.graph_utils import create_subgraph, get_opcode_sequence, get_removed_backed_graph
 
-
 data_folder_path = "data"
 
 
@@ -166,6 +165,8 @@ def build_subgraph_vector(packer_name, file_name):
     if not os.path.exists(packed_dot_file):
         return None, None, None, "This file do not have dot file from BE-PUM"
     removed_back_edge_G = get_removed_backed_graph(packer_name, file_name)
+    nx.nx_agraph.write_dot(removed_back_edge_G,
+                           "logs/keep_back_edges/removed_back_edge_{}_{}.dot".format(packer_name, file_name))
     node_list = list(create_subgraph(removed_back_edge_G, address="-1", from_specific_node=False).nodes)
     data = {}
     end_unpacking_sequences = {}

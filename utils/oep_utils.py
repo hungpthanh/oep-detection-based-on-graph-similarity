@@ -5,7 +5,8 @@ import networkx as nx
 from networkx.drawing.nx_agraph import read_dot
 
 # from common.models import BPCFG, create_subgraph
-from utils.graph_utils import create_subgraph
+from utils.graph_utils import create_subgraph, get_removed_backed_graph
+
 packed_file_path = "data/packed_files.txt"
 packedSignature_path = "data/packerSignature.txt"
 positionDetail_path = "data/positionDetail.txt"
@@ -134,8 +135,9 @@ def get_OEP(packer_name, file_name, end_of_unpacking_address):
     packed_program_dot_file = os.path.join("data", "asm_cfg", packer_name,
                                            "{}_{}_model.dot".format(packer_name, file_name))
     original_graph = nx.DiGraph(read_dot(path=packed_program_dot_file))
-    packed_program_graph = create_subgraph(dot_file=os.path.join(packed_program_dot_file),
-                                           address="-1", from_specific_node=False)
+    # G = get_removed_backed_graph(packer_name, file_name)
+    # packed_program_graph = create_subgraph(G,
+    #                                        address="-1", from_specific_node=False)
 
     # end_unpacking_node_name = "a{}{}".format(end_of_unpacking_address,
     #                                                    packed_program_graph.nodes[end_of_unpacking_address]["label"])
