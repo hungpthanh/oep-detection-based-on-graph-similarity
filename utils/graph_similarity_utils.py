@@ -181,3 +181,18 @@ def build_subgraph_vector(packer_name, file_name):
         end_unpacking_sequences[node] = end_unpacking_seq
     unique_labels = sorted(list(set(unique_labels)))
     return data, unique_labels, node_list, end_unpacking_sequences, "success"
+
+
+def get_feature_vector(data, unique_labels):
+    """
+    :param data: The statistic counting label of a graph
+    :param unique_labels: unique labels
+    :return: feature vector of the graph
+    """
+    feature_vector = []
+    for idx, label in enumerate(unique_labels):
+        if label in data:
+            feature_vector.append(data[label])
+        else:
+            feature_vector.append(0)
+    return feature_vector
