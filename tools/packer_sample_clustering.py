@@ -62,7 +62,9 @@ def main():
 
             packed_graph = get_removed_backed_graph(packer_name, file_name)
             preceding_packed_file, msg = get_preceding_oep(packed_dot_file, oep_address)
-
+            if not preceding_packed_file:
+                print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
+                continue
             node_list_packed_file, node_labels_packed_file, original_labels_packed_file, _ = convert_graph_to_vector(
                 packed_graph,
                 address=preceding_packed_file)
@@ -97,12 +99,12 @@ def main():
         print("Estimated number of clusters: %d" % n_clusters_)
         print("Estimated number of noise points: %d" % n_noise_)
 
-        pca = PCA(n_components=2)
-        reduced = pca.fit_transform(X)
-        t = reduced.transpose()
-
-        plt.scatter(t[0], t[1])
-        plt.savefig("logs/DBSCAN/{}.jpg".format(packer_name))
+        # pca = PCA(n_components=2)
+        # reduced = pca.fit_transform(X)
+        # t = reduced.transpose()
+        #
+        # plt.scatter(t[0], t[1])
+        # plt.savefig("logs/DBSCAN/{}.jpg".format(packer_name))
         # unique_labels = set(labels)
         # core_samples_mask = np.zeros_like(labels, dtype=bool)
         # core_samples_mask[clustering.core_sample_indices_] = True
