@@ -1,1 +1,1 @@
-python WLK_experiment.py --mode detection --packer_names aspack
+python WLK_experiment.py --mode detection --packer_names aspack --first_k 5

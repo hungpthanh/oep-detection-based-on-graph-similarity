@@ -1,1 +1,1 @@
-python WLK_experiment.py --mode detection --packer_names MPRESS
+python WLK_experiment.py --mode detection --packer_names MPRESS --first_k 5

@@ -1,1 +1,1 @@
-python WLK_experiment.py --mode detection --packer_names petitepacked
+python WLK_experiment.py --mode detection --packer_names petitepacked --first_k 5

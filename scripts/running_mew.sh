@@ -1,1 +1,1 @@
-python WLK_experiment.py --mode detection --packer_names mew --sample_files Cacheset.exe
+python WLK_experiment.py --mode detection --packer_names mew --sample_files Cacheset.exe --first_k 5

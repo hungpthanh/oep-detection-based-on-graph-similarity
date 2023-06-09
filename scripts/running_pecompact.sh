@@ -1,1 +1,1 @@
-python WLK_experiment.py --mode detection --packer_names pecompact
+python WLK_experiment.py --mode detection --packer_names pecompact --first_k 5

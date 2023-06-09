@@ -1,1 +1,1 @@
-python WLK_experiment.py --mode detection --packer_names fsg
+python WLK_experiment.py --mode detection --packer_names fsg --first_k 5

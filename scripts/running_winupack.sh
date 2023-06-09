@@ -1,1 +1,1 @@
-python WLK_experiment.py --mode detection --packer_names winupack --sample_file ADInsight.exe ADExplorer.exe
+python WLK_experiment.py --mode detection --packer_names winupack --sample_file ADInsight.exe ADExplorer.exe --first_k 5

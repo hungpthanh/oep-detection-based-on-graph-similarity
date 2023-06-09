@@ -1,1 +1,1 @@
-python WLK_experiment.py --mode detection --packer_names upx
+python WLK_experiment.py --mode detection --packer_names upx --first_k 5
