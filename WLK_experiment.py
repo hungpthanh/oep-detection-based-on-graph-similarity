@@ -22,7 +22,7 @@ parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+", default=["AccessEnum.exe"])
-parser.add_argument('--log_path', default="logs/improved_performance", type=str)
+parser.add_argument('--log_path', default="logs/improved_performance0", type=str)
 parser.add_argument('--first_k', default=3, type=int)
 # Get the arguments
 args = parser.parse_args()

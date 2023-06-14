@@ -45,7 +45,8 @@ def generate_graph():
 
 
 def generate_single():
-    path = os.path.join("logs/log_graph_color/", "colored_{}_{}_model.dot".format(args.packers[0], args.file_name))
+    # path = os.path.join("logs/log_graph_color/", "colored_{}_{}_model.dot".format(args.packers[0], args.file_name))
+    path = os.path.join("data/asm_cfg/{}/".format(args.packers[0]), "{}_{}_model.dot".format(args.packers[0], args.file_name))
     s = Source.from_file(path)
     # s.save(directory="logs/log_graph_color")
     s.render()
