@@ -8,6 +8,7 @@ from collections import Counter
 import gc
 import sys
 
+from utils.be_pum_utils import get_packer_name_BE_PUM
 from utils.graph_utils import create_subgraph, end_unpacking_sequence_samples, get_removed_backed_graph
 
 sys.path.append('.')
@@ -218,7 +219,8 @@ def evaluate():
 
                     if not (packer_name in packer_identification_data):
                         packer_identification_data[packer_name] = []
-                    packer_identification_data[packer_name].append(packer_identification)
+                    packer_name_BE_PUM = get_packer_name_BE_PUM(packer_name, file_name)
+                    packer_identification_data[packer_name].append((packer_identification, packer_name_BE_PUM))
 
             print("avarage score is {}".format(np.mean(avg_score)))
     for packer_name, file_names in prediction_data.items():
@@ -228,13 +230,16 @@ def evaluate():
             if (predicted_oep is not None) and (predicted_oep == oep_dictionary[filename]):
                 n_correct += 1
         n_correct_predict_packer = sum(
-            [int(packer_name == predicted_name) for predicted_name in packer_identification_data[packer_name]])
+            [int(packer_name == predicted_name[0]) for predicted_name in packer_identification_data[packer_name]])
+        n_correct_predict_packer_be_pum = sum(
+            [int(packer_name == predicted_name[1]) for predicted_name in packer_identification_data[packer_name]])
         print(
-            "Packer: {}, end-of-unpacking accuracy: {:.3f}, OEP detection accuracy: {:.3f}, packer_identification accuracy: {}, of sample: {}".format(
+            "Packer: {}, end-of-unpacking accuracy: {:.3f}, OEP detection accuracy: {:.3f}, packer_identification accuracy: {}, be-pum: {}, of sample: {}".format(
                 packer_name,
                 float(results[packer_name]),
                 1.0 * n_correct / n_sample,
                 1.0 * n_correct_predict_packer / n_sample,
+                1.0 * n_correct_predict_packer_be_pum / n_sample,
                 n_sample))
 
 
