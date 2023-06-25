@@ -111,7 +111,7 @@ class VTScan:
 
 def get_done_files():
     done_lists = []
-    for idx in range(1, 5):
+    for idx in range(1, 6):
         with open("/home/hungpt/workspace/research/oep-detection/logs/entry_point_{}.txt".format(idx), "r") as f:
             for line in f:
                 line = line.strip()
@@ -127,7 +127,7 @@ if __name__ == "__main__":
     vtscan = VTScan()
     # print(hex(vtscan.run("/home/hungpt/Downloads/PackingData-master/PackingData/UPX/upx_ADExplorer.exe")))
     done_lists = get_done_files()
-    with open("logs/entry_point_5.txt", "w") as f:
+    with open("logs/entry_point_6.txt", "w") as f:
         folder_path = "/home/hungpt/Downloads/win32exe-20230620T135255Z-001/win32exe"
         files = glob.glob(folder_path + "/*.exe")
         for file in tqdm(files):
