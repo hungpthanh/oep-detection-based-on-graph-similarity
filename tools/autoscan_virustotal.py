@@ -119,31 +119,59 @@ def get_done_files():
                 done_lists.append(name)
     return done_lists
 
+def test_packer():
+    import requests
+
+    api_key = "b28069df4ba529c1c1848699a7b39c98e44f92ee871844f1c118829386af4721"
+    resource = "/home/hungpt/Downloads/PackingData-master/PackingData/UPX/upx_accesschk.exe"
+    url = f"https://www.virustotal.com/vtapi/v2/file/report"
+
+    params = {"apikey": api_key, "resource": resource}
+
+    response = requests.get(url, params=params)
+    json_response = response.json()
+
+    if response.status_code == 200:
+        print(json_response)
+        if "packers" in json_response:
+            packers = json_response["packers"]
+            if packers:
+                packer_name = packers[0]
+                print(f"Packer Name: {packer_name}")
+            else:
+                print("No packer information available for the file.")
+        else:
+            print("Packer information not found in the response.")
+    else:
+        print("Error occurred while making the request.")
+
 
 if __name__ == "__main__":
     # parser = argparse.ArgumentParser()
     # parser.add_argument('-m', '--mal', required=True, help="PE file path for scanning")
     # args = vars(parser.parse_args())
-    vtscan = VTScan()
-    # print(hex(vtscan.run("/home/hungpt/Downloads/PackingData-master/PackingData/UPX/upx_ADExplorer.exe")))
-    done_lists = get_done_files()
-    with open("logs/entry_point_6.txt", "w") as f:
-        folder_path = "/home/hungpt/Downloads/win32exe-20230620T135255Z-001/win32exe"
-        files = glob.glob(folder_path + "/*.exe")
-        for file in tqdm(files):
-
-            try:
-                name_file = os.path.basename(file)
-
-                if name_file in done_lists:
-                    continue
-                # print(file)
-                # print(name_file)
-                entry_point = vtscan.run(file)
-                print("{}, {}".format(name_file, entry_point))
-                f.writelines("{},{}\n".format(name_file, hex(entry_point)))
-
-            except Exception as e:
-                print(e)
-                pass
-            time.sleep(20)
+    # vtscan = VTScan()
+    # # print(hex(vtscan.run("/home/hungpt/Downloads/PackingData-master/PackingData/UPX/upx_ADExplorer.exe")))
+    # done_lists = get_done_files()
+    # with open("logs/entry_point_6.txt", "w") as f:
+    #     # folder_path = "/home/hungpt/Downloads/win32exe-20230620T135255Z-001/win32exe"
+    #     folder_path = "/home/hungpt/Downloads/PackingData-master/PackingData/UPX"
+    #     files = glob.glob(folder_path + "/*.exe")
+    #     for file in tqdm(files):
+    #
+    #         try:
+    #             name_file = os.path.basename(file)
+    #
+    #             # if name_file in done_lists:
+    #             #     continue
+    #             # print(file)
+    #             # print(name_file)
+    #             entry_point = vtscan.run(file)
+    #             print("{}, {}".format(name_file, entry_point))
+    #             f.writelines("{},{}\n".format(name_file, hex(entry_point)))
+    #
+    #         except Exception as e:
+    #             print(e)
+    #             pass
+    #         time.sleep(20)
+    test_packer()

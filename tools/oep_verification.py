@@ -58,13 +58,14 @@ def compare(original_asm, packed_asm, top_k=-1):
 
 def search(original_asm, packed_asm, top_k):
     query = original_asm[:top_k]
+    list_address = []
     for idx in range(0, len(packed_asm) - top_k + 1):
         # print("========")
         # print(query)
         # print(packed_asm[idx: idx + top_k - 1])
         if query == packed_asm[idx: idx + top_k]:
-            return True
-    return False
+            list_address.append(idx)
+    return len(list_address)
 
 
 def main():
@@ -97,7 +98,8 @@ def main():
             # if len(packed_code_asm) == 0:
             #     cnt_empty += 1
             #     continue
-            if not search(original_asm, packed_code_asm, 5):
+            print("length: {}".format(search(original_asm, packed_code_asm, 5)))
+            if search(original_asm, packed_code_asm, 5) == 0:
                 cnt_not_found += 1
                 continue
 
