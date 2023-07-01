@@ -2,6 +2,7 @@
 import os
 
 import networkx as nx
+import pefile
 from networkx.drawing.nx_agraph import read_dot
 
 # from common.models import BPCFG, create_subgraph
@@ -10,6 +11,12 @@ from utils.graph_utils import create_subgraph, get_removed_backed_graph
 packed_file_path = "data/packed_files.txt"
 packedSignature_path = "data/packerSignature.txt"
 positionDetail_path = "data/positionDetail.txt"
+
+# load offset observed
+offsets = []
+with open("configs/offsets.txt", "r") as f:
+    for line in f:
+        offsets.append(line)
 
 
 # def build_OEP_dataset(packed_file_path):
@@ -132,6 +139,7 @@ def get_end_of_unpacking_in_original_graph(G, node):
 def get_OEP(packer_name, file_name, end_of_unpacking_address):
     def get_address_format(s):
         return s[1:11]
+
     packed_program_dot_file = os.path.join("data", "asm_cfg", packer_name,
                                            "{}_{}_model.dot".format(packer_name, file_name))
     original_graph = nx.DiGraph(read_dot(path=packed_program_dot_file))
@@ -170,5 +178,35 @@ def get_OEP(packer_name, file_name, end_of_unpacking_address):
     return None, "too many candidates"
 
 
+def get_entry_point_from_pefile(file):
+    pe = pefile.PE(file)
+    entry_point_address = "0x{:X}".format(pe.OPTIONAL_HEADER.AddressOfEntryPoint)
+    return entry_point_address
 
 
+def verify_offset(entry_point, address):
+    entry_point_10 = int(entry_point, 16)
+    address_10 = int(address, 16)
+    offset = str(hex(abs(entry_point_10 - address_10)))
+    return offset in offsets
+
+
+def verify_asm(entry_point, address):
+    pass
+
+
+def search_entry_point_in_asm(entry_point, asm_file):
+    save_address, save_instruction = None, None
+    with open(asm_file, "r") as f:
+        for line in f:
+            if ":" in line:
+                address, instruction = line.split(":")
+                if not verify_offset(entry_point, address):
+                    continue
+
+                save_address, save_instruction = address, instruction
+    return save_address, save_instruction
+
+
+print(verify_offset("0x0001dffa", "0x0041dffa"))
+print(verify_offset("0x00012d6c", "0x01012d6c"))
