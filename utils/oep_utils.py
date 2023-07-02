@@ -198,22 +198,27 @@ def verify_asm(entry_point, address):
     pass
 
 
-def search_entry_point_in_asm(entry_point, asm_file, packed_dot_file, original_dot_file):
+def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, using_upx=False, oep_upx=None):
     original_cfg = remove_back_edge(relabel_graph(nx.DiGraph(read_dot(path=original_dot_file))))
     packed_cfg = remove_back_edge(relabel_graph(nx.DiGraph(read_dot(path=packed_dot_file))))
 
-    entry_point_of_original = list(original_cfg.nodes)[0]
-    node_list_of_original, node_labels_of_original, original_labels_of_original, _ = convert_graph_to_vector(
-        original_cfg, entry_point_of_original, from_specific_node=True, from_bottom=False, depth=5)
+    if not using_upx:
+        entry_point_of_original = list(original_cfg.nodes)[0]
+        node_list_of_original, node_labels_of_original, original_labels_of_original, _ = convert_graph_to_vector(
+            original_cfg, entry_point_of_original, from_specific_node=True, from_bottom=False, depth=5)
+    else:
+        node_list_of_original, node_labels_of_original, original_labels_of_original, _ = convert_graph_to_vector(
+            original_cfg, oep_upx, from_specific_node=True, from_bottom=False, depth=5)
 
     data_original = Counter(list(node_labels_of_original.values()) + original_labels_of_original)
     unique_labels = sorted(list(set(list(node_labels_of_original.values()) + original_labels_of_original)))
+    save_node, save_sim = None, 0
     for node in packed_cfg.nodes:
         if not node.startswith("a"):
             continue
         address = node[1:11]
         # print("address = {}, verify: {}".format(address, verify_offset(entry_point, address)))
-        if verify_offset(entry_point, address):
+        if verify_offset(entry_point, address) or using_upx:
             node_list_of_packed, node_labels_of_packed, original_labels_of_packed, _ = convert_graph_to_vector(
                 packed_cfg, address=node, from_specific_node=True, from_bottom=False, depth=5)
             data_packed_code = Counter(list(node_labels_of_packed.values()) + original_labels_of_packed)
@@ -224,7 +229,10 @@ def search_entry_point_in_asm(entry_point, asm_file, packed_dot_file, original_d
             original_feature_vector = get_feature_vector(data_original, merged_unique_labels)
             packed_feature_vector = get_feature_vector(data_packed_code, merged_unique_labels)
             sim = cosine_similarity(original_feature_vector, packed_feature_vector)
-            print("node: {}, sim = {}".format(node, sim))
+            # print("node: {}, sim = {}".format(node, sim))
+            if (sim > 0.9) and (sim > save_sim):
+                save_node, save_sim = node, sim
+    return save_node
     # save_address, save_instruction = None, None
     # with open(asm_file, "r") as f:
     #     for line in f:
@@ -239,9 +247,9 @@ def search_entry_point_in_asm(entry_point, asm_file, packed_dot_file, original_d
 
 # print(verify_offset("0x0001dffa", "0x0041dffa"))
 # print(verify_offset("0x00012d6c", "0x01012d6c"))
-asm_file = "data/asm_cfg/upx/upx_AccessEnum.exe_code.asm"
-packed_dot_file = "data/asm_cfg/upx/upx_AccessEnum.exe_model.dot"
-original_dot_file = "data/log_bepum_malware/AccessEnum.exe_model.dot"
-entry_point = "0x00007a98"
-
-search_entry_point_in_asm(entry_point, asm_file, packed_dot_file, original_dot_file)
+# asm_file = "data/asm_cfg/upx/upx_AccessEnum.exe_code.asm"
+# packed_dot_file = "data/asm_cfg/upx/upx_AccessEnum.exe_model.dot"
+# original_dot_file = "data/log_bepum_malware/AccessEnum.exe_model.dot"
+# entry_point = "0x00007a98"
+#
+# search_entry_point_in_asm(entry_point, asm_file, packed_dot_file, original_dot_file)

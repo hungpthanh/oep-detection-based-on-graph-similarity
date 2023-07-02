@@ -237,3 +237,13 @@ def get_removed_backed_graph(packer_name, file_name, label_with_address=False):
     G = relabel_graph(nx.DiGraph(read_dot(path=file_path)), label_with_address)
     G = remove_back_edge(G)
     return G
+
+
+def verify_cfg(dot_file):
+    if not os.path.exists(dot_file):
+        return False, "Dot file not exist"
+    try:
+        cfg = nx.DiGraph(read_dot(path=dot_file))
+    except Exception as e:
+        return False, str(e)
+    return True, "Success"
