@@ -224,9 +224,9 @@ def get_opcode_sequence(G, node):
 #     return False
 
 
-def create_subgraph(removed_back_edge_G, address, from_specific_node=True):
+def create_subgraph(removed_back_edge_G, address, from_specific_node=True, from_bottom=True, depth=-1):
     if from_specific_node:
-        G = get_sub_graph_from(removed_back_edge_G, address)
+        G = get_sub_graph_from(removed_back_edge_G, address, from_bottom, depth)
         return G
     return removed_back_edge_G
 

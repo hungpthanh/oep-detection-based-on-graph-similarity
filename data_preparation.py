@@ -14,6 +14,7 @@ parser.add_argument('--original_folder', default="/home/hungpt/Downloads/Packing
 args = parser.parse_args()
 oep_dictionary = get_oep_dataset()
 
+
 def main():
     for packer_name in args.packer_names:
         print("packer name: {}".format(packer_name))
@@ -32,9 +33,11 @@ def main():
 
             # get OEP of the packed code
             original_file = os.path.join(args.original_folder, file_name)
+            original_dot_file = os.path.join(args.data_path, "log_bepum_malware", "{}_model.dot".format(file_name))
+
             if os.path.exists(original_file):
                 entry_point = get_entry_point_from_pefile(original_file)
-                OEP = search_entry_point_in_asm(entry_point, asm_file)
+                OEP = search_entry_point_in_asm(entry_point, asm_file, dot_file, original_dot_file)
             elif file_name in oep_dictionary:
                 OEP = oep_dictionary[file_name]
             else:
@@ -43,9 +46,8 @@ def main():
             preceding_oep, msg = get_preceding_oep(dot_file, OEP)
             if not preceding_oep:
                 print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
-                log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
+                # log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
                 continue
-
 
 
 if __name__ == '__main__':

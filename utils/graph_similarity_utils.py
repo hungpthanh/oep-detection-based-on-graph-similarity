@@ -148,10 +148,11 @@ def cosine_similarity(hist1, hist2):
     return cosine
 
 
-def convert_graph_to_vector(removed_back_edge_G, address, from_specific_node=True):
-    G1 = create_subgraph(removed_back_edge_G, address=address, from_specific_node=from_specific_node)
+def convert_graph_to_vector(removed_back_edge_G, address, from_specific_node=True, from_bottom=True, depth=-1):
+    G1 = create_subgraph(removed_back_edge_G, address=address, from_specific_node=from_specific_node,
+                         from_bottom=from_bottom, depth=depth)
     end_unpacking_seq = None
-    if address != "-1":
+    if address != "-1" and from_bottom:
         end_unpacking_seq = get_opcode_sequence(G1, address)
     original_labels = [G1.nodes[node]["label"] for node in G1.nodes]
     node_list = G1.nodes

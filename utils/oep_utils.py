@@ -1,12 +1,14 @@
 # from utils.preprocess_be_pum import get_OEP_of_UPX
 import os
+from collections import Counter
 
 import networkx as nx
 import pefile
 from networkx.drawing.nx_agraph import read_dot
 
+from utils.graph_similarity_utils import convert_graph_to_vector, get_feature_vector, cosine_similarity
 # from common.models import BPCFG, create_subgraph
-from utils.graph_utils import create_subgraph, get_removed_backed_graph
+from utils.graph_utils import create_subgraph, get_removed_backed_graph, relabel_graph, remove_back_edge
 
 packed_file_path = "data/packed_files.txt"
 packedSignature_path = "data/packerSignature.txt"
@@ -16,7 +18,7 @@ positionDetail_path = "data/positionDetail.txt"
 offsets = []
 with open("configs/offsets.txt", "r") as f:
     for line in f:
-        offsets.append(line)
+        offsets.append(line.strip())
 
 
 # def build_OEP_dataset(packed_file_path):
@@ -188,6 +190,7 @@ def verify_offset(entry_point, address):
     entry_point_10 = int(entry_point, 16)
     address_10 = int(address, 16)
     offset = str(hex(abs(entry_point_10 - address_10)))
+    # print("offset = {}, offsets = {}".format(offset, offsets))
     return offset in offsets
 
 
@@ -195,18 +198,50 @@ def verify_asm(entry_point, address):
     pass
 
 
-def search_entry_point_in_asm(entry_point, asm_file):
-    save_address, save_instruction = None, None
-    with open(asm_file, "r") as f:
-        for line in f:
-            if ":" in line:
-                address, instruction = line.split(":")
-                if not verify_offset(entry_point, address):
-                    continue
+def search_entry_point_in_asm(entry_point, asm_file, packed_dot_file, original_dot_file):
+    original_cfg = remove_back_edge(relabel_graph(nx.DiGraph(read_dot(path=original_dot_file))))
+    packed_cfg = remove_back_edge(relabel_graph(nx.DiGraph(read_dot(path=packed_dot_file))))
 
-                save_address, save_instruction = address, instruction
-    return save_address, save_instruction
+    entry_point_of_original = list(original_cfg.nodes)[0]
+    node_list_of_original, node_labels_of_original, original_labels_of_original, _ = convert_graph_to_vector(
+        original_cfg, entry_point_of_original, from_specific_node=True, from_bottom=False, depth=5)
+
+    data_original = Counter(list(node_labels_of_original.values()) + original_labels_of_original)
+    unique_labels = sorted(list(set(list(node_labels_of_original.values()) + original_labels_of_original)))
+    for node in packed_cfg.nodes:
+        if not node.startswith("a"):
+            continue
+        address = node[1:11]
+        # print("address = {}, verify: {}".format(address, verify_offset(entry_point, address)))
+        if verify_offset(entry_point, address):
+            node_list_of_packed, node_labels_of_packed, original_labels_of_packed, _ = convert_graph_to_vector(
+                packed_cfg, address=node, from_specific_node=True, from_bottom=False, depth=5)
+            data_packed_code = Counter(list(node_labels_of_packed.values()) + original_labels_of_packed)
+
+            merged_unique_labels = sorted(
+                list(set(unique_labels + list(node_labels_of_packed.values()) + original_labels_of_packed)))
+
+            original_feature_vector = get_feature_vector(data_original, merged_unique_labels)
+            packed_feature_vector = get_feature_vector(data_packed_code, merged_unique_labels)
+            sim = cosine_similarity(original_feature_vector, packed_feature_vector)
+            print("node: {}, sim = {}".format(node, sim))
+    # save_address, save_instruction = None, None
+    # with open(asm_file, "r") as f:
+    #     for line in f:
+    #         if ":" in line:
+    #             address, instruction = line.split(":")
+    #             if not verify_offset(entry_point, address):
+    #                 continue
+    #
+    #             save_address, save_instruction = address, instruction
+    # return save_address, save_instruction
 
 
-print(verify_offset("0x0001dffa", "0x0041dffa"))
-print(verify_offset("0x00012d6c", "0x01012d6c"))
+# print(verify_offset("0x0001dffa", "0x0041dffa"))
+# print(verify_offset("0x00012d6c", "0x01012d6c"))
+asm_file = "data/asm_cfg/upx/upx_AccessEnum.exe_code.asm"
+packed_dot_file = "data/asm_cfg/upx/upx_AccessEnum.exe_model.dot"
+original_dot_file = "data/log_bepum_malware/AccessEnum.exe_model.dot"
+entry_point = "0x00007a98"
+
+search_entry_point_in_asm(entry_point, asm_file, packed_dot_file, original_dot_file)
