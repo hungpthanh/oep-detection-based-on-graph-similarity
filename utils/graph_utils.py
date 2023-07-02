@@ -125,7 +125,7 @@ def remove_back_edge(cfg):
     return new_cfg
 
 
-def get_sub_graph_from(G, node, from_bottom=True):
+def get_sub_graph_from(G, node, from_bottom=True, depth=-1):
     def dfs(start_node, from_bottom):
         stack = []
         visited = []
@@ -133,6 +133,11 @@ def get_sub_graph_from(G, node, from_bottom=True):
         while len(stack) > 0:
             u = stack[-1]
             visited.append(u)
+
+            if len(stack) == depth:
+                stack.pop()
+                continue
+
             exist_node = False
             next_nodes = G.predecessors(u) if from_bottom else G.successors(u)
             for v in list(next_nodes):
