@@ -86,7 +86,6 @@ def main():
         total_sample = 0
         correct_sample = 0
         for packer_name_file_name, oep_address in oep_dictionary_2.items():
-            print(packer_name_file_name)
             packer_name_of_file, file_name = packer_name_file_name.strip().split("_")[0], "_".join(
                 packer_name_file_name.strip().split("_")[1:])
             if oep_address == "None":
