@@ -1,3 +1,5 @@
+import glob
+import json
 import os
 from collections import Counter
 
@@ -197,3 +199,16 @@ def get_feature_vector(data, unique_labels):
         else:
             feature_vector.append(0)
     return feature_vector
+
+
+def load_standard_feature():
+    standard_feature = {}
+    packer_standard_files = glob.glob("configs/standard_feature_vectors/*.json")
+    for packer_standard_file in packer_standard_files:
+        packer_name = os.path.basename(packer_standard_file).split('.')[0]
+        with open(packer_standard_file, "r") as f:
+            standard_feature[packer_name] = json.loads(f.read())
+
+    return standard_feature
+
+

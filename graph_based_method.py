@@ -10,13 +10,15 @@ import sys
 
 from utils.be_pum_utils import get_packer_name_BE_PUM
 from utils.graph_utils import create_subgraph, end_unpacking_sequence_samples, get_removed_backed_graph
+from utils.dataset_utils import get_test_list
 
 sys.path.append('.')
 import networkx as nx
 import numpy as np
 from tqdm import tqdm
 
-from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector
+from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector, \
+    load_standard_feature
 from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP, get_oep_dataset_2
 
 parser = argparse.ArgumentParser()
@@ -43,6 +45,10 @@ log_file.writelines("File name: {}\n".format(args.file_name))
 
 with open('configs/standard_file.json') as stardard_file_json:
     standard_file = json.loads(stardard_file_json.read())
+
+standard_feature = load_standard_feature()
+
+test_list = get_test_list()
 
 
 def end_of_unpacking_prediction(packer_name, node_list, unique_labels, data, end_unpacking_sequences, first_k=-1):
@@ -85,9 +91,9 @@ def main():
     for packer_name in packer_names:
         total_sample = 0
         correct_sample = 0
-        for packer_name_file_name, oep_address in oep_dictionary_2.items():
-            packer_name_of_file, file_name = packer_name_file_name.strip().split("_")[0], "_".join(
-                packer_name_file_name.strip().split("_")[1:])
+        for test_file in test_list:
+            packer_name_of_file, file_name = test_file.strip().split("_")[0], "_".join(test_file.strip().split("_")[1:])
+            oep_address = oep_dictionary_2[test_file]
             if oep_address == "None":
                 continue
             if packer_name_of_file != packer_name:
@@ -117,26 +123,12 @@ def main():
                 log_file.writelines("Packer: {}, file_name: {}, error: {}\n".format(packer_name, file_name, msg))
                 continue
             print("Search packer name and OEP:")
-            for packer_name_candidate, sample_files in tqdm(standard_file.items()):
-                for sample_file in sample_files:
-                    # create graph for sample file
-                    sample_file_path = os.path.join(data_folder_path, "asm_cfg", packer_name_candidate,
-                                                    "{}_{}_model.dot".format(packer_name_candidate, sample_file))
-
-                    sample_graph = get_removed_backed_graph(packer_name_candidate, sample_file)
-                    preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary_2[
-                        "{}_{}".format(packer_name_candidate, sample_file)])
-                    node_list_sample_file, node_labels_sample_file, original_labels_sample_file, _ = convert_graph_to_vector(
-                        sample_graph,
-                        address=preceding_sample_file)
-
+            for packer_name_candidate, sample_files in tqdm(standard_feature.items()):
+                for _, feature in sample_files.items():
                     # update information of sample file
-                    data['G1'] = Counter(list(node_labels_sample_file.values()) + original_labels_sample_file)
-
+                    data['G1'] = feature
                     # create unique labels of G1 and sub graphs
-                    merged_unique_labels = sorted(
-                        list(set(unique_labels + list(node_labels_sample_file.values()) + original_labels_sample_file)))
-
+                    merged_unique_labels = sorted(list(set(unique_labels + list(feature.keys()))))
                     # Finding end-of-unpacking
                     predicted_address, score, msg = end_of_unpacking_prediction(packer_name=packer_name_candidate,
                                                                                 node_list=node_list,
@@ -154,12 +146,6 @@ def main():
                         final_score = score
                         final_address = predicted_address
                         predicted_packer = packer_name
-                    # print(
-                    #     "Packer: {}, file_name: {}, sample_file: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}".format(
-                    #         packer_name, file_name, sample_file, preceding_oep, predicted_address, score))
-                    # log_file.writelines(
-                    #     "Packer: {}, file_name: {}, sample_file: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
-                    #         packer_name, file_name, sample_file, preceding_oep, predicted_address, score))
             print(
                 "Final decision: {}, Packer: {}, packer_identification: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
                     bool(preceding_oep == final_address),
