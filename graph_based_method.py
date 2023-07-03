@@ -87,7 +87,8 @@ def main():
         correct_sample = 0
         for packer_name_file_name, oep_address in oep_dictionary_2.items():
             print(packer_name_file_name)
-            packer_name_of_file, file_name = packer_name_file_name.strip().split("_")[0], "_".join(packer_name_file_name.strip().split("_")[1:])
+            packer_name_of_file, file_name = packer_name_file_name.strip().split("_")[0], "_".join(
+                packer_name_file_name.strip().split("_")[1:])
             if oep_address == "None":
                 continue
             if packer_name_of_file != packer_name:
@@ -124,7 +125,8 @@ def main():
                                                     "{}_{}_model.dot".format(packer_name_candidate, sample_file))
 
                     sample_graph = get_removed_backed_graph(packer_name_candidate, sample_file)
-                    preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary_2[sample_file])
+                    preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary_2[
+                        "{}_{}".format(packer_name_candidate, sample_file)])
                     node_list_sample_file, node_labels_sample_file, original_labels_sample_file, _ = convert_graph_to_vector(
                         sample_graph,
                         address=preceding_sample_file)

@@ -151,19 +151,19 @@ def main(packer_name):
     global packed_list_path
     print("Go to main")
     if packer_name == "upx":
-        packed_list_path = "data/packed_files.txt"
+        packed_list_path = "../data/packed_files.txt"
         X, y = get_X_y()
     elif packer_name == "fsg":
-        packed_list_path = "data/packed_files_FSG.txt"
+        packed_list_path = "../data/packed_files_FSG.txt"
         X, y, z = get_X_y_FSG()
     elif packer_name == "aspack":
-        packed_list_path = "data/packed_files_ASPACK.txt"
+        packed_list_path = "../data/packed_files_ASPACK.txt"
         X, y, z, names = get_X_y_ASPACK()
     elif packer_name == "mpress":
-        packed_list_path = "data/packed_files_MPRESS.txt"
+        packed_list_path = "../data/packed_files_MPRESS.txt"
         X, y, z, names = get_X_y_MPRESS()
     else:
-        packed_list_path = "data/packed_files_PETITE.txt"
+        packed_list_path = "../data/packed_files_PETITE.txt"
         X, y, z, names = get_X_y_PETITEPACKED()
     fig, ax = plt.subplots(figsize=(12, 8))
     colors = []
@@ -193,19 +193,19 @@ def bar_chart(packer_name):
     # values = list(data.values())
     names = None
     if packer_name == "upx":
-        packed_list_path = "data/packed_files.txt"
+        packed_list_path = "../data/packed_files.txt"
         x, y = get_X_y()
     elif packer_name == "fsg":
-        packed_list_path = "data/packed_files_FSG.txt"
+        packed_list_path = "../data/packed_files_FSG.txt"
         x, y, z = get_X_y_FSG()
     elif packer_name == "aspack":
-        packed_list_path = "data/packed_files_ASPACK.txt"
+        packed_list_path = "../data/packed_files_ASPACK.txt"
         x, y, z, names = get_X_y_ASPACK()
     elif packer_name == "mpress":
-        packed_list_path = "data/packed_files_MPRESS.txt"
+        packed_list_path = "../data/packed_files_MPRESS.txt"
         x, y, z, names = get_X_y_MPRESS()
     else:
-        packed_list_path = "data/packed_files_PETITE.txt"
+        packed_list_path = "../data/packed_files_PETITE.txt"
         x, y, z, names = get_X_y_PETITEPACKED()
     courses = list(range(1, len(x) + 1))
     values = list(1 * (np.asarray(y) - np.asarray(x)))

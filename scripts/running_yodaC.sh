@@ -1,1 +1,1 @@
-python WLK_experiment.py --mode detection --packer_names yodaC --first_k 5
+python graph_based_method.py --mode detection --packer_names yodaC --first_k 5

@@ -9,7 +9,7 @@ from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_matched_sign
 from utils.string_utils import insert_string
 
 oep_dictionary = get_oep_dataset()
-data_folder_path = "data"
+data_folder_path = "../data"
 
 
 def main():
@@ -22,7 +22,7 @@ def main():
 
             packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                            "{}_{}_model.dot".format(packer_name, file_name))
-            packed_log_file = os.path.join(data_folder_path, "logs", packer_name,
+            packed_log_file = os.path.join(data_folder_path, "../logs", packer_name,
                                            "Log-{}_{}.log".format(packer_name, file_name))
             if not os.path.exists(packed_dot_file):
                 continue
