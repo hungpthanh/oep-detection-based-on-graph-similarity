@@ -66,6 +66,16 @@ def get_oep_dataset():
     return results
 
 
+def get_oep_dataset_2():
+    results = {}
+    with open("new_oep_dataset.txt", "r") as f:
+        for line in f:
+            line = line.strip()
+            name, oep = line.split(',')
+            results[name] = oep
+    return results
+
+
 def get_preceding_oep(file_path, oep_address):
     dot_file = file_path
     if not os.path.exists(dot_file):
@@ -76,9 +86,10 @@ def get_preceding_oep(file_path, oep_address):
     except Exception as e:
         return False, str(e)
     preceding_oep = None
-    for node in cfg.nodes:
-        if "a" + oep_address in node:
-            preceding_oep = [v for v in cfg.predecessors(node)]
+    # for node in cfg.nodes:
+    #     if "a" + oep_address in node:
+    #         preceding_oep = [v for v in cfg.predecessors(node)]
+    preceding_oep = [v for v in cfg.predecessors(oep_address)]
     # preceding_oep = cfg.get_incoming_node(oep_address)
     if preceding_oep is None or len(preceding_oep) == 0:
         return False, "Not found end-of-unpacking"
@@ -167,13 +178,13 @@ def get_OEP(packer_name, file_name, end_of_unpacking_address):
     if n_child == 0:
         return None, "not found OEP"
     if n_child == 1:
-        return get_address_format(child_nodes[0]), "success"
+        return child_nodes[0], "success"
 
     try:
         if n_child == 2:
             for child_node in child_nodes:
                 if original_graph[original_end_of_unpacking_node][child_node]["label"] == "T":
-                    return get_address_format(child_node), "success"
+                    return child_node, "success"
     except Exception as e:
         return None, str(e)
 
@@ -243,7 +254,6 @@ def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, u
     #
     #             save_address, save_instruction = address, instruction
     # return save_address, save_instruction
-
 
 # print(verify_offset("0x0001dffa", "0x0041dffa"))
 # print(verify_offset("0x00012d6c", "0x01012d6c"))

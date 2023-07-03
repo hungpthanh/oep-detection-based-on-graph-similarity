@@ -17,7 +17,7 @@ import numpy as np
 from tqdm import tqdm
 
 from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector
-from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP
+from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP, get_oep_dataset_2
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--mode', default="evaluation", type=str)
@@ -25,18 +25,19 @@ parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+",
                     default=["AccessEnum.exe", "Cacheset.exe", "ADInsight.exe", "ADExplorer.exe"])
-parser.add_argument('--log_path', default="logs/graph_based_method", type=str)
+parser.add_argument('--log_path', default="logs/graph_based_method2", type=str)
 parser.add_argument('--first_k', default=3, type=int)
 # Get the arguments
 args = parser.parse_args()
 gc.enable()
 oep_dictionary = get_oep_dataset()
+oep_dictionary_2 = get_oep_dataset_2()
 data_folder_path = "data"
 
 if not os.path.exists(args.log_path):
     os.mkdir(args.log_path)
 log_file = open(args.log_path + "/{}.txt".format(args.packer_names), "w")
-log_file.writelines("This experiments try to find packer name")
+log_file.writelines("This experiments try to test code with new format of dataset")
 log_file.writelines("Packer names: {}\n".format(args.packer_names))
 log_file.writelines("File name: {}\n".format(args.file_name))
 
@@ -84,7 +85,13 @@ def main():
     for packer_name in packer_names:
         total_sample = 0
         correct_sample = 0
-        for file_name, oep_address in oep_dictionary.items():
+        for packer_name_file_name, oep_address in oep_dictionary_2.items():
+            print(packer_name_file_name)
+            packer_name_of_file, file_name = packer_name_file_name.strip().split("_")[0], "_".join(packer_name_file_name.strip().split("_")[1:])
+            if oep_address == "None":
+                continue
+            if packer_name_of_file != packer_name:
+                continue
             if file_name in args.sample_files:
                 print("Packer: {}, file_name: {}, msg: This file is sample file".format(packer_name, file_name))
                 log_file.writelines(
@@ -117,7 +124,7 @@ def main():
                                                     "{}_{}_model.dot".format(packer_name_candidate, sample_file))
 
                     sample_graph = get_removed_backed_graph(packer_name_candidate, sample_file)
-                    preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary[sample_file])
+                    preceding_sample_file, msg = get_preceding_oep(sample_file_path, oep_dictionary_2[sample_file])
                     node_list_sample_file, node_labels_sample_file, original_labels_sample_file, _ = convert_graph_to_vector(
                         sample_graph,
                         address=preceding_sample_file)
