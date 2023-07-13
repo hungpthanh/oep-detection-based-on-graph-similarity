@@ -20,7 +20,7 @@ import networkx as nx
 import numpy as np
 from tqdm import tqdm
 
-from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector, \
+from utils.graph_similarity_utils import cosine_similarity_oep, build_subgraph_vector, convert_graph_to_vector, \
     get_feature_vector
 from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP
 

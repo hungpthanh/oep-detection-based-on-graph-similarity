@@ -17,7 +17,7 @@ import networkx as nx
 import numpy as np
 from tqdm import tqdm
 
-from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector, \
+from utils.graph_similarity_utils import cosine_similarity_oep, build_subgraph_vector, convert_graph_to_vector, \
     load_standard_feature
 from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP, get_oep_dataset_2
 
@@ -27,7 +27,7 @@ parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+",
                     default=["AccessEnum.exe", "Cacheset.exe", "ADInsight.exe", "ADExplorer.exe"])
-parser.add_argument('--log_path', default="logs/graph_based_method2", type=str)
+parser.add_argument('--log_path', default="logs/graph_based_method", type=str)
 parser.add_argument('--first_k', default=3, type=int)
 # Get the arguments
 args = parser.parse_args()
@@ -74,7 +74,7 @@ def end_of_unpacking_prediction(packer_name, node_list, unique_labels, data, end
                     check_end_unpacking_sequence = True
             if not check_end_unpacking_sequence:
                 continue
-            sim = cosine_similarity(histograms['G1'], histograms[name])
+            sim = cosine_similarity_oep(histograms['G1'], histograms[name])
             if sim > best_similarity:
                 best_similarity = sim
                 save_address = name

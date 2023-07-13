@@ -6,7 +6,7 @@ import networkx as nx
 import pefile
 from networkx.drawing.nx_agraph import read_dot
 
-from utils.graph_similarity_utils import convert_graph_to_vector, get_feature_vector, cosine_similarity
+from utils.graph_similarity_utils import convert_graph_to_vector, get_feature_vector, cosine_similarity_oep
 # from common.models import BPCFG, create_subgraph
 from utils.graph_utils import create_subgraph, get_removed_backed_graph, relabel_graph, remove_back_edge
 
@@ -239,7 +239,7 @@ def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, u
 
             original_feature_vector = get_feature_vector(data_original, merged_unique_labels)
             packed_feature_vector = get_feature_vector(data_packed_code, merged_unique_labels)
-            sim = cosine_similarity(original_feature_vector, packed_feature_vector)
+            sim = cosine_similarity_oep(original_feature_vector, packed_feature_vector)
             # print("node: {}, sim = {}".format(node, sim))
             if (sim > 0.9) and (sim > save_sim):
                 save_node, save_sim = node, sim
@@ -258,7 +258,7 @@ def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, u
 # print(verify_offset("0x0001dffa", "0x0041dffa"))
 # print(verify_offset("0x00012d6c", "0x01012d6c"))
 # asm_file = "data/asm_cfg/upx/upx_AccessEnum.exe_code.asm"
-# packed_dot_file = "data/asm_cfg/upx/upx_AccessEnum.exe_model.dot"
+# packed_dot_file = "data/asm_cfg/upx/AccessEnum.exe_model.dot"
 # original_dot_file = "data/log_bepum_malware/AccessEnum.exe_model.dot"
 # entry_point = "0x00007a98"
 #

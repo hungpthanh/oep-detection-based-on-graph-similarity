@@ -5,10 +5,11 @@ from collections import Counter
 
 import networkx as nx
 import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 
 from utils.graph_utils import create_subgraph, get_opcode_sequence, get_removed_backed_graph
-
+from sklearn.metrics.pairwise import cosine_similarity
 data_folder_path = "data"
 
 
@@ -74,7 +75,7 @@ def weisfeiler_lehman_kernel(G1, G2, h):
     # k = np.dot(hist1_norm, hist2_norm)
 
     # Truncate kernel value to 1 if it exceeds 1
-    k = cosine_similarity(hist1, hist2)
+    k = cosine_similarity_oep(hist1, hist2)
     # print(hist1.shape)
     # print(hist2.shape)
     # k = np.dot(hist1, hist2)
@@ -128,7 +129,7 @@ def compute_label_histogram(node_labels):
     return hist
 
 
-def cosine_similarity(hist1, hist2):
+def cosine_similarity_oep(hist1, hist2):
     """
     Computes the cosine similarity between two histograms.
 
@@ -139,15 +140,15 @@ def cosine_similarity(hist1, hist2):
     Returns:
         The cosine similarity between the two histograms.
     """
-    # Compute dot product and magnitudes
-    dot_product = np.dot(hist1, hist2)
-    mag1 = np.sqrt(np.sum(np.square(hist1)))
-    mag2 = np.sqrt(np.sum(np.square(hist2)))
-
-    # Compute cosine similarity
-    cosine = dot_product / (mag1 * mag2)
-
-    return cosine
+    # # Compute dot product and magnitudes
+    # dot_product = np.dot(hist1, hist2)
+    # mag1 = np.sqrt(np.sum(np.square(hist1)))
+    # mag2 = np.sqrt(np.sum(np.square(hist2)))
+    #
+    # # Compute cosine similarity
+    # cosine = dot_product / (mag1 * mag2)
+    cosine = cosine_similarity(hist1.reshape(1, -1), hist2.reshape(1, -1))
+    return cosine[0][0]
 
 
 def convert_graph_to_vector(removed_back_edge_G, address, from_specific_node=True, from_bottom=True, depth=-1):
@@ -203,7 +204,7 @@ def get_feature_vector(data, unique_labels):
 
 def load_standard_feature():
     standard_feature = {}
-    packer_standard_files = glob.glob("configs/standard_feature_vectors/*.json")
+    packer_standard_files = glob.glob("configs/_standard_feature_vectors/*.json")
     for packer_standard_file in packer_standard_files:
         packer_name = os.path.basename(packer_standard_file).split('.')[0]
         with open(packer_standard_file, "r") as f:

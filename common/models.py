@@ -100,7 +100,7 @@ class BPCFG():
 
 
 if __name__ == '__main__':
-    cfg = relabel_graph(nx.DiGraph(read_dot(path="data/asm_cfg/upx/upx_AccessEnum.exe_model.dot")))
+    cfg = relabel_graph(nx.DiGraph(read_dot(path="data/asm_cfg/upx/AccessEnum.exe_model.dot")))
     new_cfg = remove_back_edge(cfg)
     subgraph = get_sub_graph_from(new_cfg, "0x00407a98")
     nx.nx_agraph.write_dot(subgraph, "my_graph_upx_AccessEnum.dot")

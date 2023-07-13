@@ -20,9 +20,9 @@ import networkx as nx
 import numpy as np
 from tqdm import tqdm
 
-from utils.graph_similarity_utils import cosine_similarity, build_subgraph_vector, convert_graph_to_vector, \
+from utils.graph_similarity_utils import cosine_similarity_oep, build_subgraph_vector, convert_graph_to_vector, \
     get_feature_vector
-from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP
+from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP, get_oep_dataset_2
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--mode', default="evaluation", type=str)
@@ -44,16 +44,26 @@ data_folder_path = "data"
 # log_file.writelines("Sample files: {}\n".format(args.sample_files))
 # log_file.writelines("File name: {}\n".format(args.file_name))
 
-
+oep_dictionary_2 = get_oep_dataset_2()
 def main():
     packer_names = args.packer_names
     print(packer_names)
     for packer_name in packer_names:
+        if packer_name != "winupack":
+            continue
         data = {}
         merged_unique_labels = []
         for file_name, oep_address in oep_dictionary.items():
             packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                            "{}_{}_model.dot".format(packer_name, file_name))
+            if not "{}_{}".format(packer_name, file_name) in oep_dictionary_2:
+                continue
+
+
+            oep_address = oep_dictionary_2["{}_{}".format(packer_name, file_name)]
+
+            if oep_address == "None":
+                continue
             preceding_oep, msg = get_preceding_oep(packed_dot_file, oep_address)
             if not preceding_oep:
                 print("Packer: {}, file_name: {}, error: {}".format(packer_name, file_name, msg))
@@ -89,9 +99,9 @@ def main():
                 pass
         X = np.asarray(X)
         print(X.shape)
-        # sim = cosine_similarity(X[idx_whois], X[idx_ADExplorer])
+        # sim = cosine_similarity_oep(X[idx_whois], X[idx_ADExplorer])
         # print("sim = {}".format(sim))
-        clustering = DBSCAN(eps=0.05, min_samples=2, metric="cosine").fit(X)
+        clustering = DBSCAN(eps=0.3, min_samples=2, metric="cosine").fit(X)
         labels = clustering.labels_
         print(labels)
         n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
