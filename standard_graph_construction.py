@@ -7,7 +7,7 @@ import numpy as np
 from pandas.io.json import to_json
 from sklearn.cluster import DBSCAN
 
-from utils.graph_similarity_utils import convert_graph_to_vector, get_feature_vector, cosine_similarity_oep
+from utils.graph_similarity_utils import convert_graph_to_vector, get_feature_vector
 from utils.graph_utils import get_removed_backed_graph, get_opcode_sequence
 from utils.oep_utils import get_oep_dataset_2, get_preceding_oep
 

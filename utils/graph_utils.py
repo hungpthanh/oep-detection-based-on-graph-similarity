@@ -42,7 +42,7 @@ def load_end_unpacking_sequence():
     return end_unpacking_sequences
 
 
-end_unpacking_sequence_samples = load_end_unpacking_sequence()
+
 
 
 def get_node_information(s):

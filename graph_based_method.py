@@ -9,9 +9,10 @@ import gc
 import sys
 
 from utils.be_pum_utils import get_packer_name_BE_PUM
-from utils.graph_utils import create_subgraph, end_unpacking_sequence_samples, get_removed_backed_graph
+from utils.graph_utils import create_subgraph, get_removed_backed_graph, load_end_unpacking_sequence
 from utils.dataset_utils import get_test_list
 
+end_unpacking_sequence_samples = load_end_unpacking_sequence()
 sys.path.append('.')
 import networkx as nx
 import numpy as np
@@ -27,7 +28,7 @@ parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+",
                     default=["AccessEnum.exe", "Cacheset.exe", "ADInsight.exe", "ADExplorer.exe"])
-parser.add_argument('--log_path', default="logs/graph_based_method", type=str)
+parser.add_argument('--log_path', default="logs/graph_based_method3", type=str)
 parser.add_argument('--first_k', default=3, type=int)
 # Get the arguments
 args = parser.parse_args()
