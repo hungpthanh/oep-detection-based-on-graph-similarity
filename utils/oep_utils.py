@@ -216,10 +216,10 @@ def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, u
     if not using_upx:
         entry_point_of_original = list(original_cfg.nodes)[0]
         node_list_of_original, node_labels_of_original, original_labels_of_original, _ = convert_graph_to_vector(
-            original_cfg, entry_point_of_original, from_specific_node=True, from_bottom=False, depth=5)
+            original_cfg, entry_point_of_original, from_specific_node=True, from_bottom=False, depth=20)
     else:
         node_list_of_original, node_labels_of_original, original_labels_of_original, _ = convert_graph_to_vector(
-            original_cfg, oep_upx, from_specific_node=True, from_bottom=False, depth=5)
+            original_cfg, oep_upx, from_specific_node=True, from_bottom=False, depth=20)
 
     data_original = Counter(list(node_labels_of_original.values()) + original_labels_of_original)
     unique_labels = sorted(list(set(list(node_labels_of_original.values()) + original_labels_of_original)))
@@ -229,9 +229,10 @@ def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, u
             continue
         address = node[1:11]
         # print("address = {}, verify: {}".format(address, verify_offset(entry_point, address)))
-        if verify_offset(entry_point, address) or using_upx:
+        if verify_offset(entry_point, address) or (using_upx and node == oep_upx):
+            print("pass offset")
             node_list_of_packed, node_labels_of_packed, original_labels_of_packed, _ = convert_graph_to_vector(
-                packed_cfg, address=node, from_specific_node=True, from_bottom=False, depth=5)
+                packed_cfg, address=node, from_specific_node=True, from_bottom=False, depth=20)
             data_packed_code = Counter(list(node_labels_of_packed.values()) + original_labels_of_packed)
 
             merged_unique_labels = sorted(
@@ -240,9 +241,17 @@ def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, u
             original_feature_vector = get_feature_vector(data_original, merged_unique_labels)
             packed_feature_vector = get_feature_vector(data_packed_code, merged_unique_labels)
             sim = cosine_similarity_oep(original_feature_vector, packed_feature_vector)
-            # print("node: {}, sim = {}".format(node, sim))
-            if (sim > 0.9) and (sim > save_sim):
+
+            print("original f:")
+            print(original_feature_vector)
+            print("packed f:")
+            print(packed_feature_vector)
+            print("node: {}, sim = {}".format(node, sim))
+
+            # if (sim > save_sim):
+            if (sim >= 0.90) and (sim > save_sim):
                 save_node, save_sim = node, sim
+    # print("save_node = {}".format(save_node))
     return save_node
     # save_address, save_instruction = None, None
     # with open(asm_file, "r") as f:

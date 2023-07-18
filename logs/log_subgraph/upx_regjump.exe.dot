@@ -1,0 +1,254 @@
+strict digraph G {
+	graph [bgcolor=transparent,
+		name=G
+	];
+	node [color=lightsteelblue,
+		fillcolor=lightsteelblue,
+		shape=rectangle,
+		style=filled
+	];
+	"0x00420070"	[label="0x00420070
+subb"];
+	"0x00420073"	[label="0x00420073
+addl"];
+	"0x00420070" -> "0x00420073"	[color="#000000"];
+	"0x0041ffc0"	[label="0x0041ffc0
+adcl"];
+	"0x0041ffc2"	[label="0x0041ffc2
+jae"];
+	"0x0041ffc0" -> "0x0041ffc2"	[color="#000000"];
+	"0x004200d7"	[label="0x004200d7
+pushl"];
+	"0x004200d8"	[label="0x004200d8
+pushl"];
+	"0x004200d7" -> "0x004200d8"	[color="#000000"];
+	"0x00420065"	[label="0x00420065
+shrw"];
+	"0x00420069"	[label="0x00420069
+roll"];
+	"0x00420065" -> "0x00420069"	[color="#000000"];
+	"0x004200c6"	[label="0x004200c6
+movl"];
+	"0x004200cc"	[label="0x004200cc
+leal"];
+	"0x004200c6" -> "0x004200cc"	[color="#000000"];
+	"0x0042004d"	[label="0x0042004d
+movl"];
+	"0x00420052"	[label="0x00420052
+movb"];
+	"0x0042004d" -> "0x00420052"	[color="#000000"];
+	"0x0041ffa1"	[label="0x0041ffa1
+jb"];
+	"0x0041ffa3"	[label="0x0041ffa3
+movl"];
+	"0x0041ffa1" -> "0x0041ffa3"	[color="#000000",
+		label=F];
+	"0x0042007a"	[label="0x0042007a
+movb"];
+	"0x0042007c"	[label="0x0042007c
+loop"];
+	"0x0042007a" -> "0x0042007c"	[color="#000000"];
+	"0x0041ffbd"	[label="0x0041ffbd
+subl"];
+	"0x0041ffbd" -> "0x0041ffc0"	[color="#000000"];
+	"0x0041ffcb"	[label="0x0041ffcb
+shll"];
+	"0x0041ffce"	[label="0x0041ffce
+movb"];
+	"0x0041ffcb" -> "0x0041ffce"	[color="#000000"];
+	"0x0041ffd0"	[label="0x0041ffd0
+incl"];
+	"0x0041ffce" -> "0x0041ffd0"	[color="#000000"];
+	"0x0041ffa8"	[label="0x0041ffa8
+addl"];
+	"0x0041ffa3" -> "0x0041ffa8"	[color="#000000"];
+	"0x00420086"	[label="0x00420086
+orl"];
+	"0x00420088"	[label="0x00420088
+je"];
+	"0x00420086" -> "0x00420088"	[color="#000000"];
+	"0x00420054"	[label="0x00420054
+incl"];
+	"0x00420055"	[label="0x00420055
+subb"];
+	"0x00420054" -> "0x00420055"	[color="#000000"];
+	"0x0042005e"	[label="0x0042005e
+jne"];
+	"0x00420060"	[label="0x00420060
+movl"];
+	"0x0042005e" -> "0x00420060"	[color="#000000",
+		label=F];
+	"0x004200db"	[label="0x004200db
+pushl"];
+	"0x004200dc"	[label="0x004200dc
+pushl"];
+	"0x004200db" -> "0x004200dc"	[color="#000000"];
+	"0x0042006c"	[label="0x0042006c
+xchgb"];
+	"0x00420069" -> "0x0042006c"	[color="#000000"];
+	"0x004200fe"	[label="0x004200fe
+jne"];
+	"0x00420100"	[label="0x00420100
+subl"];
+	"0x004200fe" -> "0x00420100"	[color="#000000",
+		label=F];
+	"0x00420052" -> "0x00420054"	[color="#000000"];
+	"0x00420062"	[label="0x00420062
+movb"];
+	"0x00420062" -> "0x00420065"	[color="#000000"];
+	"0x0041ffaa"	[label="0x0041ffaa
+jne"];
+	"0x0041ffa8" -> "0x0041ffaa"	[color="#000000"];
+	"0x00420088" -> "0x004200c6"	[color="#000000",
+		label=T];
+	"0x0041ffae"	[label="0x0041ffae
+subl"];
+	"0x0041ffb1"	[label="0x0041ffb1
+adcl"];
+	"0x0041ffae" -> "0x0041ffb1"	[color="#000000"];
+	"0x004200dd"	[label="0x004200dd
+call"];
+	VIRTUALPROTECT_KERNEL32_DLL	[color=lightgrey,
+		fillcolor=lightgrey,
+		label="VIRTUALPROTECT_KERNEL32_DLL
+VIRTUALPROTECT-KERNEL32-DLL"];
+	"0x004200dd" -> VIRTUALPROTECT_KERNEL32_DLL	[color="#000000"];
+	"0x004200f5"	[label="0x004200f5
+popa"];
+	"0x004200f6"	[label="0x004200f6
+leal"];
+	"0x004200f5" -> "0x004200f6"	[color="#000000"];
+	"0x004200f4"	[label="0x004200f4
+popl"];
+	"0x004200f4" -> "0x004200f5"	[color="#000000"];
+	"0x00420077"	[label="0x00420077
+addl"];
+	"0x00420077" -> "0x0042007a"	[color="#000000"];
+	"0x004200d9"	[label="0x004200d9
+pushl"];
+	"0x004200d8" -> "0x004200d9"	[color="#000000"];
+	"0x0041ffb5"	[label="0x0041ffb5
+addl"];
+	"0x0041ffb7"	[label="0x0041ffb7
+jae"];
+	"0x0041ffb5" -> "0x0041ffb7"	[color="#000000"];
+	"0x004200d9" -> "0x004200db"	[color="#000000"];
+	"0x0041ff9c"	[label="0x0041ff9c
+subl"];
+	"0x0041ff9f"	[label="0x0041ff9f
+adcl"];
+	"0x0041ff9c" -> "0x0041ff9f"	[color="#000000"];
+	VIRTUALPROTECT_KERNEL32_DLL -> "0x004200f4"	[color="#000000"];
+	"0x004200d2"	[label="0x004200d2
+movl"];
+	"0x004200cc" -> "0x004200d2"	[color="#000000"];
+	"0x0042007e"	[label="0x0042007e
+leal"];
+	"0x00420084"	[label="0x00420084
+movl"];
+	"0x0042007e" -> "0x00420084"	[color="#000000"];
+	"0x0041ff81"	[label="0x0041ff81
+movl"];
+	"0x0041ff86"	[label="0x0041ff86
+leal"];
+	"0x0041ff81" -> "0x0041ff86"	[color="#000000"];
+	"0x00420060" -> "0x00420062"	[color="#000000"];
+	"0x00420059"	[label="0x00420059
+ja"];
+	"0x0042005b"	[label="0x0042005b
+cmpb"];
+	"0x00420059" -> "0x0042005b"	[color="#000000",
+		label=F];
+	"0x0041ffc4"	[label="0x0041ffc4
+xorl"];
+	"0x0041ffc2" -> "0x0041ffc4"	[color="#000000",
+		label=F];
+	"0x00420075"	[label="0x00420075
+movl"];
+	"0x00420075" -> "0x00420077"	[color="#000000"];
+	"0x0042005b" -> "0x0042005e"	[color="#000000"];
+	"0x0041ffc9"	[label="0x0041ffc9
+jb"];
+	"0x0041ffc9" -> "0x0041ffcb"	[color="#000000",
+		label=F];
+	"0x0041ff9a"	[label="0x0041ff9a
+movl"];
+	"0x0041ff9a" -> "0x0041ff9c"	[color="#000000"];
+	"0x00420057"	[label="0x00420057
+cmpb"];
+	"0x00420057" -> "0x00420059"	[color="#000000"];
+	"0x0041ff80"	[color=lightgrey,
+		fillcolor=orange,
+		label="0x0041ff80
+pusha"];
+	"0x0041ff80" -> "0x0041ff81"	[color="#000000"];
+	"0x00420055" -> "0x00420057"	[color="#000000"];
+	"0x0041ff8d"	[label="0x0041ff8d
+jmp"];
+	"0x0041ff8d" -> "0x0041ff9a"	[color="#000000"];
+	"0x0042006e"	[label="0x0042006e
+subl"];
+	"0x0042006c" -> "0x0042006e"	[color="#000000"];
+	"0x004200fa"	[label="0x004200fa
+pushl"];
+	"0x004200f6" -> "0x004200fa"	[color="#000000"];
+	"0x0041ffac"	[label="0x0041ffac
+movl"];
+	"0x0041ffac" -> "0x0041ffae"	[color="#000000"];
+	"0x0041ffd1"	[label="0x0041ffd1
+xorl"];
+	"0x0041ffd0" -> "0x0041ffd1"	[color="#000000"];
+	"0x00420103"	[label="0x00420103
+jmp"];
+	"0x0041ffaa" -> "0x0041ffac"	[color="#000000",
+		label=F];
+	"0x0041ffb3"	[label="0x0041ffb3
+adcl"];
+	"0x0041ffaa" -> "0x0041ffb3"	[color="#000000",
+		label=T];
+	"0x0041ff9f" -> "0x0041ffa1"	[color="#000000"];
+	"0x0041ffc6"	[label="0x0041ffc6
+subl"];
+	"0x0041ffc6" -> "0x0041ffc9"	[color="#000000"];
+	"0x0041ffd4"	[label="0x0041ffd4
+je"];
+	"0x0041ffd1" -> "0x0041ffd4"	[color="#000000"];
+	"0x004200fc"	[label="0x004200fc
+cmpl"];
+	"0x004200fc" -> "0x004200fe"	[color="#000000"];
+	"0x0042007c" -> "0x0042007e"	[color="#000000",
+		label=F];
+	"0x0041ff8c"	[label="0x0041ff8c
+pushl"];
+	"0x0041ff86" -> "0x0041ff8c"	[color="#000000"];
+	"0x0042004a"	[label="0x0042004a
+popl"];
+	"0x0041ffd4" -> "0x0042004a"	[color="#000000",
+		label=T];
+	"0x0042004b"	[label="0x0042004b
+movl"];
+	"0x0042004a" -> "0x0042004b"	[color="#000000"];
+	"0x0041ffb9"	[label="0x0041ffb9
+jne"];
+	"0x0041ffbb"	[label="0x0041ffbb
+movl"];
+	"0x0041ffb9" -> "0x0041ffbb"	[color="#000000",
+		label=F];
+	"0x0041ffb9" -> "0x0041ffc4"	[color="#000000",
+		label=T];
+	"0x0042004b" -> "0x0042004d"	[color="#000000"];
+	"0x0041ffb3" -> "0x0041ffb5"	[color="#000000"];
+	"0x004200dc" -> "0x004200dd"	[color="#000000"];
+	"0x00420100" -> "0x00420103"	[color="#000000"];
+	"0x0041ff8c" -> "0x0041ff8d"	[color="#000000"];
+	"0x0041ffbb" -> "0x0041ffbd"	[color="#000000"];
+	"0x0042006e" -> "0x00420070"	[color="#000000"];
+	"0x004200d2" -> "0x004200d7"	[color="#000000"];
+	"0x0041ffb1" -> "0x0041ffb3"	[color="#000000"];
+	"0x0041ffb7" -> "0x0041ffb9"	[color="#000000",
+		label=F];
+	"0x0041ffc4" -> "0x0041ffc6"	[color="#000000"];
+	"0x004200fa" -> "0x004200fc"	[color="#000000"];
+	"0x00420084" -> "0x00420086"	[color="#000000"];
+	"0x00420073" -> "0x00420075"	[color="#000000"];
+}

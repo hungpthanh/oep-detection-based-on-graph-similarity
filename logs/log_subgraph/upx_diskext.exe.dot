@@ -1,0 +1,276 @@
+strict digraph G {
+	graph [bgcolor=transparent,
+		name=G
+	];
+	node [color=lightsteelblue,
+		fillcolor=lightsteelblue,
+		shape=rectangle,
+		style=filled
+	];
+	"0x00427ad3"	[label="0x00427ad3
+adcl"];
+	"0x00427ad5"	[label="0x00427ad5
+addl"];
+	"0x00427ad3" -> "0x00427ad5"	[color="#000000"];
+	"0x00427abf"	[label="0x00427abf
+adcl"];
+	"0x00427ac1"	[label="0x00427ac1
+jb"];
+	"0x00427abf" -> "0x00427ac1"	[color="#000000"];
+	"0x00427c2a"	[label="0x00427c2a
+pushl"];
+	"0x00427c2c"	[label="0x00427c2c
+pushl"];
+	"0x00427c2a" -> "0x00427c2c"	[color="#000000"];
+	"0x00427b9a"	[label="0x00427b9a
+movb"];
+	"0x00427b9c"	[label="0x00427b9c
+loop"];
+	"0x00427b9a" -> "0x00427b9c"	[color="#000000"];
+	"0x00427aac"	[label="0x00427aac
+pushl"];
+	"0x00427aad"	[label="0x00427aad
+jmp"];
+	"0x00427aac" -> "0x00427aad"	[color="#000000"];
+	"0x00427bf0"	[label="0x00427bf0
+incl"];
+	"0x00427bf1"	[label="0x00427bf1
+orl"];
+	"0x00427bf0" -> "0x00427bf1"	[color="#000000"];
+	"0x00427aeb"	[label="0x00427aeb
+shll"];
+	"0x00427aee"	[label="0x00427aee
+movb"];
+	"0x00427aeb" -> "0x00427aee"	[color="#000000"];
+	"0x00427ba6"	[label="0x00427ba6
+orl"];
+	"0x00427ba8"	[label="0x00427ba8
+je"];
+	"0x00427ba6" -> "0x00427ba8"	[color="#000000"];
+	"0x00427b93"	[label="0x00427b93
+addl"];
+	"0x00427b95"	[label="0x00427b95
+movl"];
+	"0x00427b93" -> "0x00427b95"	[color="#000000"];
+	"0x00427aba"	[label="0x00427aba
+movl"];
+	"0x00427abc"	[label="0x00427abc
+subl"];
+	"0x00427aba" -> "0x00427abc"	[color="#000000"];
+	"0x00427ad7"	[label="0x00427ad7
+jae"];
+	"0x00427ad9"	[label="0x00427ad9
+jne"];
+	"0x00427ad7" -> "0x00427ad9"	[color="#000000",
+		label=F];
+	"0x00427c46"	[label="0x00427c46
+popa"];
+	"0x00427c47"	[label="0x00427c47
+leal"];
+	"0x00427c46" -> "0x00427c47"	[color="#000000"];
+	"0x00427b90"	[label="0x00427b90
+subb"];
+	"0x00427b90" -> "0x00427b93"	[color="#000000"];
+	"0x00427ba4"	[label="0x00427ba4
+movl"];
+	"0x00427ba4" -> "0x00427ba6"	[color="#000000"];
+	"0x00427aad" -> "0x00427aba"	[color="#000000"];
+	"0x00427b6b"	[label="0x00427b6b
+movl"];
+	"0x00427b6d"	[label="0x00427b6d
+movl"];
+	"0x00427b6b" -> "0x00427b6d"	[color="#000000"];
+	"0x00427c51"	[label="0x00427c51
+subl"];
+	"0x00427c54"	[label="0x00427c54
+jmp"];
+	"0x00427c51" -> "0x00427c54"	[color="#000000"];
+	"0x00427c17"	[label="0x00427c17
+movl"];
+	"0x00427c1d"	[label="0x00427c1d
+leal"];
+	"0x00427c17" -> "0x00427c1d"	[color="#000000"];
+	"0x00427adb"	[label="0x00427adb
+movl"];
+	"0x00427add"	[label="0x00427add
+subl"];
+	"0x00427adb" -> "0x00427add"	[color="#000000"];
+	"0x00427c4d"	[label="0x00427c4d
+cmpl"];
+	"0x00427c4f"	[label="0x00427c4f
+jne"];
+	"0x00427c4d" -> "0x00427c4f"	[color="#000000"];
+	"0x00427b97"	[label="0x00427b97
+addl"];
+	"0x00427b97" -> "0x00427b9a"	[color="#000000"];
+	"0x00427b8e"	[label="0x00427b8e
+subl"];
+	"0x00427b8e" -> "0x00427b90"	[color="#000000"];
+	"0x00427aca"	[label="0x00427aca
+jne"];
+	"0x00427aca" -> "0x00427ad3"	[color="#000000",
+		label=T];
+	"0x00427acc"	[label="0x00427acc
+movl"];
+	"0x00427aca" -> "0x00427acc"	[color="#000000",
+		label=F];
+	"0x00427ae4"	[label="0x00427ae4
+xorl"];
+	"0x00427ae6"	[label="0x00427ae6
+subl"];
+	"0x00427ae4" -> "0x00427ae6"	[color="#000000"];
+	"0x00427bee"	[label="0x00427bee
+movb"];
+	"0x00427bee" -> "0x00427bf0"	[color="#000000"];
+	"0x00427b85"	[label="0x00427b85
+shrw"];
+	"0x00427b89"	[label="0x00427b89
+roll"];
+	"0x00427b85" -> "0x00427b89"	[color="#000000"];
+	"0x00427ae0"	[label="0x00427ae0
+adcl"];
+	"0x00427ae2"	[label="0x00427ae2
+jae"];
+	"0x00427ae0" -> "0x00427ae2"	[color="#000000"];
+	"0x00427b74"	[label="0x00427b74
+incl"];
+	"0x00427b75"	[label="0x00427b75
+subb"];
+	"0x00427b74" -> "0x00427b75"	[color="#000000"];
+	"0x00427be9"	[label="0x00427be9
+leal"];
+	"0x00427bec"	[label="0x00427bec
+xorl"];
+	"0x00427be9" -> "0x00427bec"	[color="#000000"];
+	"0x00427c45"	[label="0x00427c45
+popl"];
+	"0x00427c45" -> "0x00427c46"	[color="#000000"];
+	"0x00427add" -> "0x00427ae0"	[color="#000000"];
+	"0x00427c2d"	[label="0x00427c2d
+pushl"];
+	"0x00427c2c" -> "0x00427c2d"	[color="#000000"];
+	"0x00427b9e"	[label="0x00427b9e
+leal"];
+	"0x00427b9e" -> "0x00427ba4"	[color="#000000"];
+	"0x00427b79"	[label="0x00427b79
+ja"];
+	"0x00427b7b"	[label="0x00427b7b
+cmpb"];
+	"0x00427b79" -> "0x00427b7b"	[color="#000000",
+		label=F];
+	"0x00427ae9"	[label="0x00427ae9
+jb"];
+	"0x00427ae6" -> "0x00427ae9"	[color="#000000"];
+	"0x00427ad5" -> "0x00427ad7"	[color="#000000"];
+	"0x00427c2e"	[label="0x00427c2e
+call"];
+	"0x00427c2d" -> "0x00427c2e"	[color="#000000"];
+	"0x00427c4b"	[label="0x00427c4b
+pushl"];
+	"0x00427c4b" -> "0x00427c4d"	[color="#000000"];
+	"0x00427ace"	[label="0x00427ace
+subl"];
+	"0x00427ad1"	[label="0x00427ad1
+adcl"];
+	"0x00427ace" -> "0x00427ad1"	[color="#000000"];
+	"0x00427b72"	[label="0x00427b72
+movb"];
+	"0x00427b6d" -> "0x00427b72"	[color="#000000"];
+	"0x00427af0"	[label="0x00427af0
+incl"];
+	"0x00427aee" -> "0x00427af0"	[color="#000000"];
+	"0x00427aa1"	[label="0x00427aa1
+movl"];
+	"0x00427aa6"	[label="0x00427aa6
+leal"];
+	"0x00427aa1" -> "0x00427aa6"	[color="#000000"];
+	"0x00427c23"	[label="0x00427c23
+movl"];
+	"0x00427c1d" -> "0x00427c23"	[color="#000000"];
+	"0x00427b82"	[label="0x00427b82
+movb"];
+	"0x00427b82" -> "0x00427b85"	[color="#000000"];
+	"0x00427b9c" -> "0x00427b9e"	[color="#000000",
+		label=F];
+	"0x00427af4"	[label="0x00427af4
+je"];
+	"0x00427b6a"	[label="0x00427b6a
+popl"];
+	"0x00427af4" -> "0x00427b6a"	[color="#000000",
+		label=T];
+	"0x00427c29"	[label="0x00427c29
+pushl"];
+	"0x00427c29" -> "0x00427c2a"	[color="#000000"];
+	"0x00427b8c"	[label="0x00427b8c
+xchgb"];
+	"0x00427b8c" -> "0x00427b8e"	[color="#000000"];
+	"0x00427b6a" -> "0x00427b6b"	[color="#000000"];
+	"0x00427aa0"	[color=lightgrey,
+		fillcolor=orange,
+		label="0x00427aa0
+pusha"];
+	"0x00427aa0" -> "0x00427aa1"	[color="#000000"];
+	"0x00427bf3"	[label="0x00427bf3
+je"];
+	"0x00427bf3" -> "0x00427c17"	[color="#000000",
+		label=T];
+	"0x00427b72" -> "0x00427b74"	[color="#000000"];
+	"0x00427b89" -> "0x00427b8c"	[color="#000000"];
+	"0x00427bf1" -> "0x00427bf3"	[color="#000000"];
+	"0x00427aa6" -> "0x00427aac"	[color="#000000"];
+	"0x00427b95" -> "0x00427b97"	[color="#000000"];
+	"0x00427c47" -> "0x00427c4b"	[color="#000000"];
+	"0x00427be6"	[label="0x00427be6
+addl"];
+	"0x00427be6" -> "0x00427be9"	[color="#000000"];
+	"0x00427abc" -> "0x00427abf"	[color="#000000"];
+	"0x00427ac3"	[label="0x00427ac3
+movl"];
+	"0x00427ac1" -> "0x00427ac3"	[color="#000000",
+		label=F];
+	"0x00427acc" -> "0x00427ace"	[color="#000000"];
+	"0x00427ad9" -> "0x00427adb"	[color="#000000",
+		label=F];
+	"0x00427ad9" -> "0x00427ae4"	[color="#000000",
+		label=T];
+	"0x00427b7e"	[label="0x00427b7e
+jne"];
+	"0x00427b80"	[label="0x00427b80
+movl"];
+	"0x00427b7e" -> "0x00427b80"	[color="#000000",
+		label=F];
+	"0x00427b7b" -> "0x00427b7e"	[color="#000000"];
+	"0x00427ba8" -> "0x00427be6"	[color="#000000",
+		label=T];
+	"0x00427ac8"	[label="0x00427ac8
+addl"];
+	"0x00427ac3" -> "0x00427ac8"	[color="#000000"];
+	"0x00427af1"	[label="0x00427af1
+xorl"];
+	"0x00427af1" -> "0x00427af4"	[color="#000000"];
+	"0x00427ae2" -> "0x00427ae4"	[color="#000000",
+		label=F];
+	"0x00427c28"	[label="0x00427c28
+pushl"];
+	"0x00427c28" -> "0x00427c29"	[color="#000000"];
+	"0x00427b77"	[label="0x00427b77
+cmpb"];
+	"0x00427b75" -> "0x00427b77"	[color="#000000"];
+	VIRTUALPROTECT_KERNEL32_DLL	[color=lightgrey,
+		fillcolor=lightgrey,
+		label="VIRTUALPROTECT_KERNEL32_DLL
+VIRTUALPROTECT-KERNEL32-DLL"];
+	VIRTUALPROTECT_KERNEL32_DLL -> "0x00427c45"	[color="#000000"];
+	"0x00427ac8" -> "0x00427aca"	[color="#000000"];
+	"0x00427c2e" -> VIRTUALPROTECT_KERNEL32_DLL	[color="#000000"];
+	"0x00427c4f" -> "0x00427c51"	[color="#000000",
+		label=F];
+	"0x00427ad1" -> "0x00427ad3"	[color="#000000"];
+	"0x00427af0" -> "0x00427af1"	[color="#000000"];
+	"0x00427ae9" -> "0x00427aeb"	[color="#000000",
+		label=F];
+	"0x00427bec" -> "0x00427bee"	[color="#000000"];
+	"0x00427b77" -> "0x00427b79"	[color="#000000"];
+	"0x00427c23" -> "0x00427c28"	[color="#000000"];
+	"0x00427b80" -> "0x00427b82"	[color="#000000"];
+}
