@@ -28,7 +28,7 @@ parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+",
                     default=["AccessEnum.exe", "Cacheset.exe", "ADInsight.exe", "ADExplorer.exe"])
-parser.add_argument('--log_path', default="logs/graph_based_method3", type=str)
+parser.add_argument('--log_path', default="logs/graph_based_method4", type=str)
 parser.add_argument('--first_k', default=3, type=int)
 # Get the arguments
 args = parser.parse_args()
@@ -98,11 +98,6 @@ def main():
             if oep_address == "None":
                 continue
             if packer_name_of_file != packer_name:
-                continue
-            if file_name in args.sample_files:
-                print("Packer: {}, file_name: {}, msg: This file is sample file".format(packer_name, file_name))
-                log_file.writelines(
-                    "Packer: {}, file_name: {}, msg: This file is sample file.\n".format(packer_name, file_name))
                 continue
             packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                            "{}_{}_model.dot".format(packer_name, file_name))
