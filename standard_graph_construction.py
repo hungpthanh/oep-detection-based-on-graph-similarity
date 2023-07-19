@@ -42,6 +42,7 @@ def frequency_feature_vecter_computation(packer_name, packed_files):
         packed_dot_file = os.path.join(data_folder_path, "asm_cfg", packer_name,
                                        "{}_model.dot".format(packed_file))
         oep_address = oep_dictionary_2[packed_file]
+        print("oep_address = {}".format(oep_address))
         preceding_oep, msg = get_preceding_oep(packed_dot_file, oep_address)
         if not preceding_oep:
             print("Packer: {}, file_name: {}, error: {}".format(packer_name, packed_file, msg))

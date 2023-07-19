@@ -15,10 +15,15 @@ data_folder_path = "data"
 
 def get_WLK(G, h):
     node_labels = {n: G.nodes[n]["label"] for n in G.nodes}
+    new_node_labels = {}
     for i in range(h):
         # Update node labels for each graph
         node_labels = update_node_labels(G, node_labels)
-    return node_labels
+        for key, value in node_labels.items():
+            new_key = "{}-{}".format(i + 1, key)
+            new_value = "{}-{}".format(i + 1, value)
+            new_node_labels[new_value] = new_value
+    return new_node_labels
 
 
 def weisfeiler_lehman_kernel(G1, G2, h):
