@@ -1,4 +1,5 @@
 # from utils.preprocess_be_pum import get_OEP_of_UPX
+import glob
 import os
 from collections import Counter
 
@@ -67,12 +68,15 @@ def get_oep_dataset():
 
 
 def get_oep_dataset_2():
+    oep_data_folder = "oep_data"
+    oep_paths = glob.glob(oep_data_folder + "/*.*")
     results = {}
-    with open("new_oep_dataset_3.txt", "r") as f:
-        for line in f:
-            line = line.strip()
-            name, oep = line.split(',')
-            results[name] = oep
+    for oep_path in oep_paths:
+        with open(oep_path, "r") as f:
+            for line in f:
+                line = line.strip()
+                name, oep = line.split(',')
+                results[name] = oep
     return results
 
 

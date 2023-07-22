@@ -2,6 +2,7 @@ import argparse
 import glob
 import os
 import random
+
 random.seed(10)
 import networkx as nx
 from networkx.drawing.nx_agraph import read_dot
@@ -13,14 +14,14 @@ from utils.string_utils import get_file_name_from_log
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--packer_names', nargs="+",
-                    default=["upx", "aspack", "yodaC", "mew", "fsg", "pecompact", "petitepacked", "winupack", "MPRESS"])
+                    default=["packman"])
 parser.add_argument('--data_path', default="data", type=str)
 parser.add_argument('--original_folder', default="/home/hungpt/Downloads/PackingData-master/Notpacked", type=str)
 
 # Get the arguments
 args = parser.parse_args()
 oep_dictionary = get_oep_dataset()
-#log_oep = open("new_oep_dataset_3.txt", "w")
+# log_oep = open("oep_data/packman.txt", "w")
 
 oep_dictionary_2 = get_oep_dataset_2()
 
@@ -32,16 +33,8 @@ oep_dictionary_2 = get_oep_dataset_2()
 #         #     continue
 #         print("packer name: {}".format(packer_name))
 #         log_files = glob.glob(os.path.join(args.data_path, "logs", "{}/*.log".format(packer_name)))
-#
 #         for log_file in log_files:
-#
 #             file_name = get_file_name_from_log(log_file)
-#             # print(file_name)
-#             # if file_name != "Hasher.exe":
-#             #     continue
-#
-#             # print("File name = {}".format(file_name))
-#             # print("File name: {}".format(file_name))
 #             dot_file = os.path.join(args.data_path, "asm_cfg",
 #                                     "{}/{}_{}_model.dot".format(packer_name, packer_name, file_name))
 #             asm_file = os.path.join(args.data_path, "asm_cfg",
@@ -121,9 +114,11 @@ def split_train_test():
                 data_of[packer_name_of_file] = []
             data_of[packer_name_of_file].append(file_name)
 
-    f_train = open("data/train.txt", "w")
-    f_test = open("data/test.txt", "w")
     for packer_name, files in data_of.items():
+        if not (packer_name == "jdpack" or packer_name == "packman"):
+            continue
+        f_train = open("data/train/{}.txt".format(packer_name), "w")
+        f_test = open("data/test/{}.txt".format(packer_name), "w")
         n_of_files = len(files)
         n_of_train = n_of_files // 10
         train_set = random.sample(files, n_of_train)
@@ -135,8 +130,8 @@ def split_train_test():
             f_train.writelines("{}_{}\n".format(packer_name, train_file))
         for test_file in test_set:
             f_test.writelines("{}_{}\n".format(packer_name, test_file))
-    f_train.close()
-    f_test.close()
+        f_train.close()
+        f_test.close()
 
 
 if __name__ == '__main__':

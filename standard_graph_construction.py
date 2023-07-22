@@ -7,6 +7,7 @@ import numpy as np
 from pandas.io.json import to_json
 from sklearn.cluster import DBSCAN
 
+from utils.dataset_utils import get_train_list
 from utils.graph_similarity_utils import convert_graph_to_vector, get_feature_vector
 from utils.graph_utils import get_removed_backed_graph, get_opcode_sequence
 from utils.oep_utils import get_oep_dataset_2, get_preceding_oep
@@ -22,7 +23,7 @@ parser.add_argument('--first_k', default=3, type=int)
 # Get the arguments
 args = parser.parse_args()
 data_folder_path = "data"
-
+train_list = get_train_list()
 oep_dictionary_2 = get_oep_dataset_2()
 
 
@@ -193,20 +194,19 @@ def construct_standard_vector(packer_name, packed_files):
 
 def main():
     train_of = {}
-    with open(args.train_path, "r") as f:
-        for line in f:
-            packer_name_of_file, file_name = get_packer_name_and_filename(line.strip())
-            # if packer_name_of_file != "MPRESS":
-            #     continue
-            if not (packer_name_of_file in train_of):
-                train_of[packer_name_of_file] = []
-            train_of[packer_name_of_file].append(line.strip())
+    for line in train_list:
+        packer_name_of_file, file_name = get_packer_name_and_filename(line.strip())
+        if packer_name_of_file != "packman" and packer_name_of_file != "jdpack":
+            continue
+        if not (packer_name_of_file in train_of):
+            train_of[packer_name_of_file] = []
+        train_of[packer_name_of_file].append(line.strip())
 
-        for packer_name, packed_files in train_of.items():
-            standard_feature_vectors = construct_standard_vector(packer_name, packed_files)
-            print(standard_feature_vectors)
-            with open("configs/standard_feature_vectors/{}.json".format(packer_name), "w") as outfile:
-                json.dump(standard_feature_vectors, outfile, indent=4)
+    for packer_name, packed_files in train_of.items():
+        standard_feature_vectors = construct_standard_vector(packer_name, packed_files)
+        print(standard_feature_vectors)
+        with open("configs/standard_feature_vectors/{}.json".format(packer_name), "w") as outfile:
+            json.dump(standard_feature_vectors, outfile, indent=4)
 
 
 if __name__ == '__main__':
