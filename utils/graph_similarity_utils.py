@@ -8,8 +8,10 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 
-from utils.graph_utils import create_subgraph, get_opcode_sequence, get_removed_backed_graph
+from utils.graph_utils import create_subgraph, get_opcode_sequence, get_removed_backed_graph, \
+    get_removed_backed_graph_inference
 from sklearn.metrics.pairwise import cosine_similarity
+
 data_folder_path = "data"
 
 
@@ -192,6 +194,27 @@ def build_subgraph_vector(packer_name, file_name):
     return data, unique_labels, node_list, end_unpacking_sequences, "success"
 
 
+def build_subgraph_vector_inference(file_name):
+    packed_dot_file = os.path.join(data_folder_path, "log_bepum_malware", "{}_model.dot".format(file_name))
+    if not os.path.exists(packed_dot_file):
+        return None, None, None, "This file do not have dot file from BE-PUM"
+    removed_back_edge_G = get_removed_backed_graph_inference(file_name)
+    node_list = list(create_subgraph(removed_back_edge_G, address="-1", from_specific_node=False).nodes)
+    data = {}
+    end_unpacking_sequences = {}
+    unique_labels = []
+    print("Generating subgraph of {} nodes of {}:".format(len(node_list), file_name))
+    for node in tqdm(node_list):
+        _, node_labels, original_labels, end_unpacking_seq = convert_graph_to_vector(removed_back_edge_G,
+                                                                                     address=node,
+                                                                                     from_specific_node=True)
+        unique_labels = unique_labels + list(node_labels.values()) + original_labels
+        data[node] = Counter(list(node_labels.values()) + original_labels)  # may add original nodes here
+        end_unpacking_sequences[node] = end_unpacking_seq
+    unique_labels = sorted(list(set(unique_labels)))
+    return data, unique_labels, node_list, end_unpacking_sequences, "success"
+
+
 def get_feature_vector(data, unique_labels):
     """
     :param data: The statistic counting label of a graph
@@ -216,5 +239,3 @@ def load_standard_feature():
             standard_feature[packer_name] = json.loads(f.read())
 
     return standard_feature
-
-

@@ -238,7 +238,11 @@ def get_removed_backed_graph(packer_name, file_name, label_with_address=False):
     G = remove_back_edge(G)
     return G
 
-
+def get_removed_backed_graph_inference(file_name, label_with_address=False):
+    file_path = os.path.join(data_folder_path, "log_bepum_malware", "{}_model.dot".format(file_name))
+    G = relabel_graph(nx.DiGraph(read_dot(path=file_path)), label_with_address)
+    G = remove_back_edge(G)
+    return G
 def verify_cfg(dot_file):
     if not os.path.exists(dot_file):
         return False, "Dot file not exist"

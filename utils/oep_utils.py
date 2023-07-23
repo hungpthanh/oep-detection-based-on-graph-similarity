@@ -157,6 +157,8 @@ def get_OEP(packer_name, file_name, end_of_unpacking_address):
     def get_address_format(s):
         return s[1:11]
 
+    if end_of_unpacking_address == "None":
+        return None, "not found eou"
     packed_program_dot_file = os.path.join("data", "asm_cfg", packer_name,
                                            "{}_{}_model.dot".format(packer_name, file_name))
     original_graph = nx.DiGraph(read_dot(path=packed_program_dot_file))

@@ -40,7 +40,7 @@ data_folder_path = "data"
 if not os.path.exists(args.log_path):
     os.mkdir(args.log_path)
 log_file = open(args.log_path + "/{}.txt".format(args.packer_names), "w")
-log_file.writelines("This experiments try to test correct WLK")
+log_file.writelines("This experiments fix wrong packer name")
 log_file.writelines("Packer names: {}\n".format(args.packer_names))
 log_file.writelines("File name: {}\n".format(args.file_name))
 
@@ -141,7 +141,7 @@ def main():
                     if score > final_score:
                         final_score = score
                         final_address = predicted_address
-                        predicted_packer = packer_name
+                        predicted_packer = packer_name_candidate
             print(
                 "Final decision: {}, Packer: {}, packer_identification: {}, file_name: {}, end-of-unpacking: {}, predicted-end-of-unpacking: {}, score: {}\n".format(
                     bool(preceding_oep == final_address),
@@ -186,6 +186,8 @@ def evaluate():
     prediction_data = {}
     packer_identification_data = {}
     for log_file in log_files:
+        # if not ("winupack" in log_file):
+        #     continue
         print("Processing on {}".format(log_file))
         with open(log_file, "r") as f:
             lines = [line for line in f]
@@ -197,6 +199,7 @@ def evaluate():
                 if "Final decision" in line:
                     end_of_unpacking_result, packer_name, file_name, predicted_end_of_unpacking, score, packer_identification = get_final_decision(
                         line)
+                    # print("node : {}".format(predicted_end_of_unpacking))
                     predicted_oep, msg = get_OEP(packer_name, file_name, predicted_end_of_unpacking)
                     if end_of_unpacking_result == "True":
                         avg_score.append(float(score))
@@ -217,7 +220,7 @@ def evaluate():
         n_sample = len(prediction_data[packer_name])
         n_correct = 0
         for filename, predicted_oep in file_names.items():
-            if (predicted_oep is not None) and (predicted_oep == oep_dictionary[filename]):
+            if (predicted_oep is not None) and (predicted_oep == oep_dictionary_2["{}_{}".format(packer_name, filename)]):
                 n_correct += 1
         n_correct_predict_packer = sum(
             [int(packer_name == predicted_name[0]) for predicted_name in packer_identification_data[packer_name]])
@@ -227,9 +230,9 @@ def evaluate():
             "Packer: {}, end-of-unpacking accuracy: {:.3f}, OEP detection accuracy: {:.3f}, packer_identification accuracy: {}, be-pum: {}, of sample: {}".format(
                 packer_name,
                 float(results[packer_name]),
-                1.0 * n_correct / n_sample,
-                1.0 * n_correct_predict_packer / n_sample,
-                1.0 * n_correct_predict_packer_be_pum / n_sample,
+                1.0 * n_correct ,
+                1.0 * n_correct_predict_packer,
+                1.0 * n_correct_predict_packer_be_pum ,
                 n_sample))
 
 
