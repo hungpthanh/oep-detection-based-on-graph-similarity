@@ -42,9 +42,6 @@ def load_end_unpacking_sequence():
     return end_unpacking_sequences
 
 
-
-
-
 def get_node_information(s):
     if not s.startswith('a0x'):
         address = s.upper()
@@ -102,6 +99,26 @@ def remove_back_edge(cfg):
                     new_cfg.remove_edge(u, v)
             index += 1
 
+    def sort_successor(cfg, u):
+        import functools
+
+        def is_instruction(u):
+            return str(u).startswith("a")
+
+        new_successors = list(cfg.successors(u)).copy()
+
+        def compare(u, v):
+            if is_instruction(u) and is_instruction(v):
+                return (u[1:11] < v[1:11]) - (u[1:11] > v[1:11])
+            if (not is_instruction(u)) and (not is_instruction(v)):
+                return cfg.in_degree(v) - cfg.in_degree(u)
+            if (not is_instruction(u)) and (is_instruction(v)):
+                return -1
+            return 1
+
+        new_successors.sort(key=functools.cmp_to_key(compare))
+        return new_successors
+
     def dfs(start_node):
         stack = []
         visited = []
@@ -110,7 +127,10 @@ def remove_back_edge(cfg):
             u = stack[-1]
             visited.append(u)
             exist_node = False
-            for v in list(new_cfg.successors(u)):
+            # we need to sort successor here
+            next_candidates = sort_successor(new_cfg, u)
+
+            for v in next_candidates:
                 if not (v in visited):
                     exist_node = True
                     stack.append(v)
@@ -238,11 +258,16 @@ def get_removed_backed_graph(packer_name, file_name, label_with_address=False):
     G = remove_back_edge(G)
     return G
 
+
 def get_removed_backed_graph_inference(file_name, label_with_address=False):
     file_path = os.path.join(data_folder_path, "log_bepum_malware", "{}_model.dot".format(file_name))
+    # print("File path: {}".format(file_path))
+    # print("verify: {}".format(verify_cfg(file_path)))
     G = relabel_graph(nx.DiGraph(read_dot(path=file_path)), label_with_address)
     G = remove_back_edge(G)
     return G
+
+
 def verify_cfg(dot_file):
     if not os.path.exists(dot_file):
         return False, "Dot file not exist"

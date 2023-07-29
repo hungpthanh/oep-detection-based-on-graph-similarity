@@ -196,6 +196,7 @@ def build_subgraph_vector(packer_name, file_name):
 
 def build_subgraph_vector_inference(file_name):
     packed_dot_file = os.path.join(data_folder_path, "log_bepum_malware", "{}_model.dot".format(file_name))
+    # print("packed dot file: {}".format(packed_dot_file))
     if not os.path.exists(packed_dot_file):
         return None, None, None, "This file do not have dot file from BE-PUM"
     removed_back_edge_G = get_removed_backed_graph_inference(file_name)

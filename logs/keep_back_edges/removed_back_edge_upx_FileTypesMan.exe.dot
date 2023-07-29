@@ -327,7 +327,6 @@ strict digraph G {
 	GETPROCADDRESS_KERNEL32_DLL	[color=lightgrey,
 		fillcolor=lightgrey,
 		label="GETPROCADDRESS-KERNEL32-DLL"];
-	a0x0041f1f0call_0x210e0esi_ -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x0041f1f6orl_eax_eax	[label=orl];
 	GETPROCADDRESS_KERNEL32_DLL -> a0x0041f1f6orl_eax_eax	[color="#000000"];
 	a0x00402b6dtestl_eax_eax	[label=testl];
@@ -343,6 +342,7 @@ strict digraph G {
 	a0x0041f1famovl_eax_ebx_ -> a0x0041f1fcaddl_0x4UINT8_ebx	[color="#000000"];
 	a0x0041f1ffjmp_0x0041f1d9	[label=jmp];
 	a0x0041f1fcaddl_0x4UINT8_ebx -> a0x0041f1ffjmp_0x0041f1d9	[color="#000000"];
+	a0x0041f1ffjmp_0x0041f1d9 -> a0x0041f1d9movb_edi__al	[color="#000000"];
 	a0x0041f1e7incl_edi	[label=incl];
 	a0x0041f1e4movzwl_edi__eax -> a0x0041f1e7incl_edi	[color="#000000"];
 	a0x0041f1e8pushl_eax	[label=pushl];
@@ -801,6 +801,7 @@ strict digraph G {
 	a0x00402b61pushl_0x4119d4UINT32 -> a0x00402b66pushl_esi	[color="#000000"];
 	a0x00402b67call_0x411114	[label=call];
 	a0x00402b66pushl_esi -> a0x00402b67call_0x411114	[color="#000000"];
+	a0x00402b67call_0x411114 -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x00402b6fje_0x402b7a	[label=je];
 	a0x00402b6dtestl_eax_eax -> a0x00402b6fje_0x402b7a	[color="#000000"];
 	a0x00402b71leal__8ebp__ecx	[label=leal];
@@ -884,7 +885,6 @@ strict digraph G {
 		label=F];
 	a0x0040ff59call_0x41110c	[label=call];
 	a0x0040ff54pushl_0x411aacUINT32 -> a0x0040ff59call_0x41110c	[color="#000000"];
-	a0x0040ff59call_0x41110c -> LOADLIBRARYW_KERNEL32_DLL	[color="#000000"];
 	a0x0040ff61movl_eax_0x4167bc	[label=movl];
 	a0x0040ff5ftestl_eax_eax -> a0x0040ff61movl_eax_0x4167bc	[color="#000000"];
 	a0x0040ff66je_0x40ff79	[label=je];
@@ -896,6 +896,7 @@ strict digraph G {
 	a0x0040ff68pushl_0x4132e8UINT32 -> a0x0040ff6dpushl_eax	[color="#000000"];
 	a0x0040ff6ecall_0x411114	[label=call];
 	a0x0040ff6dpushl_eax -> a0x0040ff6ecall_0x411114	[color="#000000"];
+	a0x0040ff6ecall_0x411114 -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x0040ff79ret	[label=ret];
 	a0x0040ff74movl_eax_0x4167b8 -> a0x0040ff79ret	[color="#000000"];
 	a0x0040dddapushl_0x8001UINT32	[label=pushl];

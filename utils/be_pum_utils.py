@@ -36,8 +36,12 @@ def get_packer_name_in_BE_PUM(log_file):
             predicted_packer_name = words[0].split(' ')[-1]
             return predicted_packer_name
 def check_finish_running(file_path):
-    with open(file_path, "r") as f:
-        for line in f:
-            if "Packer Identified" in line:
-                return True
+    try:
+        with open(file_path, "r") as f:
+            for line in f:
+                if "Packer Identified" in line:
+                    return True
+    except Exception as e:
+        print(e)
+        return False
     return False

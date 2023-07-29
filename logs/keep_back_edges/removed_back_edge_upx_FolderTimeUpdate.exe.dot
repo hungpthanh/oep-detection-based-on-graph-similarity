@@ -327,7 +327,6 @@ strict digraph G {
 	GETPROCADDRESS_KERNEL32_DLL	[color=lightgrey,
 		fillcolor=lightgrey,
 		label="GETPROCADDRESS-KERNEL32-DLL"];
-	a0x0041a830call_0x1c28cesi_ -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x0041a836orl_eax_eax	[label=orl];
 	GETPROCADDRESS_KERNEL32_DLL -> a0x0041a836orl_eax_eax	[color="#000000"];
 	a0x00402299testl_eax_eax	[label=testl];
@@ -343,6 +342,7 @@ strict digraph G {
 	a0x0041a83amovl_eax_ebx_ -> a0x0041a83caddl_0x4UINT8_ebx	[color="#000000"];
 	a0x0041a83fjmp_0x0041a819	[label=jmp];
 	a0x0041a83caddl_0x4UINT8_ebx -> a0x0041a83fjmp_0x0041a819	[color="#000000"];
+	a0x0041a83fjmp_0x0041a819 -> a0x0041a819movb_edi__al	[color="#000000"];
 	a0x0041a827incl_edi	[label=incl];
 	a0x0041a824movzwl_edi__eax -> a0x0041a827incl_edi	[color="#000000"];
 	a0x0041a828pushl_eax	[label=pushl];
@@ -801,6 +801,7 @@ strict digraph G {
 	a0x0040228dpushl_0x40d824UINT32 -> a0x00402292pushl_esi	[color="#000000"];
 	a0x00402293call_0x40d0b4	[label=call];
 	a0x00402292pushl_esi -> a0x00402293call_0x40d0b4	[color="#000000"];
+	a0x00402293call_0x40d0b4 -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x0040229bje_0x4022a6	[label=je];
 	a0x00402299testl_eax_eax -> a0x0040229bje_0x4022a6	[color="#000000"];
 	a0x0040229dleal__8ebp__ecx	[label=leal];
@@ -884,7 +885,6 @@ strict digraph G {
 		label=F];
 	a0x0040bd40call_0x40d0c0	[label=call];
 	a0x0040bd3bpushl_0x40e6b0UINT32 -> a0x0040bd40call_0x40d0c0	[color="#000000"];
-	a0x0040bd40call_0x40d0c0 -> LOADLIBRARYW_KERNEL32_DLL	[color="#000000"];
 	a0x0040bd48movl_eax_0x4111b8	[label=movl];
 	a0x0040bd46testl_eax_eax -> a0x0040bd48movl_eax_0x4111b8	[color="#000000"];
 	a0x0040bd4dje_0x40bd60	[label=je];
@@ -896,6 +896,7 @@ strict digraph G {
 	a0x0040bd4fpushl_0x40e6c8UINT32 -> a0x0040bd54pushl_eax	[color="#000000"];
 	a0x0040bd55call_0x40d0b4	[label=call];
 	a0x0040bd54pushl_eax -> a0x0040bd55call_0x40d0b4	[color="#000000"];
+	a0x0040bd55call_0x40d0b4 -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x0040bd60ret	[label=ret];
 	a0x0040bd5bmovl_eax_0x4111b4 -> a0x0040bd60ret	[color="#000000"];
 	a0x0040aa54xorl_ebx_ebx	[label=xorl];

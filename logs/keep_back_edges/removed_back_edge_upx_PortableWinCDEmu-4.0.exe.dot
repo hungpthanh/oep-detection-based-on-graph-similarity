@@ -371,7 +371,6 @@ strict digraph G {
 	GETPROCADDRESS_KERNEL32_DLL	[color=lightgrey,
 		fillcolor=lightgrey,
 		label="GETPROCADDRESS-KERNEL32-DLL"];
-	a0x004ac400call_0xb555cesi_ -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x004ac406orl_eax_eax	[label=orl];
 	GETPROCADDRESS_KERNEL32_DLL -> a0x004ac406orl_eax_eax	[color="#000000"];
 	a0x00415c0fpushl_0x41fee4UINT32	[label=pushl];
@@ -393,6 +392,7 @@ strict digraph G {
 	a0x004ac40amovl_eax_ebx_ -> a0x004ac40caddl_0x4UINT8_ebx	[color="#000000"];
 	a0x004ac40fjmp_0x004ac3e9	[label=jmp];
 	a0x004ac40caddl_0x4UINT8_ebx -> a0x004ac40fjmp_0x004ac3e9	[color="#000000"];
+	a0x004ac40fjmp_0x004ac3e9 -> a0x004ac3e9movb_edi__al	[color="#000000"];
 	a0x004ac3f7incl_edi	[label=incl];
 	a0x004ac3f4movzwl_edi__eax -> a0x004ac3f7incl_edi	[color="#000000"];
 	a0x004ac3f8pushl_eax	[label=pushl];
@@ -632,6 +632,7 @@ strict digraph G {
 	a0x00412004call_0x414750	[label=call];
 	a0x00411fffpushl_0x422610UINT32 -> a0x00412004call_0x414750	[color="#000000"];
 	a0x00414750pushl_0x4147b0UINT32	[label=pushl];
+	a0x00412004call_0x414750 -> a0x00414750pushl_0x4147b0UINT32	[color="#000000"];
 	a0x00414755pushl_fs_0	[label=pushl];
 	a0x00414750pushl_0x4147b0UINT32 -> a0x00414755pushl_fs_0	[color="#000000"];
 	a0x0041475cmovl_0x10esp__eax	[label=movl];
@@ -813,6 +814,7 @@ strict digraph G {
 	a0x00415c07pushl_0x41fef0UINT32 -> a0x00415c0cpushl_edi	[color="#000000"];
 	a0x00415c0dcall_esi	[label=call];
 	a0x00415c0cpushl_edi -> a0x00415c0dcall_esi	[color="#000000"];
+	a0x00415c0dcall_esi -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x00415c14pushl_edi	[label=pushl];
 	a0x00415c0fpushl_0x41fee4UINT32 -> a0x00415c14pushl_edi	[color="#000000"];
 	a0x00415c15movl_eax_0x425e84	[label=movl];
@@ -896,7 +898,6 @@ strict digraph G {
 	ENCODEPOINTER_KERNEL32_DLL	[color=lightgrey,
 		fillcolor=lightgrey,
 		label="ENCODEPOINTER-KERNEL32-DLL"];
-	a0x004158eccall_0x41e0c0 -> ENCODEPOINTER_KERNEL32_DLL	[color="#000000"];
 	a0x004158f2ret	[label=ret];
 	ENCODEPOINTER_KERNEL32_DLL -> a0x004158f2ret	[color="#000000"];
 	a0x00415dedmovl_eax_0x425e94	[label=movl];
@@ -1095,8 +1096,6 @@ strict digraph G {
 	INITIALIZECRITICALSECTIONANDSPINCOUNT_KERNEL32_DLL -> a0x0040c046testl_eax_eax	[color="#000000"];
 	a0x004165abje_0x4165b9	[label=je];
 	a0x004165a9testl_eax_eax -> a0x004165abje_0x4165b9	[color="#000000"];
-	a0x004165abje_0x4165b9 -> a0x004165adincl_esi	[color="#000000",
-		label=F];
 	a0x004165aecmpl_0x24UINT8_esi	[label=cmpl];
 	a0x004165adincl_esi -> a0x004165aecmpl_0x24UINT8_esi	[color="#000000"];
 	a0x004165b1jl_0x416586	[label=jl];
@@ -1314,7 +1313,6 @@ strict digraph G {
 	a0x0041596dpushl_0x8UINT8 -> a0x0041596fpushl_0x4227b0UINT32	[color="#000000"];
 	a0x00415974call_0x414750	[label=call];
 	a0x0041596fpushl_0x4227b0UINT32 -> a0x00415974call_0x414750	[color="#000000"];
-	a0x00415974call_0x414750 -> a0x00414750pushl_0x4147b0UINT32	[color="#000000"];
 	a0x0041597ecall_0x41e148	[label=call];
 	a0x00415979pushl_0x41feb4UINT32 -> a0x0041597ecall_0x41e148	[color="#000000"];
 	a0x0041597ecall_0x41e148 -> GETMODULEHANDLEW_KERNEL32_DLL	[color="#000000"];
@@ -1341,7 +1339,6 @@ strict digraph G {
 	a0x004159b2call_0x4166f5	[label=call];
 	a0x004159b0pushl_0xdUINT8 -> a0x004159b2call_0x4166f5	[color="#000000"];
 	a0x004166f5movl_edi_edi	[label=movl];
-	a0x004159b2call_0x4166f5 -> a0x004166f5movl_edi_edi	[color="#000000"];
 	a0x004166f7pushl_ebp	[label=pushl];
 	a0x004166f5movl_edi_edi -> a0x004166f7pushl_ebp	[color="#000000"];
 	a0x004166f8movl_esp_ebp	[label=movl];
@@ -1606,7 +1603,6 @@ strict digraph G {
 	a0x00415d41popl_ecx -> a0x00415d42popl_ecx	[color="#000000"];
 	a0x00415d43call_0x41e078	[label=call];
 	a0x00415d42popl_ecx -> a0x00415d43call_0x41e078	[color="#000000"];
-	a0x00415d43call_0x41e078 -> GETCURRENTTHREADID_KERNEL32_DLL	[color="#000000"];
 	a0x00415d4dmovl_eax_esi_	[label=movl];
 	a0x00415d49orl_0xffffffffUINT8_0x4esi_ -> a0x00415d4dmovl_eax_esi_	[color="#000000"];
 	a0x00415d4fxorl_eax_eax	[label=xorl];
@@ -1671,6 +1667,7 @@ strict digraph G {
 	a0x00416031leal__76ebp__eax -> a0x00416034pushl_eax	[color="#000000"];
 	a0x00416035call_0x41e18c	[label=call];
 	a0x00416034pushl_eax -> a0x00416035call_0x41e18c	[color="#000000"];
+	a0x00416035call_0x41e18c -> GETSTARTUPINFOW_KERNEL32_DLL	[color="#000000"];
 	a0x0041603dpushl_0x20UINT8	[label=pushl];
 	a0x0041603bpushl_0x40UINT8 -> a0x0041603dpushl_0x20UINT8	[color="#000000"];
 	a0x0041603fpopl_esi	[label=popl];
@@ -1679,6 +1676,7 @@ strict digraph G {
 	a0x0041603fpopl_esi -> a0x00416040pushl_esi	[color="#000000"];
 	a0x00416041call_0x4162b2	[label=call];
 	a0x00416040pushl_esi -> a0x00416041call_0x4162b2	[color="#000000"];
+	a0x00416041call_0x4162b2 -> a0x004162b2movl_edi_edi	[color="#000000"];
 	a0x00416047popl_ecx	[label=popl];
 	a0x00416046popl_ecx -> a0x00416047popl_ecx	[color="#000000"];
 	a0x00416048xorl_ecx_ecx	[label=xorl];
@@ -1858,6 +1856,7 @@ strict digraph G {
 	a0x0041622eleal_0xcesi__eax -> a0x00416231pushl_eax	[color="#000000"];
 	a0x00416232call_0x41e07c	[label=call];
 	a0x00416231pushl_eax -> a0x00416232call_0x41e07c	[color="#000000"];
+	a0x00416232call_0x41e07c -> INITIALIZECRITICALSECTIONANDSPINCOUNT_KERNEL32_DLL	[color="#000000"];
 	a0x0041623aje_0x416268	[label=je];
 	a0x00416238testl_eax_eax -> a0x0041623aje_0x416268	[color="#000000"];
 	a0x0041623cincl_0x8esi_	[label=incl];
@@ -1871,8 +1870,6 @@ strict digraph G {
 	a0x0041624bincl_ebx -> a0x0041624ccmpl_0x3UINT8_ebx	[color="#000000"];
 	a0x0041624fjl_0x4161bd	[label=jl];
 	a0x0041624ccmpl_0x3UINT8_ebx -> a0x0041624fjl_0x4161bd	[color="#000000"];
-	a0x0041624fjl_0x4161bd -> a0x004161bdmovl_ebx_esi	[color="#000000",
-		label=T];
 	a0x00416255pushl_0x426590	[label=pushl];
 	a0x0041624fjl_0x4161bd -> a0x00416255pushl_0x426590	[color="#000000",
 		label=F];
@@ -2596,12 +2593,11 @@ strict digraph G {
 	a0x00417904popl_ecx -> a0x00417905leal_0x1eax__edi	[color="#000000"];
 	a0x00417908je_0x41792c	[label=je];
 	a0x00417905leal_0x1eax__edi -> a0x00417908je_0x41792c	[color="#000000"];
-	a0x0041792cleal_esiedi2__esi	[label=leal];
-	a0x00417908je_0x41792c -> a0x0041792cleal_esiedi2__esi	[color="#000000",
-		label=T];
 	a0x0041790apushl_0x2UINT8	[label=pushl];
 	a0x00417908je_0x41792c -> a0x0041790apushl_0x2UINT8	[color="#000000",
 		label=F];
+	a0x0041792cleal_esiedi2__esi	[label=leal];
+	a0x0041792cleal_esiedi2__esi -> a0x0041792fcmpw_0x0UINT8_esi_	[color="#000000"];
 	a0x0041790cpushl_edi	[label=pushl];
 	a0x0041790apushl_0x2UINT8 -> a0x0041790cpushl_edi	[color="#000000"];
 	a0x0041790dcall_0x4162b2	[label=call];
@@ -2723,7 +2719,6 @@ strict digraph G {
 	HEAPFREE_KERNEL32_DLL	[color=lightgrey,
 		fillcolor=lightgrey,
 		label="HEAPFREE-KERNEL32-DLL"];
-	a0x00410235call_0x41e1c0 -> HEAPFREE_KERNEL32_DLL	[color="#000000"];
 	a0x0041023btestl_eax_eax	[label=testl];
 	HEAPFREE_KERNEL32_DLL -> a0x0041023btestl_eax_eax	[color="#000000"];
 	a0x0040fc4cmovl_esi__eax	[label=movl];
@@ -2787,14 +2782,13 @@ strict digraph G {
 	a0x0041827axorl_edi_edi -> a0x0041827cpushl_0x425030edi_	[color="#000000"];
 	a0x00418282call_0x41e0c0	[label=call];
 	a0x0041827cpushl_0x425030edi_ -> a0x00418282call_0x41e0c0	[color="#000000"];
+	a0x00418282call_0x41e0c0 -> ENCODEPOINTER_KERNEL32_DLL	[color="#000000"];
 	a0x0041828eaddl_0x4UINT8_edi	[label=addl];
 	a0x00418288movl_eax_0x425030edi_ -> a0x0041828eaddl_0x4UINT8_edi	[color="#000000"];
 	a0x00418291cmpl_0x28UINT8_edi	[label=cmpl];
 	a0x0041828eaddl_0x4UINT8_edi -> a0x00418291cmpl_0x28UINT8_edi	[color="#000000"];
 	a0x00418294jb_0x41827c	[label=jb];
 	a0x00418291cmpl_0x28UINT8_edi -> a0x00418294jb_0x41827c	[color="#000000"];
-	a0x00418294jb_0x41827c -> a0x0041827cpushl_0x425030edi_	[color="#000000",
-		label=T];
 	a0x00418296popl_edi	[label=popl];
 	a0x00418294jb_0x41827c -> a0x00418296popl_edi	[color="#000000",
 		label=F];
@@ -2823,7 +2817,6 @@ strict digraph G {
 	a0x0041259bjmp_0x4125ac	[label=jmp];
 	a0x00412599xorl_eax_eax -> a0x0041259bjmp_0x4125ac	[color="#000000"];
 	a0x004125accmpl_0xcebp__esi	[label=cmpl];
-	a0x0041259bjmp_0x4125ac -> a0x004125accmpl_0xcebp__esi	[color="#000000"];
 	a0x004125afjb_0x41259d	[label=jb];
 	a0x004125accmpl_0xcebp__esi -> a0x004125afjb_0x41259d	[color="#000000"];
 	a0x0041259dtestl_eax_eax	[label=testl];
@@ -2879,6 +2872,7 @@ strict digraph G {
 	a0x00411157pushl_0x4UINT8 -> a0x00411159pushl_eax	[color="#000000"];
 	a0x0041115acall_0x4162b2	[label=call];
 	a0x00411159pushl_eax -> a0x0041115acall_0x4162b2	[color="#000000"];
+	a0x0041115acall_0x4162b2 -> a0x004162b2movl_edi_edi	[color="#000000"];
 	a0x00411160popl_ecx	[label=popl];
 	a0x0041115fpopl_ecx -> a0x00411160popl_ecx	[color="#000000"];
 	a0x00411161movl_eax_0x4266c4	[label=movl];
@@ -2964,7 +2958,6 @@ strict digraph G {
 	a0x004111e5xorl_eax_eax -> a0x004111e7popl_esi	[color="#000000"];
 	a0x004111e8ret	[label=ret];
 	a0x004111e7popl_esi -> a0x004111e8ret	[color="#000000"];
-	a0x004111e8ret -> a0x004125a9addl_0x4UINT8_esi	[color="#000000"];
 	a0x00411c0fpushl_esi	[label=pushl];
 	a0x00411c0dmovl_edi_edi -> a0x00411c0fpushl_esi	[color="#000000"];
 	a0x00411c10pushl_0x4UINT8	[label=pushl];
@@ -2973,6 +2966,7 @@ strict digraph G {
 	a0x00411c10pushl_0x4UINT8 -> a0x00411c12pushl_0x20UINT8	[color="#000000"];
 	a0x00411c14call_0x4162b2	[label=call];
 	a0x00411c12pushl_0x20UINT8 -> a0x00411c14call_0x4162b2	[color="#000000"];
+	a0x00411c14call_0x4162b2 -> a0x004162b2movl_edi_edi	[color="#000000"];
 	a0x00411c1apopl_ecx	[label=popl];
 	a0x00411c19popl_ecx -> a0x00411c1apopl_ecx	[color="#000000"];
 	a0x00411c1bmovl_eax_esi	[label=movl];
@@ -2996,7 +2990,6 @@ strict digraph G {
 	a0x00411c3axorl_eax_eax -> a0x00411c3cpopl_esi	[color="#000000"];
 	a0x00411c3dret	[label=ret];
 	a0x00411c3cpopl_esi -> a0x00411c3dret	[color="#000000"];
-	a0x00411c3dret -> a0x004125a9addl_0x4UINT8_esi	[color="#000000"];
 	a0x00414b01call_0x41e1b4	[label=call];
 	a0x00414affpushl_0xaUINT8 -> a0x00414b01call_0x41e1b4	[color="#000000"];
 	ISPROCESSORFEATUREPRESENT_KERNEL32_DLL	[color=lightgrey,
@@ -3024,7 +3017,6 @@ strict digraph G {
 	a0x00416d87pushl_0x14UINT8 -> a0x00416d89pushl_0x4228e8UINT32	[color="#000000"];
 	a0x00416d8ecall_0x414750	[label=call];
 	a0x00416d89pushl_0x4228e8UINT32 -> a0x00416d8ecall_0x414750	[color="#000000"];
-	a0x00416d8ecall_0x414750 -> a0x00414750pushl_0x4147b0UINT32	[color="#000000"];
 	a0x00416d97call_0x415a9a	[label=call];
 	a0x00416d93orl_0xffffffffUINT8__32ebp_ -> a0x00416d97call_0x415a9a	[color="#000000"];
 	a0x00415a9amovl_edi_edi	[label=movl];
@@ -3146,6 +3138,7 @@ strict digraph G {
 		label=T];
 	a0x00416abacall_0x4166f5	[label=call];
 	a0x00416ab8pushl_0xdUINT8 -> a0x00416abacall_0x4166f5	[color="#000000"];
+	a0x00416abacall_0x4166f5 -> a0x004166f5movl_edi_edi	[color="#000000"];
 	a0x00416ac0andl_0x0UINT8__4ebp_	[label=andl];
 	a0x00416abfpopl_ecx -> a0x00416ac0andl_0x0UINT8__4ebp_	[color="#000000"];
 	a0x00416ac4movl_0x68edi__esi	[label=movl];
@@ -3225,7 +3218,6 @@ strict digraph G {
 	a0x00411955call_0x415a9a	[label=call];
 	a0x00411953jne_0x4119b8 -> a0x00411955call_0x415a9a	[color="#000000",
 		label=F];
-	a0x00411955call_0x415a9a -> a0x00415a9amovl_edi_edi	[color="#000000"];
 	a0x0041195dmovl_0x6ceax__ecx	[label=movl];
 	a0x0041195amovl_eax_0x8esi_ -> a0x0041195dmovl_0x6ceax__ecx	[color="#000000"];
 	a0x00411960movl_ecx_esi_	[label=movl];
@@ -3476,7 +3468,6 @@ strict digraph G {
 	a0x00416c3ccall_0x4104c0	[label=call];
 	a0x00416c3bpushl_eax -> a0x00416c3ccall_0x4104c0	[color="#000000"];
 	a0x004104c0movl_0xcesp__edx	[label=movl];
-	a0x00416c3ccall_0x4104c0 -> a0x004104c0movl_0xcesp__edx	[color="#000000"];
 	a0x004104c4movl_0x4esp__ecx	[label=movl];
 	a0x004104c0movl_0xcesp__edx -> a0x004104c4movl_0x4esp__ecx	[color="#000000"];
 	a0x004104c8testl_edx_edx	[label=testl];
@@ -3781,6 +3772,7 @@ strict digraph G {
 	a0x0041690bpushl_eax -> a0x0041690cpushl_0x4esi_	[color="#000000"];
 	a0x0041690fcall_0x41e10c	[label=call];
 	a0x0041690cpushl_0x4esi_ -> a0x0041690fcall_0x41e10c	[color="#000000"];
+	a0x0041690fcall_0x41e10c -> GETCPINFO_KERNEL32_DLL	[color="#000000"];
 	a0x0041691atestl_eax_eax	[label=testl];
 	a0x00416915movl_0x100UINT32_edi -> a0x0041691atestl_eax_eax	[color="#000000"];
 	a0x0041691cje_0x416a1e	[label=je];
@@ -3842,6 +3834,7 @@ strict digraph G {
 	a0x00419dfbpushl_0x8ebp_ -> a0x00419dfeleal__16ebp__ecx	[color="#000000"];
 	a0x00419e01call_0x411942	[label=call];
 	a0x00419dfeleal__16ebp__ecx -> a0x00419e01call_0x411942	[color="#000000"];
+	a0x00419e01call_0x411942 -> a0x00411942movl_edi_edi	[color="#000000"];
 	a0x00419e09leal__16ebp__eax	[label=leal];
 	a0x00419e06pushl_0x24ebp_ -> a0x00419e09leal__16ebp__eax	[color="#000000"];
 	a0x00419e0cpushl_0x1cebp_	[label=pushl];
@@ -4178,6 +4171,7 @@ strict digraph G {
 	a0x00419ccepushl_0x8ebp_ -> a0x00419cd1leal__16ebp__ecx	[color="#000000"];
 	a0x00419cd4call_0x411942	[label=call];
 	a0x00419cd1leal__16ebp__ecx -> a0x00419cd4call_0x411942	[color="#000000"];
+	a0x00419cd4call_0x411942 -> a0x00411942movl_edi_edi	[color="#000000"];
 	a0x00419cdcleal__16ebp__eax	[label=leal];
 	a0x00419cd9pushl_0x28ebp_ -> a0x00419cdcleal__16ebp__eax	[color="#000000"];
 	a0x00419cdfpushl_0x24ebp_	[label=pushl];
@@ -4408,7 +4402,6 @@ strict digraph G {
 	INTERLOCKEDDECREMENT_KERNEL32_DLL	[color=lightgrey,
 		fillcolor=lightgrey,
 		label="INTERLOCKEDDECREMENT-KERNEL32-DLL"];
-	a0x00416dfdcall_0x41e08c -> INTERLOCKEDDECREMENT_KERNEL32_DLL	[color="#000000"];
 	a0x00416e03testl_eax_eax	[label=testl];
 	INTERLOCKEDDECREMENT_KERNEL32_DLL -> a0x00416e03testl_eax_eax	[color="#000000"];
 	a0x00416ebatestl_eax_eax	[label=testl];
@@ -4431,6 +4424,7 @@ strict digraph G {
 	a0x00416e1bpushl_ebx -> a0x00416e1cmovl_0x41e088_edi	[color="#000000"];
 	a0x00416e22call_edi	[label=call];
 	a0x00416e1cmovl_0x41e088_edi -> a0x00416e22call_edi	[color="#000000"];
+	a0x00416e22call_edi -> INTERLOCKEDINCREMENT_KERNEL32_DLL	[color="#000000"];
 	a0x00416e28jne_0x416f18	[label=jne];
 	a0x00416e24testb_0x2UINT8_0x70esi_ -> a0x00416e28jne_0x416f18	[color="#000000"];
 	a0x00416e2etestb_0x1UINT8_0x424dd0	[label=testb];
@@ -4525,6 +4519,7 @@ strict digraph G {
 	a0x00416ed1movl_ebx_0x424cd8 -> a0x00416ed7pushl_ebx	[color="#000000"];
 	a0x00416ed8call_edi	[label=call];
 	a0x00416ed7pushl_ebx -> a0x00416ed8call_edi	[color="#000000"];
+	a0x00416ed8call_edi -> INTERLOCKEDINCREMENT_KERNEL32_DLL	[color="#000000"];
 	a0x00416ee1call_0x416ee8	[label=call];
 	a0x00416edamovl_0xfffffffeUINT32__4ebp_ -> a0x00416ee1call_0x416ee8	[color="#000000"];
 	a0x00416ee8pushl_0xdUINT8	[label=pushl];
@@ -4549,6 +4544,7 @@ strict digraph G {
 	a0x00416f32movl_0x1UINT32_0x4266b0 -> a0x00416f3cxorl_eax_eax	[color="#000000"];
 	a0x00416f3eret	[label=ret];
 	a0x00416f3cxorl_eax_eax -> a0x00416f3eret	[color="#000000"];
+	a0x00416f3eret -> a0x004125a9addl_0x4UINT8_esi	[color="#000000"];
 	a0x0041770acall_0x41e17c	[label=call];
 	a0x00417705pushl_0x4176c3UINT32 -> a0x0041770acall_0x41e17c	[color="#000000"];
 	SETUNHANDLEDEXCEPTIONFILTER_KERNEL32_DLL	[color=lightgrey,
@@ -4629,6 +4625,7 @@ strict digraph G {
 	a0x00411b65pushl_edi -> a0x00411b66pushl_0x4266ac	[color="#000000"];
 	a0x00411b6ccall_esi	[label=call];
 	a0x00411b66pushl_0x4266ac -> a0x00411b6ccall_esi	[color="#000000"];
+	a0x00411b6ccall_esi -> DECODEPOINTER_KERNEL32_DLL	[color="#000000"];
 	a0x00411b74movl_eax_ebx	[label=movl];
 	a0x00411b6epushl_0x4266a8 -> a0x00411b74movl_eax_ebx	[color="#000000"];
 	a0x00411b76movl_ebx__4ebp_	[label=movl];
@@ -4733,7 +4730,6 @@ strict digraph G {
 	a0x00411c74call_0x412554 -> a0x00412554pushl_0x8UINT8	[color="#000000"];
 	a0x00412556call_0x41661c	[label=call];
 	a0x00412554pushl_0x8UINT8 -> a0x00412556call_0x41661c	[color="#000000"];
-	a0x00412556call_0x41661c -> a0x0041661cmovl_edi_edi	[color="#000000"];
 	a0x0041255cret	[label=ret];
 	a0x0041255bpopl_ecx -> a0x0041255cret	[color="#000000"];
 	a0x00411c79ret	[label=ret];
@@ -4810,16 +4806,16 @@ strict digraph G {
 	a0x00412612movl_edi__eax -> a0x00412614testl_eax_eax	[color="#000000"];
 	a0x00412616je_0x41261a	[label=je];
 	a0x00412614testl_eax_eax -> a0x00412616je_0x41261a	[color="#000000"];
-	a0x0041261aaddl_0x4UINT8_edi	[label=addl];
-	a0x00412616je_0x41261a -> a0x0041261aaddl_0x4UINT8_edi	[color="#000000",
-		label=T];
 	a0x00412618call_eax	[label=call];
 	a0x00412616je_0x41261a -> a0x00412618call_eax	[color="#000000",
 		label=F];
+	a0x0041261aaddl_0x4UINT8_edi	[label=addl];
 	a0x0041261dcmpl_esi_edi	[label=cmpl];
 	a0x0041261aaddl_0x4UINT8_edi -> a0x0041261dcmpl_esi_edi	[color="#000000"];
 	a0x0041261fjb_0x412612	[label=jb];
 	a0x0041261dcmpl_esi_edi -> a0x0041261fjb_0x412612	[color="#000000"];
+	a0x0041261fjb_0x412612 -> a0x00412612movl_edi__eax	[color="#000000",
+		label=T];
 	a0x00412621cmpl_0x0UINT8_0x4266b8	[label=cmpl];
 	a0x0041261fjb_0x412612 -> a0x00412621cmpl_0x0UINT8_0x4266b8	[color="#000000",
 		label=F];
@@ -4976,6 +4972,7 @@ strict digraph G {
 	a0x0040bf93pushl_esi -> a0x0040bf94pushl_ecx	[color="#000000"];
 	a0x0040bf95call_0x41e07c	[label=call];
 	a0x0040bf94pushl_ecx -> a0x0040bf95call_0x41e07c	[color="#000000"];
+	a0x0040bf95call_0x41e07c -> INITIALIZECRITICALSECTIONANDSPINCOUNT_KERNEL32_DLL	[color="#000000"];
 	a0x0040bf9djne_0x40bfb5	[label=jne];
 	a0x0040bf9btestl_eax_eax -> a0x0040bf9djne_0x40bfb5	[color="#000000"];
 	a0x0040bfb5movl_esi_eax	[label=movl];
@@ -5206,6 +5203,7 @@ strict digraph G {
 	a0x0040c03cpushl_eax -> a0x0040c03dmovl_edi_0x28esi_	[color="#000000"];
 	a0x0040c040call_0x41e07c	[label=call];
 	a0x0040c03dmovl_edi_0x28esi_ -> a0x0040c040call_0x41e07c	[color="#000000"];
+	a0x0040c040call_0x41e07c -> INITIALIZECRITICALSECTIONANDSPINCOUNT_KERNEL32_DLL	[color="#000000"];
 	a0x0040c048jne_0x40c06e	[label=jne];
 	a0x0040c046testl_eax_eax -> a0x0040c048jne_0x40c06e	[color="#000000"];
 	a0x0040c06epopl_edi	[label=popl];
@@ -5848,10 +5846,12 @@ strict digraph G {
 	INITCOMMONCONTROLSEX_COMCTL32_DLL -> a0x0040fa04pushl_0x41ef24UINT32	[color="#000000"];
 	a0x0040fa09call_0x41e148	[label=call];
 	a0x0040fa04pushl_0x41ef24UINT32 -> a0x0040fa09call_0x41e148	[color="#000000"];
+	a0x0040fa09call_0x41e148 -> GETMODULEHANDLEW_KERNEL32_DLL	[color="#000000"];
 	a0x0040fa14pushl_eax	[label=pushl];
 	a0x0040fa0fpushl_0x41ef08UINT32 -> a0x0040fa14pushl_eax	[color="#000000"];
 	a0x0040fa15call_0x41e080	[label=call];
 	a0x0040fa14pushl_eax -> a0x0040fa15call_0x41e080	[color="#000000"];
+	a0x0040fa15call_0x41e080 -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x0040fa1dcmpl_ebx_esi	[label=cmpl];
 	a0x0040fa1bmovl_eax_esi -> a0x0040fa1dcmpl_ebx_esi	[color="#000000"];
 	a0x0040fa1fje_0x40fa36	[label=je];
@@ -5890,7 +5890,6 @@ strict digraph G {
 	a0x0040fa68call_0x41e078	[label=call];
 	a0x0040fa48jae_0x40fa68 -> a0x0040fa68call_0x41e078	[color="#000000",
 		label=T];
-	a0x0040fa68call_0x41e078 -> GETCURRENTTHREADID_KERNEL32_DLL	[color="#000000"];
 	a0x0040fa70movl_eax_0x425420	[label=movl];
 	a0x0040fa6epushl_0xcUINT8 -> a0x0040fa70movl_eax_0x425420	[color="#000000"];
 	a0x0040fa75movl_ebx_0x425424	[label=movl];
@@ -6026,7 +6025,6 @@ strict digraph G {
 	a0x0040fc77call_0x40fbec -> a0x0040fbecpushl_0xcUINT8	[color="#000000"];
 	a0x0040fbeecall_0x41e1b4	[label=call];
 	a0x0040fbecpushl_0xcUINT8 -> a0x0040fbeecall_0x41e1b4	[color="#000000"];
-	a0x0040fbeecall_0x41e1b4 -> ISPROCESSORFEATUREPRESENT_KERNEL32_DLL	[color="#000000"];
 	a0x0040fbf6jne_0x40fbff	[label=jne];
 	a0x0040fbf4testl_eax_eax -> a0x0040fbf6jne_0x40fbff	[color="#000000"];
 	a0x0040fbffmovl_fs_0x18_eax	[label=movl];
@@ -6067,6 +6065,7 @@ strict digraph G {
 	GETPROCESSHEAP_KERNEL32_DLL -> a0x0040fc45pushl_eax	[color="#000000"];
 	a0x0040fc20call_0x41e1b8	[label=call];
 	a0x0040fc1fpushl_eax -> a0x0040fc20call_0x41e1b8	[color="#000000"];
+	a0x0040fc20call_0x41e1b8 -> HEAPALLOC_KERNEL32_DLL	[color="#000000"];
 	a0x0040fc28xorl_eax_eax	[label=xorl];
 	a0x0040fc26movl_eax_edi -> a0x0040fc28xorl_eax_eax	[color="#000000"];
 	a0x0040fc2acmpl_eax_edi	[label=cmpl];
@@ -6101,7 +6100,6 @@ strict digraph G {
 	a0x0040fc40pushl_edi -> a0x0040fc41pushl_0x0UINT8	[color="#000000"];
 	a0x0040fc43call_ebx	[label=call];
 	a0x0040fc41pushl_0x0UINT8 -> a0x0040fc43call_ebx	[color="#000000"];
-	a0x0040fc43call_ebx -> GETPROCESSHEAP_KERNEL32_DLL	[color="#000000"];
 	a0x0040fc46call_0x41e1c0	[label=call];
 	a0x0040fc45pushl_eax -> a0x0040fc46call_0x41e1c0	[color="#000000"];
 	a0x0040fc46call_0x41e1c0 -> HEAPFREE_KERNEL32_DLL	[color="#000000"];

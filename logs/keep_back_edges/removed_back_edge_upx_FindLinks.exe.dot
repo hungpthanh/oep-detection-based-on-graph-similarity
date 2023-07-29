@@ -327,7 +327,6 @@ strict digraph G {
 	GETPROCADDRESS_KERNEL32_DLL	[color=lightgrey,
 		fillcolor=lightgrey,
 		label="GETPROCADDRESS-KERNEL32-DLL"];
-	a0x00426db0call_0x26618esi_ -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x00426db6orl_eax_eax	[label=orl];
 	GETPROCADDRESS_KERNEL32_DLL -> a0x00426db6orl_eax_eax	[color="#000000"];
 	a0x00408435xorl_0x420284_eax	[label=xorl];
@@ -405,6 +404,7 @@ strict digraph G {
 	a0x00426dbamovl_eax_ebx_ -> a0x00426dbcaddl_0x4UINT8_ebx	[color="#000000"];
 	a0x00426dbfjmp_0x00426d99	[label=jmp];
 	a0x00426dbcaddl_0x4UINT8_ebx -> a0x00426dbfjmp_0x00426d99	[color="#000000"];
+	a0x00426dbfjmp_0x00426d99 -> a0x00426d99movb_edi__al	[color="#000000"];
 	a0x00426da7incl_edi	[label=incl];
 	a0x00426da4movzwl_edi__eax -> a0x00426da7incl_edi	[color="#000000"];
 	a0x00426da8pushl_eax	[label=pushl];

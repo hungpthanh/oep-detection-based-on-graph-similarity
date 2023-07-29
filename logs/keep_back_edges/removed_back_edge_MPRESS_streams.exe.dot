@@ -2093,6 +2093,7 @@ strict digraph G {
 	a0x00410be3jmp_0x410bee -> a0x00410beepushl_ebx	[color="#000000"];
 	a0x00410befcall_0x410c26	[label=call];
 	a0x00410beepushl_ebx -> a0x00410befcall_0x410c26	[color="#000000"];
+	a0x00410befcall_0x410c26 -> a0x00410c26jmp_0x422090	[color="#000000"];
 	a0x00410bf5xorb_al_al	[label=xorb];
 	a0x00410bf4stosl_eax_es_edi_ -> a0x00410bf5xorb_al_al	[color="#000000"];
 	a0x00410bf7movb_al__1esi_	[label=movb];
@@ -2106,7 +2107,6 @@ strict digraph G {
 	a0x00410bffjmp_0x410bd8	[label=jmp];
 	a0x00410bfdjne_0x410bf5 -> a0x00410bffjmp_0x410bd8	[color="#000000",
 		label=F];
-	a0x00410bffjmp_0x410bd8 -> a0x00410bd8lodsb_ds_esi__al	[color="#000000"];
 	a0x00410c06popl_edi	[label=popl];
 	a0x00410c01call_0x410c06 -> a0x00410c06popl_edi	[color="#000000"];
 	a0x00410c07addl_0xfffffeeeUINT32_edi	[label=addl];

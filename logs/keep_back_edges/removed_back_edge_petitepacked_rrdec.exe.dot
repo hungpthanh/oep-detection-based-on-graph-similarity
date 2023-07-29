@@ -1212,7 +1212,6 @@ strict digraph G {
 	a0x004175cemovl_esi__46672ebp_ -> a0x004175d4popl_eax	[color="#000000"];
 	a0x004175d5movl_eax__46680ebp_	[label=movl];
 	a0x004175d4popl_eax -> a0x004175d5movl_eax__46680ebp_	[color="#000000"];
-	a0x004175d5movl_eax__46680ebp_ -> a0x004175dbcmpl_0x5UINT8_eax	[color="#000000"];
 	a0x004175dejne_0x0041782d	[label=jne];
 	a0x004175dbcmpl_0x5UINT8_eax -> a0x004175dejne_0x0041782d	[color="#000000"];
 	a0x004175e4movl__46676ebp__eax	[label=movl];
@@ -1477,6 +1476,7 @@ strict digraph G {
 	a0x0041778epushl_eax -> a0x0041778fmovl_0x6UINT32__32ebp_	[color="#000000"];
 	a0x00417796call_0x004181d3	[label=call];
 	a0x0041778fmovl_0x6UINT32__32ebp_ -> a0x00417796call_0x004181d3	[color="#000000"];
+	a0x00417796call_0x004181d3 -> a0x004181d3pushl_ebp	[color="#000000"];
 	a0x00418496movl_0x18ebp__ecx	[label=movl];
 	a0x00418493subl_0x10ebp__eax -> a0x00418496movl_0x18ebp__ecx	[color="#000000"];
 	a0x00418499movb_ecxeax__cl	[label=movb];
@@ -2151,9 +2151,6 @@ strict digraph G {
 	a0x00417fdfleal_0x10ebp__eax	[label=leal];
 	a0x00417fddjne_0x00418025 -> a0x00417fdfleal_0x10ebp__eax	[color="#000000",
 		label=F];
-	a0x00418025cmpl_0x8UINT8__46676ebp_	[label=cmpl];
-	a0x00417fddjne_0x00418025 -> a0x00418025cmpl_0x8UINT8__46676ebp_	[color="#000000",
-		label=T];
 	a0x00417fe2movl_edi__112ebp_	[label=movl];
 	a0x00417fdfleal_0x10ebp__eax -> a0x00417fe2movl_edi__112ebp_	[color="#000000"];
 	a0x00417fe5pushl_eax	[label=pushl];
@@ -2173,7 +2170,6 @@ strict digraph G {
 	a0x00417ff5call_0x00418575	[label=call];
 	a0x00417ff4pushl_eax -> a0x00417ff5call_0x00418575	[color="#000000"];
 	a0x00418575pushl_ebp	[label=pushl];
-	a0x00417ff5call_0x00418575 -> a0x00418575pushl_ebp	[color="#000000"];
 	a0x00418576movl_esp_ebp	[label=movl];
 	a0x00418575pushl_ebp -> a0x00418576movl_esp_ebp	[color="#000000"];
 	a0x00418578pushl_ecx	[label=pushl];
@@ -2332,6 +2328,7 @@ strict digraph G {
 	a0x0041801bmovl_0x8UINT32__46676ebp_	[label=movl];
 	a0x00418015jne_0x004181c7 -> a0x0041801bmovl_0x8UINT32__46676ebp_	[color="#000000",
 		label=F];
+	a0x00418025cmpl_0x8UINT8__46676ebp_	[label=cmpl];
 	a0x0041801bmovl_0x8UINT32__46676ebp_ -> a0x00418025cmpl_0x8UINT8__46676ebp_	[color="#000000"];
 	a0x0041802cje_0x00418080	[label=je];
 	a0x00418025cmpl_0x8UINT8__46676ebp_ -> a0x0041802cje_0x00418080	[color="#000000"];
@@ -2430,7 +2427,6 @@ strict digraph G {
 		label=T];
 	a0x00418120movl_eax__46680ebp_	[label=movl];
 	a0x0041811dmovl__16ebp__ebx -> a0x00418120movl_eax__46680ebp_	[color="#000000"];
-	a0x00418120movl_eax__46680ebp_ -> a0x00418126cmpl_0x7UINT8_eax	[color="#000000"];
 	a0x00418129jne_0x00418175	[label=jne];
 	a0x00418126cmpl_0x7UINT8_eax -> a0x00418129jne_0x00418175	[color="#000000"];
 	a0x0041812bmovl__12ebp__eax	[label=movl];
@@ -2456,6 +2452,7 @@ strict digraph G {
 	a0x00418140leal__20ebp__eax -> a0x00418143pushl_eax	[color="#000000"];
 	a0x00418144call_0x00418575	[label=call];
 	a0x00418143pushl_eax -> a0x00418144call_0x00418575	[color="#000000"];
+	a0x00418144call_0x00418575 -> a0x00418575pushl_ebp	[color="#000000"];
 	a0x0041814caddl_0x10UINT8_esp	[label=addl];
 	a0x00418149movl__112ebp__eax -> a0x0041814caddl_0x10UINT8_esp	[color="#000000"];
 	a0x0041814fcmpl__116ebp__eax	[label=cmpl];
@@ -2913,6 +2910,7 @@ strict digraph G {
 	a0x00417fcfandl_0x0UINT8__46676ebp_	[label=andl];
 	a0x00417fcedecl_edx -> a0x00417fcfandl_0x0UINT8__46676ebp_	[color="#000000"];
 	a0x00417fcfandl_0x0UINT8__46676ebp_ -> a0x00417fd6cmpl_0x7UINT8__46676ebp_	[color="#000000"];
+	a0x0041802ejmp_0x0041786d -> a0x0041786dcmpl_0x0UINT8__46676ebp_	[color="#000000"];
 	a0x00417c01je_0x00417c24	[label=je];
 	a0x00417bfetestb_0x10UINT8_cl -> a0x00417c01je_0x00417c24	[color="#000000"];
 	a0x00417c03andl_0xfUINT8_ecx	[label=andl];
@@ -3103,10 +3101,12 @@ strict digraph G {
 	a0x00417e13jmp_0x00417e18 -> a0x00417e18testl_edx_edx	[color="#000000"];
 	a0x00417e1ajne_0x00417ecc	[label=jne];
 	a0x00417e18testl_edx_edx -> a0x00417e1ajne_0x00417ecc	[color="#000000"];
+	a0x00417eccandl_0x0UINT8__20ebp_	[label=andl];
+	a0x00417e1ajne_0x00417ecc -> a0x00417eccandl_0x0UINT8__20ebp_	[color="#000000",
+		label=T];
 	a0x00417e20cmpl_ecx_edi	[label=cmpl];
 	a0x00417e1ajne_0x00417ecc -> a0x00417e20cmpl_ecx_edi	[color="#000000",
 		label=F];
-	a0x00417eccandl_0x0UINT8__20ebp_	[label=andl];
 	a0x00417ed0movb_esi__al	[label=movb];
 	a0x00417eccandl_0x0UINT8__20ebp_ -> a0x00417ed0movb_esi__al	[color="#000000"];
 	a0x00417ed2movb_al_edi_	[label=movb];
@@ -3134,9 +3134,9 @@ strict digraph G {
 	a0x00417ef0andl_0x0UINT8__46676ebp_	[label=andl];
 	a0x00417eeajne_0x00417e15 -> a0x00417ef0andl_0x0UINT8__46676ebp_	[color="#000000",
 		label=F];
-	a0x00417e15movl__116ebp__eax -> a0x00417e18testl_edx_edx	[color="#000000"];
 	a0x00417ef7movl__12ebp__esi	[label=movl];
 	a0x00417ef0andl_0x0UINT8__46676ebp_ -> a0x00417ef7movl__12ebp__esi	[color="#000000"];
+	a0x00417ef7movl__12ebp__esi -> a0x00417efacmpl_0x6UINT8__46676ebp_	[color="#000000"];
 	a0x00417c27je_0x00417d55	[label=je];
 	a0x00417c24testb_0x40UINT8_cl -> a0x00417c27je_0x00417d55	[color="#000000"];
 	a0x00417d55movl_ecx__46664ebp_	[label=movl];

@@ -9,7 +9,7 @@ import gc
 import sys
 
 from utils.be_pum_utils import get_packer_name_BE_PUM, check_finish_running, get_packer_name_in_BE_PUM
-from utils.graph_utils import create_subgraph, get_removed_backed_graph, load_end_unpacking_sequence
+from utils.graph_utils import create_subgraph, get_removed_backed_graph, load_end_unpacking_sequence, verify_cfg
 from utils.dataset_utils import get_test_list, get_inference_list
 
 end_unpacking_sequence_samples = load_end_unpacking_sequence()
@@ -26,6 +26,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--mode', default="evaluation", type=str)
 parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
+parser.add_argument('--inference_file', default="inference3.txt", type=str)
 parser.add_argument('--sample_files', nargs="+",
                     default=["AccessEnum.exe", "Cacheset.exe", "ADInsight.exe", "ADExplorer.exe"])
 parser.add_argument('--log_path', default="logs/graph_based_method6", type=str)
@@ -39,7 +40,7 @@ data_folder_path = "data"
 
 if not os.path.exists(args.log_path):
     os.mkdir(args.log_path)
-log_file = open(args.log_path + "/inference.txt".format(args.packer_names), "w")
+log_file = open(args.log_path + "/{}.txt".format(args.inference_file), "w")
 log_file.writelines("Inference")
 log_file.writelines("Packer names: {}\n".format(args.packer_names))
 log_file.writelines("File name: {}\n".format(args.file_name))
@@ -89,17 +90,33 @@ def main():
     packer_names = args.packer_names
     print(packer_names)
     total_sample = 0
-    for file_name in inference_list:
+    running_sample = 0
+    for idx, file_name in enumerate(inference_list):
+
         # print("File name: {}".format(file_name))
+        if file_name != "Trojan.Win32.DNSChanger.flc":
+            continue
         packed_log_file = os.path.join(data_folder_path, "log_bepum_malware", "Log-" + file_name + ".log")
+        running_sample += 1
+        # if running_sample < 475:
+        #     continue
+        print("running sample = {}".format(running_sample))
         if not check_finish_running(packed_log_file):
             continue
+
         packer_name_be_pum = get_packer_name_in_BE_PUM(packed_log_file)
         total_sample += 1
         final_address = None
         final_score = 0
         predicted_packer = None
         # create information of packed file
+
+        dot_file = os.path.join(data_folder_path, "log_bepum_malware", "{}_model.dot".format(file_name))
+        # print("verify: {}".format(verify_cfg(dot_file)))
+        if not verify_cfg(dot_file)[0]:
+            continue
+
+        # print("dot file: {}".format(dot_file))
         data, unique_labels, node_list, end_unpacking_sequences, msg = build_subgraph_vector_inference(file_name)
 
         if data is None:

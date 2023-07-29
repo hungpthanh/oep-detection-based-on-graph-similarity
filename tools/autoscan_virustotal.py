@@ -101,17 +101,29 @@ class VTScan:
             print("pass 3")
             print("result : {}".format(result))
             entry_point = result.get("data").get("attributes").get("pe_info").get("entry_point")
+            packer_name_detectiteasy = None
+            packer_name_peid = None
+            # try:
+            #     packer_name_detectiteasy = result.get("data").get("attributes").get("detectiteasy").get("values").get("name")
+            # except Exception:
+            #     pass
+            #
+            # try:
+            #     packer_name_PEiD = result.get("data").get("attributes").get("packers").get("PEiD")
+            # except Exception:
+            #     pass
+
             # print("entry_point: {}".format(entry_point))
-            return entry_point
+            return entry_point, packer_name_detectiteasy, packer_name_peid, result
         else:
             print(Colors.RED + "failed to get information :(" + Colors.ENDC)
             print(Colors.RED + "status code: " + str(res.status_code) + Colors.ENDC)
             return None
 
-
+vtscan = VTScan()
 def get_done_files():
     done_lists = []
-    for idx in range(1, 6):
+    for idx in range(1, 7):
         with open("/home/hungpt/workspace/research/oep-detection/logs/entry_point_{}.txt".format(idx), "r") as f:
             for line in f:
                 line = line.strip()
@@ -123,7 +135,7 @@ def test_packer():
     import requests
 
     api_key = "b28069df4ba529c1c1848699a7b39c98e44f92ee871844f1c118829386af4721"
-    resource = "/home/hungpt/Downloads/PackingData-master/PackingData/UPX/upx_accesschk.exe"
+    resource = "/home/hungpt/Downloads/PackingData-master/PackingData/UPX/upx_AccessEnum.exe"
     url = f"https://www.virustotal.com/vtapi/v2/file/report"
 
     params = {"apikey": api_key, "resource": resource}
@@ -146,32 +158,77 @@ def test_packer():
         print("Error occurred while making the request.")
 
 
+# Python program to find SHA256 hash string of a file
+import hashlib
+
+# filename = input("Enter the input file name: ")
+
+def get_infor_by_hash(filename):
+    name_file = os.path.basename(filename)
+    name_save = "logs/virustotal/{}.json".format(name_file)
+    if os.path.exists(name_save):
+        return
+    sha256_hash = hashlib.sha256()
+    with open(filename, "rb") as f:
+        # Read and update hash string value in blocks of 4K
+        for byte_block in iter(lambda: f.read(4096), b""):
+            sha256_hash.update(byte_block)
+        print(sha256_hash.hexdigest())
+    # print(vtscan.info(sha256_hash.hexdigest()))
+    try:
+        entry_point, packer_name_detectiteasy, packer_name_peid, result = vtscan.info(sha256_hash.hexdigest())
+
+        with open("logs/virustotal/{}.json".format(name_file), "w") as outfile:
+            json.dump(result, outfile, indent=4)
+    except Exception as e:
+        print(e)
+        pass
+def run_by_hash():
+    # file_name = "/home/hungpt/Desktop/check_virustotal/petitepacked_EventLogChannelsView.exe"
+    folder_path = "/home/hungpt/Desktop/check_virustotal"
+
+    files = glob.glob(folder_path + "/*.exe")
+    for file in tqdm(files[1000:1171]):
+        name_file = os.path.basename(file)
+        name_save = "logs/virustotal/{}.json".format(name_file)
+        if os.path.exists(name_save):
+            continue
+        # vtscan.upload(file)
+        # time.sleep(30)
+        get_infor_by_hash(file)
+        time.sleep(30)
+
 if __name__ == "__main__":
     # parser = argparse.ArgumentParser()
-    # parser.add_argument('-m', '--mal', required=True, help="PE file path for scanning")
-    # args = vars(parser.parse_args())
+    # # parser.add_argument('-m', '--mal', required=True, help="PE file path for scanning")
+    # # args = vars(parser.parse_args())
     # vtscan = VTScan()
     # # print(hex(vtscan.run("/home/hungpt/Downloads/PackingData-master/PackingData/UPX/upx_ADExplorer.exe")))
     # done_lists = get_done_files()
-    # with open("logs/entry_point_6.txt", "w") as f:
+    # with open("logs/file_virustotal_information.txt", "a") as f:
     #     # folder_path = "/home/hungpt/Downloads/win32exe-20230620T135255Z-001/win32exe"
-    #     folder_path = "/home/hungpt/Downloads/PackingData-master/PackingData/UPX"
+    #     folder_path = "/home/hungpt/Desktop/check_virustotal"
+    #
     #     files = glob.glob(folder_path + "/*.exe")
     #     for file in tqdm(files):
     #
     #         try:
     #             name_file = os.path.basename(file)
     #
-    #             # if name_file in done_lists:
-    #             #     continue
-    #             # print(file)
-    #             # print(name_file)
-    #             entry_point = vtscan.run(file)
-    #             print("{}, {}".format(name_file, entry_point))
-    #             f.writelines("{},{}\n".format(name_file, hex(entry_point)))
+    #             if name_file in done_lists:
+    #                 continue
+    #             print(file)
+    #             print(name_file)
+    #             entry_point, packer_name_detectiteasy, packer_name_PEiD, result = vtscan.run(file)
+    #             with open("logs/virustotal/{}.json".format(name_file), "w") as outfile:
+    #                 json.dump(result, outfile, indent=4)
+    #             print("{}, {}, {}, {}".format(name_file, entry_point, packer_name_detectiteasy, packer_name_PEiD))
+    #             f.writelines("{},{},{},{}\n".format(name_file, hex(entry_point), packer_name_detectiteasy, packer_name_PEiD))
     #
     #         except Exception as e:
     #             print(e)
     #             pass
     #         time.sleep(20)
-    test_packer()
+    # #  test_packer()
+    run_by_hash()
+    # vtscan.info("4732e0d3020e02102adad81eee09141de6b399ca44e39b498831c1a77aba963d")

@@ -591,6 +591,7 @@ strict digraph G {
 	a0x00413997call_0x414d00	[label=call];
 	a0x00413992pushl_0x434318UINT32 -> a0x00413997call_0x414d00	[color="#000000"];
 	a0x00414d00pushl_0x414d90UINT32	[label=pushl];
+	a0x00413997call_0x414d00 -> a0x00414d00pushl_0x414d90UINT32	[color="#000000"];
 	a0x00414d05pushl_fs_0	[label=pushl];
 	a0x00414d00pushl_0x414d90UINT32 -> a0x00414d05pushl_fs_0	[color="#000000"];
 	a0x00414d0cmovl_0x10esp__eax	[label=movl];
@@ -807,6 +808,7 @@ strict digraph G {
 	a0x00418e73pushl_0x432d38UINT32 -> a0x00418e78pushl_edi	[color="#000000"];
 	a0x00418e79call_esi	[label=call];
 	a0x00418e78pushl_edi -> a0x00418e79call_esi	[color="#000000"];
+	a0x00418e79call_esi -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x00418e80pushl_edi	[label=pushl];
 	a0x00418e7bpushl_0x432d2cUINT32 -> a0x00418e80pushl_edi	[color="#000000"];
 	a0x00418e81movl_eax_0x4436c4	[label=movl];
@@ -888,7 +890,6 @@ strict digraph G {
 	a0x004189f5call_0x418981	[label=call];
 	a0x004189f3pushl_0x0UINT8 -> a0x004189f5call_0x418981	[color="#000000"];
 	a0x00418981movl_edi_edi	[label=movl];
-	a0x004189f5call_0x418981 -> a0x00418981movl_edi_edi	[color="#000000"];
 	a0x00418983pushl_ebp	[label=pushl];
 	a0x00418981movl_edi_edi -> a0x00418983pushl_ebp	[color="#000000"];
 	a0x00418984movl_esp_ebp	[label=movl];
@@ -944,6 +945,7 @@ strict digraph G {
 	a0x004189d5pushl_0x432cdcUINT32 -> a0x004189dapushl_eax	[color="#000000"];
 	a0x004189dbcall_0x432280	[label=call];
 	a0x004189dapushl_eax -> a0x004189dbcall_0x432280	[color="#000000"];
+	a0x004189dbcall_0x432280 -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x004189e3je_0x4189ed	[label=je];
 	a0x004189e1testl_eax_eax -> a0x004189e3je_0x4189ed	[color="#000000"];
 	a0x004189e5pushl_0x8ebp_	[label=pushl];
@@ -1170,6 +1172,9 @@ strict digraph G {
 	a0x00413b2dleal_0x43b838esi8__eax	[label=leal];
 	a0x00413b2bjne_0x413b4b -> a0x00413b2dleal_0x43b838esi8__eax	[color="#000000",
 		label=F];
+	a0x00413b4bincl_esi	[label=incl];
+	a0x00413b2bjne_0x413b4b -> a0x00413b4bincl_esi	[color="#000000",
+		label=T];
 	a0x00413b34movl_edi_eax_	[label=movl];
 	a0x00413b2dleal_0x43b838esi8__eax -> a0x00413b34movl_edi_eax_	[color="#000000"];
 	a0x00413b36pushl_0xfa0UINT32	[label=pushl];
@@ -1256,15 +1261,12 @@ strict digraph G {
 	a0x00413b46popl_ecx -> a0x00413b47testl_eax_eax	[color="#000000"];
 	a0x00413b49je_0x413b57	[label=je];
 	a0x00413b47testl_eax_eax -> a0x00413b49je_0x413b57	[color="#000000"];
-	a0x00413b4bincl_esi	[label=incl];
 	a0x00413b49je_0x413b57 -> a0x00413b4bincl_esi	[color="#000000",
 		label=F];
 	a0x00413b4ccmpl_0x24UINT8_esi	[label=cmpl];
 	a0x00413b4bincl_esi -> a0x00413b4ccmpl_0x24UINT8_esi	[color="#000000"];
 	a0x00413b4fjl_0x413b23	[label=jl];
 	a0x00413b4ccmpl_0x24UINT8_esi -> a0x00413b4fjl_0x413b23	[color="#000000"];
-	a0x00413b4fjl_0x413b23 -> a0x00413b23cmpl_0x1UINT8_0x43b83cesi8_	[color="#000000",
-		label=T];
 	a0x00413b51xorl_eax_eax	[label=xorl];
 	a0x00413b4fjl_0x413b23 -> a0x00413b51xorl_eax_eax	[color="#000000",
 		label=F];
@@ -1330,6 +1332,7 @@ strict digraph G {
 	a0x00418a50pushl_0x432d08UINT32 -> a0x00418a55pushl_eax	[color="#000000"];
 	a0x00418a56call_0x432280	[label=call];
 	a0x00418a55pushl_eax -> a0x00418a56call_0x432280	[color="#000000"];
+	a0x00418a56call_0x432280 -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x00418a5eje_0x418a68	[label=je];
 	a0x00418a5ctestl_eax_eax -> a0x00418a5eje_0x418a68	[color="#000000"];
 	a0x00418a60pushl_0x8ebp_	[label=pushl];
@@ -1404,7 +1407,6 @@ strict digraph G {
 	a0x00428ffcpushl_0xcUINT8 -> a0x00428ffepushl_0x434718UINT32	[color="#000000"];
 	a0x00429003call_0x414d00	[label=call];
 	a0x00428ffepushl_0x434718UINT32 -> a0x00429003call_0x414d00	[color="#000000"];
-	a0x00429003call_0x414d00 -> a0x00414d00pushl_0x414d90UINT32	[color="#000000"];
 	a0x0042900bxorl_edi_edi	[label=xorl];
 	a0x00429008movl_0x8ebp__ecx -> a0x0042900bxorl_edi_edi	[color="#000000"];
 	a0x0042900dcmpl_edi_ecx	[label=cmpl];
@@ -1575,7 +1577,6 @@ strict digraph G {
 	a0x00418b25pushl_0xcUINT8 -> a0x00418b27pushl_0x434488UINT32	[color="#000000"];
 	a0x00418b2ccall_0x414d00	[label=call];
 	a0x00418b27pushl_0x434488UINT32 -> a0x00418b2ccall_0x414d00	[color="#000000"];
-	a0x00418b2ccall_0x414d00 -> a0x00414d00pushl_0x414d90UINT32	[color="#000000"];
 	a0x00418b36pushl_esi	[label=pushl];
 	a0x00418b31movl_0x432cecUINT32_esi -> a0x00418b36pushl_esi	[color="#000000"];
 	a0x00418b37call_0x4321f8	[label=call];
@@ -1609,6 +1610,7 @@ strict digraph G {
 	a0x00418b64pushl_eax -> a0x00418b65movl_0x432280_ebx	[color="#000000"];
 	a0x00418b6bcall_ebx	[label=call];
 	a0x00418b65movl_0x432280_ebx -> a0x00418b6bcall_ebx	[color="#000000"];
+	a0x00418b6bcall_ebx -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x00418b73pushl_0x432d08UINT32	[label=pushl];
 	a0x00418b6dmovl_eax_0x1f8esi_ -> a0x00418b73pushl_0x432d08UINT32	[color="#000000"];
 	a0x00418b78pushl__28ebp_	[label=pushl];
@@ -1862,7 +1864,6 @@ strict digraph G {
 	a0x00418fb8popl_ecx -> a0x00418fb9popl_ecx	[color="#000000"];
 	a0x00418fbacall_0x432124	[label=call];
 	a0x00418fb9popl_ecx -> a0x00418fbacall_0x432124	[color="#000000"];
-	a0x00418fbacall_0x432124 -> GETCURRENTTHREADID_KERNEL32_DLL	[color="#000000"];
 	a0x00418fc4movl_eax_esi_	[label=movl];
 	a0x00418fc0orl_0xffffffffUINT8_0x4esi_ -> a0x00418fc4movl_eax_esi_	[color="#000000"];
 	a0x00418fc6xorl_eax_eax	[label=xorl];
@@ -1917,6 +1918,7 @@ strict digraph G {
 	a0x0041b79dpushl_0x54UINT8 -> a0x0041b79fpushl_0x434598UINT32	[color="#000000"];
 	a0x0041b7a4call_0x414d00	[label=call];
 	a0x0041b79fpushl_0x434598UINT32 -> a0x0041b7a4call_0x414d00	[color="#000000"];
+	a0x0041b7a4call_0x414d00 -> a0x00414d00pushl_0x414d90UINT32	[color="#000000"];
 	a0x0041b7abmovl_edi__4ebp_	[label=movl];
 	a0x0041b7a9xorl_edi_edi -> a0x0041b7abmovl_edi__4ebp_	[color="#000000"];
 	a0x0041b7aeleal__100ebp__eax	[label=leal];
@@ -1936,6 +1938,7 @@ strict digraph G {
 	a0x0041b7c3popl_esi -> a0x0041b7c4pushl_esi	[color="#000000"];
 	a0x0041b7c5call_0x419833	[label=call];
 	a0x0041b7c4pushl_esi -> a0x0041b7c5call_0x419833	[color="#000000"];
+	a0x0041b7c5call_0x419833 -> a0x00419833movl_edi_edi	[color="#000000"];
 	a0x0041b7cbpopl_ecx	[label=popl];
 	a0x0041b7capopl_ecx -> a0x0041b7cbpopl_ecx	[color="#000000"];
 	a0x0041b7cccmpl_edi_eax	[label=cmpl];
@@ -2482,6 +2485,7 @@ strict digraph G {
 	a0x0041f72ejne_0x41f735 -> a0x0041f730call_0x4176a0	[color="#000000",
 		label=F];
 	a0x004176a0cmpl_0x0UINT8_0x4a8f9c	[label=cmpl];
+	a0x0041f730call_0x4176a0 -> a0x004176a0cmpl_0x0UINT8_0x4a8f9c	[color="#000000"];
 	a0x004176a7jne_0x4176bb	[label=jne];
 	a0x004176a0cmpl_0x0UINT8_0x4a8f9c -> a0x004176a7jne_0x4176bb	[color="#000000"];
 	a0x004176a9pushl_0xfffffffdUINT8	[label=pushl];
@@ -2598,7 +2602,6 @@ strict digraph G {
 	a0x004171c3pushl_0xcUINT8 -> a0x004171c5pushl_0x4343a0UINT32	[color="#000000"];
 	a0x004171cacall_0x414d00	[label=call];
 	a0x004171c5pushl_0x4343a0UINT32 -> a0x004171cacall_0x414d00	[color="#000000"];
-	a0x004171cacall_0x414d00 -> a0x00414d00pushl_0x414d90UINT32	[color="#000000"];
 	a0x004171cfcall_0x418c85 -> a0x00418c85movl_edi_edi	[color="#000000"];
 	a0x004171d6movl_0x43c0b4_eax	[label=movl];
 	a0x004171d4movl_eax_edi -> a0x004171d6movl_0x43c0b4_eax	[color="#000000"];
@@ -2948,7 +2951,6 @@ strict digraph G {
 	a0x00417381call_0x411110	[label=call];
 	a0x00417380pushl_eax -> a0x00417381call_0x411110	[color="#000000"];
 	a0x00411110movl_0xcesp__edx	[label=movl];
-	a0x00417381call_0x411110 -> a0x00411110movl_0xcesp__edx	[color="#000000"];
 	a0x00411114movl_0x4esp__ecx	[label=movl];
 	a0x00411110movl_0xcesp__edx -> a0x00411114movl_0x4esp__ecx	[color="#000000"];
 	a0x00411118testl_edx_edx	[label=testl];
@@ -3155,6 +3157,7 @@ strict digraph G {
 	a0x0041704dpushl_eax -> a0x0041704epushl_0x4esi_	[color="#000000"];
 	a0x00417051call_0x4321d0	[label=call];
 	a0x0041704epushl_0x4esi_ -> a0x00417051call_0x4321d0	[color="#000000"];
+	a0x00417051call_0x4321d0 -> GETCPINFO_KERNEL32_DLL	[color="#000000"];
 	a0x0041705ctestl_eax_eax	[label=testl];
 	a0x00417057movl_0x100UINT32_edi -> a0x0041705ctestl_eax_eax	[color="#000000"];
 	a0x0041705eje_0x41715f	[label=je];
@@ -3330,6 +3333,7 @@ strict digraph G {
 	MULTIBYTETOWIDECHAR_KERNEL32_DLL	[color=lightgrey,
 		fillcolor=lightgrey,
 		label="MULTIBYTETOWIDECHAR-KERNEL32-DLL"];
+	a0x0042353fcall_esi -> MULTIBYTETOWIDECHAR_KERNEL32_DLL	[color="#000000"];
 	a0x00423541movl_eax_edi	[label=movl];
 	MULTIBYTETOWIDECHAR_KERNEL32_DLL -> a0x00423541movl_eax_edi	[color="#000000"];
 	a0x004235abtestl_eax_eax	[label=testl];
@@ -3439,6 +3443,7 @@ strict digraph G {
 	a0x00423591pushl_0x0UINT8 -> a0x00423593pushl_ebx	[color="#000000"];
 	a0x00423594call_0x411110	[label=call];
 	a0x00423593pushl_ebx -> a0x00423594call_0x411110	[color="#000000"];
+	a0x00423594call_0x411110 -> a0x00411110movl_0xcesp__edx	[color="#000000"];
 	a0x0042359cpushl_edi	[label=pushl];
 	a0x00423599addl_0xcUINT8_esp -> a0x0042359cpushl_edi	[color="#000000"];
 	a0x0042359dpushl_ebx	[label=pushl];
@@ -3453,7 +3458,6 @@ strict digraph G {
 	a0x004235a4pushl_0x1UINT8 -> a0x004235a6pushl_0x18ebp_	[color="#000000"];
 	a0x004235a9call_esi	[label=call];
 	a0x004235a6pushl_0x18ebp_ -> a0x004235a9call_esi	[color="#000000"];
-	a0x004235a9call_esi -> MULTIBYTETOWIDECHAR_KERNEL32_DLL	[color="#000000"];
 	a0x004235adje_0x4235c0	[label=je];
 	a0x004235abtestl_eax_eax -> a0x004235adje_0x4235c0	[color="#000000"];
 	a0x004235afpushl_0x14ebp_	[label=pushl];
@@ -3467,7 +3471,6 @@ strict digraph G {
 	a0x004235b3pushl_ebx -> a0x004235b4pushl_0x8ebp_	[color="#000000"];
 	a0x004235b7call_0x43229c	[label=call];
 	a0x004235b4pushl_0x8ebp_ -> a0x004235b7call_0x43229c	[color="#000000"];
-	a0x004235b7call_0x43229c -> GETSTRINGTYPEW_KERNEL32_DLL	[color="#000000"];
 	a0x004235c0pushl_ebx	[label=pushl];
 	a0x004235bdmovl_eax__8ebp_ -> a0x004235c0pushl_ebx	[color="#000000"];
 	a0x004235c1call_0x4125c4	[label=call];
@@ -3517,7 +3520,6 @@ strict digraph G {
 	a0x0042364ccall_0x411067	[label=call];
 	a0x0042364axorl_ebp_ecx -> a0x0042364ccall_0x411067	[color="#000000"];
 	a0x00411067cmpl_0x43b810_ecx	[label=cmpl];
-	a0x0042364ccall_0x411067 -> a0x00411067cmpl_0x43b810_ecx	[color="#000000"];
 	a0x0041106djne_0x411071	[label=jne];
 	a0x00411067cmpl_0x43b810_ecx -> a0x0041106djne_0x411071	[color="#000000"];
 	a0x0041106frepz_ret	[label=repz];
@@ -3594,6 +3596,7 @@ strict digraph G {
 	a0x00419468pushl_0x8ebp_ -> a0x0041946bleal__16ebp__ecx	[color="#000000"];
 	a0x0041946ecall_0x4111f1	[label=call];
 	a0x0041946bleal__16ebp__ecx -> a0x0041946ecall_0x4111f1	[color="#000000"];
+	a0x0041946ecall_0x4111f1 -> a0x004111f1movl_edi_edi	[color="#000000"];
 	a0x00419476leal__16ebp__ecx	[label=leal];
 	a0x00419473pushl_0x28ebp_ -> a0x00419476leal__16ebp__ecx	[color="#000000"];
 	a0x00419479pushl_0x24ebp_	[label=pushl];
@@ -3751,7 +3754,6 @@ strict digraph G {
 	a0x00419454movl__4ebp__ecx -> a0x00419457xorl_ebp_ecx	[color="#000000"];
 	a0x00419459call_0x411067	[label=call];
 	a0x00419457xorl_ebp_ecx -> a0x00419459call_0x411067	[color="#000000"];
-	a0x00419459call_0x411067 -> a0x00411067cmpl_0x43b810_ecx	[color="#000000"];
 	a0x0041945fret	[label=ret];
 	a0x0041945eleave_ -> a0x0041945fret	[color="#000000"];
 	a0x00419493addl_0x20UINT8_esp	[label=addl];
@@ -4018,6 +4020,8 @@ strict digraph G {
 	a0x004176bbxorl_eax_eax -> a0x004176bdret	[color="#000000"];
 	a0x0041f735pushl_0x104UINT32	[label=pushl];
 	a0x004176bdret -> a0x0041f735pushl_0x104UINT32	[color="#000000"];
+	a0x004150aeaddl_0x4UINT8_esi	[label=addl];
+	a0x004176bdret -> a0x004150aeaddl_0x4UINT8_esi	[color="#000000"];
 	a0x0041f73amovl_0x4436e8UINT32_esi	[label=movl];
 	a0x0041f735pushl_0x104UINT32 -> a0x0041f73amovl_0x4436e8UINT32_esi	[color="#000000"];
 	a0x0041f73fpushl_esi	[label=pushl];
@@ -4173,7 +4177,6 @@ strict digraph G {
 	a0x0042b02fpushl_0x8ebp_ -> a0x0042b032leal__16ebp__ecx	[color="#000000"];
 	a0x0042b035call_0x4111f1	[label=call];
 	a0x0042b032leal__16ebp__ecx -> a0x0042b035call_0x4111f1	[color="#000000"];
-	a0x0042b035call_0x4111f1 -> a0x004111f1movl_edi_edi	[color="#000000"];
 	a0x0042b03emovl__12ebp__ecx	[label=movl];
 	a0x0042b03amovzbl_0xcebp__eax -> a0x0042b03emovl__12ebp__ecx	[color="#000000"];
 	a0x0042b041movb_0x14ebp__dl	[label=movb];
@@ -4329,6 +4332,7 @@ strict digraph G {
 	a0x0041f7afpushl_esi -> a0x0041f7b0leal__12ebp__edi	[color="#000000"];
 	a0x0041f7b3call_0x41f581	[label=call];
 	a0x0041f7b0leal__12ebp__edi -> a0x0041f7b3call_0x41f581	[color="#000000"];
+	a0x0041f7b3call_0x41f581 -> a0x0041f581movl_edi_edi	[color="#000000"];
 	a0x0041f5a3addl_0x4UINT8_0x8ebp_	[label=addl];
 	a0x0041f5a0movl_0x8ebp__ebx -> a0x0041f5a3addl_0x4UINT8_0x8ebp_	[color="#000000"];
 	a0x0041f5a7movl_edx_ebx_	[label=movl];
@@ -4409,6 +4413,7 @@ strict digraph G {
 	a0x0041f4becall_0x410ac0	[label=call];
 	a0x0041f4bdpushl_esi -> a0x0041f4becall_0x410ac0	[color="#000000"];
 	a0x00410ac0movl_0x4esp__ecx	[label=movl];
+	a0x0041f4becall_0x410ac0 -> a0x00410ac0movl_0x4esp__ecx	[color="#000000"];
 	a0x00410ac4testl_0x3UINT32_ecx	[label=testl];
 	a0x00410ac0movl_0x4esp__ecx -> a0x00410ac4testl_0x3UINT32_ecx	[color="#000000"];
 	a0x00410acaje_0x410af0	[label=je];
@@ -4467,13 +4472,13 @@ strict digraph G {
 	a0x00410b2cret -> a0x0041f4f4movl_eax_ebx	[color="#000000"];
 	a0x0041f4c4leal_0x1esieax__esi	[label=leal];
 	a0x0041f4c3popl_ecx -> a0x0041f4c4leal_0x1esieax__esi	[color="#000000"];
-	a0x0041f4c4leal_0x1esieax__esi -> a0x0041f4c8movb_esi__al	[color="#000000"];
 	a0x0041f4d0incl_edi	[label=incl];
 	a0x0041f4cepushl_0x4UINT8 -> a0x0041f4d0incl_edi	[color="#000000"];
 	a0x0041f4d1pushl_edi	[label=pushl];
 	a0x0041f4d0incl_edi -> a0x0041f4d1pushl_edi	[color="#000000"];
 	a0x0041f4d2call_0x419833	[label=call];
 	a0x0041f4d1pushl_edi -> a0x0041f4d2call_0x419833	[color="#000000"];
+	a0x0041f4d2call_0x419833 -> a0x00419833movl_edi_edi	[color="#000000"];
 	a0x0041f4d9popl_ecx	[label=popl];
 	a0x0041f4d7movl_eax_edi -> a0x0041f4d9popl_ecx	[color="#000000"];
 	a0x0041f4dapopl_ecx	[label=popl];
@@ -4503,7 +4508,6 @@ strict digraph G {
 		label=F];
 	a0x0041f4efcall_0x410ac0	[label=call];
 	a0x0041f4eepushl_esi -> a0x0041f4efcall_0x410ac0	[color="#000000"];
-	a0x0041f4efcall_0x410ac0 -> a0x00410ac0movl_0x4esp__ecx	[color="#000000"];
 	a0x0041f4f6incl_ebx	[label=incl];
 	a0x0041f4f4movl_eax_ebx -> a0x0041f4f6incl_ebx	[color="#000000"];
 	a0x0041f4f7cmpb_0x3dUINT8_esi_	[label=cmpb];
@@ -4515,6 +4519,7 @@ strict digraph G {
 	a0x0041f52eaddl_ebx_esi	[label=addl];
 	a0x0041f4fbje_0x41f52e -> a0x0041f52eaddl_ebx_esi	[color="#000000",
 		label=T];
+	a0x0041f52eaddl_ebx_esi -> a0x0041f530cmpb_0x0UINT8_esi_	[color="#000000"];
 	a0x0041f53bcall_0x411076	[label=call];
 	a0x0041f535pushl_0x442ea0 -> a0x0041f53bcall_0x411076	[color="#000000"];
 	a0x00411076pushl_0xcUINT8	[label=pushl];
@@ -4852,6 +4857,7 @@ strict digraph G {
 	a0x0041c7f3pushl_0x432e08UINT32 -> a0x0041c7f8pushl_eax	[color="#000000"];
 	a0x0041c7f9call_0x432280	[label=call];
 	a0x0041c7f8pushl_eax -> a0x0041c7f9call_0x432280	[color="#000000"];
+	a0x0041c7f9call_0x432280 -> GETPROCADDRESS_KERNEL32_DLL	[color="#000000"];
 	a0x0041c801je_0x41c808	[label=je];
 	a0x0041c7fftestl_eax_eax -> a0x0041c801je_0x41c808	[color="#000000"];
 	a0x0041c803pushl_0x0UINT8	[label=pushl];
@@ -5190,9 +5196,7 @@ strict digraph G {
 	a0x004150accall_ecx	[label=call];
 	a0x004150aaje_0x4150ae -> a0x004150accall_ecx	[color="#000000",
 		label=F];
-	a0x004150aeaddl_0x4UINT8_esi	[label=addl];
 	a0x004150aeaddl_0x4UINT8_esi -> a0x004150b1cmpl_0xcebp__esi	[color="#000000"];
-	a0x004150accall_ecx -> a0x004176a0cmpl_0x0UINT8_0x4a8f9c	[color="#000000"];
 	a0x00415972call_0x415910	[label=call];
 	a0x004150accall_ecx -> a0x00415972call_0x415910	[color="#000000"];
 	a0x0041a2a3movl_0x4a8f80_eax	[label=movl];
@@ -5286,6 +5290,7 @@ strict digraph G {
 	a0x0041a2c2pushl_0x4UINT8 -> a0x0041a2c4pushl_eax	[color="#000000"];
 	a0x0041a2c5call_0x419833	[label=call];
 	a0x0041a2c4pushl_eax -> a0x0041a2c5call_0x419833	[color="#000000"];
+	a0x0041a2c5call_0x419833 -> a0x00419833movl_edi_edi	[color="#000000"];
 	a0x0041a2cbpopl_ecx	[label=popl];
 	a0x0041a2capopl_ecx -> a0x0041a2cbpopl_ecx	[color="#000000"];
 	a0x0041a2ccmovl_eax_0x4a7f60	[label=movl];
@@ -5380,10 +5385,12 @@ strict digraph G {
 	a0x0041fe82pushl_0x4UINT8 -> a0x0041fe84pushl_0x20UINT8	[color="#000000"];
 	a0x0041fe86call_0x419833	[label=call];
 	a0x0041fe84pushl_0x20UINT8 -> a0x0041fe86call_0x419833	[color="#000000"];
+	a0x0041fe86call_0x419833 -> a0x00419833movl_edi_edi	[color="#000000"];
 	a0x0041fe8dpushl_esi	[label=pushl];
 	a0x0041fe8bmovl_eax_esi -> a0x0041fe8dpushl_esi	[color="#000000"];
 	a0x0041fe8ecall_0x418981	[label=call];
 	a0x0041fe8dpushl_esi -> a0x0041fe8ecall_0x418981	[color="#000000"];
+	a0x0041fe8ecall_0x418981 -> a0x00418981movl_edi_edi	[color="#000000"];
 	a0x0041fe96movl_eax_0x4a8f98	[label=movl];
 	a0x0041fe93addl_0xcUINT8_esp -> a0x0041fe96movl_eax_0x4a8f98	[color="#000000"];
 	a0x0041fe9bmovl_eax_0x4a8f94	[label=movl];
@@ -5517,7 +5524,6 @@ strict digraph G {
 	a0x0042b2e4pushl_0x10UINT8 -> a0x0042b2e6pushl_0x434880UINT32	[color="#000000"];
 	a0x0042b2ebcall_0x414d00	[label=call];
 	a0x0042b2e6pushl_0x434880UINT32 -> a0x0042b2ebcall_0x414d00	[color="#000000"];
-	a0x0042b2ebcall_0x414d00 -> a0x00414d00pushl_0x414d90UINT32	[color="#000000"];
 	a0x0042b2f2movl_0x8ebp__ebx	[label=movl];
 	a0x0042b2f0xorl_eax_eax -> a0x0042b2f2movl_0x8ebp__ebx	[color="#000000"];
 	a0x0042b2f5xorl_edi_edi	[label=xorl];
@@ -5570,6 +5576,7 @@ strict digraph G {
 		label=T];
 	a0x0041fe5ccall_0x418981	[label=call];
 	a0x0041fe59pushl_0x8ebp_ -> a0x0041fe5ccall_0x418981	[color="#000000"];
+	a0x0041fe5ccall_0x418981 -> a0x00418981movl_edi_edi	[color="#000000"];
 	a0x0041fe63addl_0x4UINT8_esi	[label=addl];
 	a0x0041fe61movl_eax_esi_ -> a0x0041fe63addl_0x4UINT8_esi	[color="#000000"];
 	a0x0041fe66pushl_esi	[label=pushl];
@@ -5743,6 +5750,7 @@ strict digraph G {
 	a0x0041f472movzbl_al_eax -> a0x0041f475pushl_eax	[color="#000000"];
 	a0x0041f476call_0x42b233	[label=call];
 	a0x0041f475pushl_eax -> a0x0041f476call_0x42b233	[color="#000000"];
+	a0x0041f476call_0x42b233 -> a0x0042b233movl_edi_edi	[color="#000000"];
 	a0x0041f47ctestl_eax_eax	[label=testl];
 	a0x0041f47bpopl_ecx -> a0x0041f47ctestl_eax_eax	[color="#000000"];
 	a0x0041f47eje_0x41f481	[label=je];
@@ -6216,6 +6224,7 @@ strict digraph G {
 	a0x00416705movl__548ebp__edi -> a0x0041670bmovb_al_dl	[color="#000000"];
 	a0x0041670djmp_0x415cf3	[label=jmp];
 	a0x0041670bmovb_al_dl -> a0x0041670djmp_0x415cf3	[color="#000000"];
+	a0x0041670djmp_0x415cf3 -> a0x00415cf3incl_ebx	[color="#000000"];
 	a0x00415d22xorl_eax_eax	[label=xorl];
 	a0x00415d20xorl_esi_esi -> a0x00415d22xorl_eax_eax	[color="#000000"];
 	a0x00415d22xorl_eax_eax -> a0x00415d24movsbl_0x432b50ecxeax8__eax	[color="#000000"];
@@ -6233,7 +6242,6 @@ strict digraph G {
 	a0x00415d66movl_esi__528ebp_ -> a0x00415d6cmovl_esi__568ebp_	[color="#000000"];
 	a0x00415d72jmp_0x4166ed	[label=jmp];
 	a0x00415d6cmovl_esi__568ebp_ -> a0x00415d72jmp_0x4166ed	[color="#000000"];
-	a0x00415d72jmp_0x4166ed -> a0x004166edmovl__572ebp__ebx	[color="#000000"];
 	a0x00415fa3cmpl_0x64UINT8_eax	[label=cmpl];
 	a0x00415fa0movsbl_dl_eax -> a0x00415fa3cmpl_0x64UINT8_eax	[color="#000000"];
 	a0x00415fa6jg_0x416194	[label=jg];
@@ -6437,11 +6445,12 @@ strict digraph G {
 	a0x00415b5cdecl_0x8ebp_ -> a0x00415b5fmovl_edi_ecx	[color="#000000"];
 	a0x00415b61call_0x415ae3	[label=call];
 	a0x00415b5fmovl_edi_ecx -> a0x00415b61call_0x415ae3	[color="#000000"];
-	a0x00415b61call_0x415ae3 -> a0x00415ae3testb_0x40UINT8_0xcecx_	[color="#000000"];
 	a0x00415b67cmpl_0xffffffffUINT8_esi_	[label=cmpl];
 	a0x00415b66incl_ebx -> a0x00415b67cmpl_0xffffffffUINT8_esi_	[color="#000000"];
 	a0x00415b6ajne_0x415b7f	[label=jne];
 	a0x00415b67cmpl_0xffffffffUINT8_esi_ -> a0x00415b6ajne_0x415b7f	[color="#000000"];
+	a0x00415b6ajne_0x415b7f -> a0x00415b7fcmpl_0x0UINT8_0x8ebp_	[color="#000000",
+		label=T];
 	a0x004166adcmpl_0x0UINT8__552ebp_	[label=cmpl];
 	a0x004166acpopl_ecx -> a0x004166adcmpl_0x0UINT8__552ebp_	[color="#000000"];
 	a0x004166b4jl_0x4166d1	[label=jl];
@@ -6456,8 +6465,6 @@ strict digraph G {
 		label=T];
 	a0x004166d8je_0x4166ed	[label=je];
 	a0x004166d1cmpl_0x0UINT8__580ebp_ -> a0x004166d8je_0x4166ed	[color="#000000"];
-	a0x004166d8je_0x4166ed -> a0x004166edmovl__572ebp__ebx	[color="#000000",
-		label=T];
 	a0x00416719je_0x416725	[label=je];
 	a0x00416712cmpb_0x0UINT8__592ebp_ -> a0x00416719je_0x416725	[color="#000000"];
 	a0x0041671bmovl__596ebp__eax	[label=movl];
@@ -6479,7 +6486,6 @@ strict digraph G {
 	a0x00416730xorl_ebp_ecx -> a0x00416732popl_ebx	[color="#000000"];
 	a0x00416733call_0x411067	[label=call];
 	a0x00416732popl_ebx -> a0x00416733call_0x411067	[color="#000000"];
-	a0x00416733call_0x411067 -> a0x00411067cmpl_0x43b810_ecx	[color="#000000"];
 	a0x00416739ret	[label=ret];
 	a0x00416738leave_ -> a0x00416739ret	[color="#000000"];
 	a0x00410f0faddl_0x10UINT8_esp	[label=addl];
@@ -6583,6 +6589,7 @@ strict digraph G {
 	a0x004011c4movl_ecx__284ebp_ -> a0x004011capushl_0x43940cUINT32	[color="#000000"];
 	a0x004011cfcall_0x432290	[label=call];
 	a0x004011capushl_0x43940cUINT32 -> a0x004011cfcall_0x432290	[color="#000000"];
+	a0x004011cfcall_0x432290 -> LOADLIBRARYA_KERNEL32_DLL	[color="#000000"];
 	a0x004011dbmovl_0x80c808d0UINT32_edx_	[label=movl];
 	a0x004011d5movl__288ebp__edx -> a0x004011dbmovl_0x80c808d0UINT32_edx_	[color="#000000"];
 	a0x00414d90movl_edi_edi	[label=movl];

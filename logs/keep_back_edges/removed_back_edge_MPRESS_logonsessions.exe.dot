@@ -2096,6 +2096,7 @@ strict digraph G {
 	a0x00414aafjmp_0x00414aba -> a0x00414abapushl_ebx	[color="#000000"];
 	a0x00414abbcall_0x00414af2	[label=call];
 	a0x00414abapushl_ebx -> a0x00414abbcall_0x00414af2	[color="#000000"];
+	a0x00414abbcall_0x00414af2 -> a0x00414af2jmp_GetProcAddress_kernel32_dll	[color="#000000"];
 	a0x00414ac1xorb_al_al	[label=xorb];
 	a0x00414ac0stosl_eax_es_edi_ -> a0x00414ac1xorb_al_al	[color="#000000"];
 	a0x00414ac3movb_al__1esi_	[label=movb];
@@ -2109,7 +2110,6 @@ strict digraph G {
 	a0x00414acbjmp_0x00414aa4	[label=jmp];
 	a0x00414ac9jne_0x00414ac1 -> a0x00414acbjmp_0x00414aa4	[color="#000000",
 		label=F];
-	a0x00414acbjmp_0x00414aa4 -> a0x00414aa4lodsb_ds_esi__al	[color="#000000"];
 	a0x00414ab3lodsw_ds_esi__ax	[label=lodsw];
 	a0x00414ab1subl_eax_eax -> a0x00414ab3lodsw_ds_esi__ax	[color="#000000"];
 	a0x00414ab5decl_esi	[label=decl];

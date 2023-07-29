@@ -1021,6 +1021,7 @@ strict digraph G {
 	a0x00456b14pushl_0x8ebp_ -> a0x00456b17movl_0x4d317c_esi	[color="#000000"];
 	a0x00456b1dcall_esi	[label=call];
 	a0x00456b17movl_0x4d317c_esi -> a0x00456b1dcall_esi	[color="#000000"];
+	a0x00456b1dcall_esi -> LOADLIBRARYA_KERNEL32_DLL	[color="#000000"];
 	a0x00456b21testl_ebx_ebx	[label=testl];
 	a0x00456b1fmovl_eax_ebx -> a0x00456b21testl_ebx_ebx	[color="#000000"];
 	a0x00456b23jne_0x456b34	[label=jne];
@@ -1059,7 +1060,6 @@ strict digraph G {
 	a0x00456b4apushl_edi_ -> a0x00456b4cjmp_0x456b95	[color="#000000"];
 	a0x00456b95call_0x456791	[label=call];
 	a0x00456b4cjmp_0x456b95 -> a0x00456b95call_0x456791	[color="#000000"];
-	a0x00456b95call_0x456791 -> a0x00456791movl_edi_edi	[color="#000000"];
 	a0x00456b9cje_0x456af5	[label=je];
 	a0x00456b9atestl_eax_eax -> a0x00456b9cje_0x456af5	[color="#000000"];
 	a0x00456ba2pushl_eax	[label=pushl];
@@ -1071,6 +1071,7 @@ strict digraph G {
 	a0x00456ba3jmp_0x456af8 -> a0x00456af8pushl_0x10ebp_	[color="#000000"];
 	a0x00456afbcall_0x4d3178	[label=call];
 	a0x00456af8pushl_0x10ebp_ -> a0x00456afbcall_0x4d3178	[color="#000000"];
+	a0x00456afbcall_0x4d3178 -> INTERLOCKEDEXCHANGE_KERNEL32_DLL	[color="#000000"];
 	a0x00456b02popl_esi	[label=popl];
 	a0x00456b01popl_edi -> a0x00456b02popl_esi	[color="#000000"];
 	a0x00456b03popl_ebx	[label=popl];

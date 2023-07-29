@@ -2096,6 +2096,7 @@ strict digraph G {
 	a0x0041ab2fjmp_0x41ab3a -> a0x0041ab3apushl_ebx	[color="#000000"];
 	a0x0041ab3bcall_0x41ab72	[label=call];
 	a0x0041ab3apushl_ebx -> a0x0041ab3bcall_0x41ab72	[color="#000000"];
+	a0x0041ab3bcall_0x41ab72 -> a0x0041ab72jmp_0x4550e0	[color="#000000"];
 	a0x0041ab41xorb_al_al	[label=xorb];
 	a0x0041ab40stosl_eax_es_edi_ -> a0x0041ab41xorb_al_al	[color="#000000"];
 	a0x0041ab43movb_al__1esi_	[label=movb];
@@ -2109,7 +2110,6 @@ strict digraph G {
 	a0x0041ab4bjmp_0x41ab24	[label=jmp];
 	a0x0041ab49jne_0x41ab41 -> a0x0041ab4bjmp_0x41ab24	[color="#000000",
 		label=F];
-	a0x0041ab4bjmp_0x41ab24 -> a0x0041ab24lodsb_ds_esi__al	[color="#000000"];
 	a0x0041ab33lodsw_ds_esi__ax	[label=lodsw];
 	a0x0041ab31subl_eax_eax -> a0x0041ab33lodsw_ds_esi__ax	[color="#000000"];
 	a0x0041ab35decl_esi	[label=decl];
