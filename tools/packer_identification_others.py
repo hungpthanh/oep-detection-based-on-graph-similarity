@@ -1,53 +1,139 @@
-log_files = glob.glob(args.log_path + '/*.*')
+import argparse
+import glob
+import json
+import os
+import re
+import time
+from collections import Counter
+import gc
+import sys
+
+from utils.be_pum_utils import get_packer_name_BE_PUM
+from utils.graph_utils import create_subgraph, get_removed_backed_graph, load_end_unpacking_sequence
+from utils.dataset_utils import get_test_list
+from utils.pack_identification_tool_utils import packer_identification_virus_total
+from utils.pydetectpacker_utils import PyDetectPacker
+
+end_unpacking_sequence_samples = load_end_unpacking_sequence()
+sys.path.append('.')
+import networkx as nx
+import numpy as np
+from tqdm import tqdm
+from utils.oep_utils import get_oep_dataset, get_preceding_oep, get_OEP, get_oep_dataset_2
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--mode', default="evaluation", type=str)
+parser.add_argument('--packer_names', nargs="+", default=["upx"])
+parser.add_argument('--file_name', default="accesschk.exe", type=str)
+parser.add_argument('--sample_files', nargs="+",
+                    default=["AccessEnum.exe", "Cacheset.exe", "ADInsight.exe", "ADExplorer.exe"])
+parser.add_argument('--log_path', default="logs/graph_based_method7", type=str)
+parser.add_argument('--first_k', default=3, type=int)
+# Get the arguments
+args = parser.parse_args()
+gc.enable()
+oep_dictionary = get_oep_dataset()
+oep_dictionary_2 = get_oep_dataset_2()
+data_folder_path = "data"
+
+pypacker = PyDetectPacker()
+
+
+def get_final_decision(text):
+    import re
+    end_of_unpacking_result = re.search(r'Final decision: ([^,]+)', text).group(1)
+    packer = re.search(r'Packer: ([^,]+)', text).group(1)
+    packer_identification = re.search(r'packer_identification: ([^,]+)', text).group(1)
+    file_name = re.search(r'file_name: ([^,]+)', text).group(1)
+    predicted_end_of_unpacking = re.search(r'predicted-end-of-unpacking: ([^,]+)', text).group(1)
+    score = re.search(r'score: ([\d.]+)', text).group(1)
+    return end_of_unpacking_result, packer, file_name, predicted_end_of_unpacking, score, packer_identification
+
+
+def is_detect_correct(packer_name, answers):
+    # print("packer name: {}".format(packer_name))
+    if packer_name == "yodaC":
+        packer_name = "yoda's Crypter"
+    if packer_name == "petitepacked":
+        packer_name = "Petite"
+    # print("answer = {}".format(answers))
+    for answer in answers:
+        if packer_name.upper() in answer.upper():
+            return True
+    return False
+
+
+def is_detect_correct_pydetectpacer(packer_name, answers):
+    # print("packer name: {}".format(packer_name))
+    if packer_name == "yodaC":
+        packer_name = "yoda's Crypter"
+    if packer_name == "petitepacked":
+        packer_name = "Petite"
+
+    for answer in answers:
+        if ("Found PEID signature" in answer) and (packer_name.upper() in answer.upper()):
+            return True
+    return False
+
+
+def main():
+    log_files = glob.glob(args.log_path + '/*.*')
     results = {}
     prediction_data = {}
     packer_identification_data = {}
+
+    acc_of = {}
+    acc_pydetectpacker_of = {}
+    number_of = {}
     for log_file in log_files:
-        # if not ("winupack" in log_file):
-        #     continue
         print("Processing on {}".format(log_file))
         with open(log_file, "r") as f:
             lines = [line for line in f]
-            avg_score = []
             for line in tqdm(lines):
-                if "The accuracy of packer" in line:
-                    packer_name, accuracy = get_result(line)
-                    results[packer_name] = accuracy
                 if "Final decision" in line:
+                    # if "upx" in line:
+                    #     continue
                     end_of_unpacking_result, packer_name, file_name, predicted_end_of_unpacking, score, packer_identification = get_final_decision(
                         line)
-                    # print("node : {}".format(predicted_end_of_unpacking))
-                    predicted_oep, msg = get_OEP(packer_name, file_name, predicted_end_of_unpacking)
-                    if end_of_unpacking_result == "True":
-                        avg_score.append(float(score))
-                    if not packer_name in prediction_data:
-                        prediction_data[packer_name] = {}
-                    if end_of_unpacking_result == "True":
-                        prediction_data[packer_name][file_name] = predicted_oep
-                    else:
-                        prediction_data[packer_name][file_name] = None
+                    print("packer name: {}, file name: {}".format(packer_name, file_name))
+                    packed_file = "{}_{}".format(packer_name, file_name)
+                    print("Path: {}".format(os.path.join("logs/virustotal", "{}.json".format(packed_file))))
+                    if not os.path.exists(os.path.join("logs/virustotal", "{}.json".format(packed_file))):
+                        print("miss: {}".format(packed_file))
+                        continue
+                    if not (packer_name in number_of):
+                        number_of[packer_name] = 0
+                        acc_of[packer_name] = 0
+                        acc_pydetectpacker_of[packer_name] = 0
 
-                    if not (packer_name in packer_identification_data):
-                        packer_identification_data[packer_name] = []
-                    packer_name_BE_PUM = get_packer_name_BE_PUM(packer_name, file_name)
-                    packer_identification_data[packer_name].append((packer_identification, packer_name_BE_PUM))
+                    number_of[packer_name] += 1
+                    print("hello")
 
-            print("avarage score is {}".format(np.mean(avg_score)))
-    for packer_name, file_names in prediction_data.items():
-        n_sample = len(prediction_data[packer_name])
-        n_correct = 0
-        for filename, predicted_oep in file_names.items():
-            if (predicted_oep is not None) and (predicted_oep == oep_dictionary_2["{}_{}".format(packer_name, filename)]):
-                n_correct += 1
-        n_correct_predict_packer = sum(
-            [int(packer_name == predicted_name[0]) for predicted_name in packer_identification_data[packer_name]])
-        n_correct_predict_packer_be_pum = sum(
-            [int(packer_name == predicted_name[1]) for predicted_name in packer_identification_data[packer_name]])
-        print(
-            "Packer: {}, end-of-unpacking accuracy: {:.3f}, OEP detection accuracy: {:.3f}, packer_identification accuracy: {}, be-pum: {}, of sample: {}".format(
-                packer_name,
-                float(results[packer_name]),
-                1.0 * n_correct ,
-                1.0 * n_correct_predict_packer,
-                1.0 * n_correct_predict_packer_be_pum ,
-                n_sample))
+                    predicted_packer = packer_identification_virus_total(packed_file)
+                    packed_code_path = "/home/hungpt/Desktop/check_virustotal/{}".format(packed_file)
+
+                    predicted_packer_pydetectpacker = pypacker.detect(packed_code_path)
+                    print("pass get infor")
+                    print(predicted_packer_pydetectpacker)
+                    if is_detect_correct(packer_name, predicted_packer):
+                        if not (packer_name in acc_of):
+                            acc_of[packer_name] = 0
+                        acc_of[packer_name] += 1
+                    print("packer_name = {}".format(packer_name))
+                    if predicted_packer_pydetectpacker is None:
+                        continue
+                    if is_detect_correct_pydetectpacer(packer_name, predicted_packer_pydetectpacker):
+                        if not (packer_name in acc_pydetectpacker_of):
+                            acc_pydetectpacker_of[packer_name] = 0
+                        acc_pydetectpacker_of[packer_name] += 1
+    print(acc_of)
+    print(number_of)
+    for packer, correct in acc_of.items():
+        print("Packer: {}, correct: {} in total: {}".format(packer, correct, number_of[packer]))
+
+    for packer, correct in acc_pydetectpacker_of.items():
+        print("Packer: {}, correct: {} in total: {}".format(packer, correct, number_of[packer]))
+
+
+if __name__ == '__main__':
+    main()

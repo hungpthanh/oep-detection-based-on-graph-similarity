@@ -177,7 +177,7 @@ def get_infor_by_hash(filename):
     # print(vtscan.info(sha256_hash.hexdigest()))
     try:
         entry_point, packer_name_detectiteasy, packer_name_peid, result = vtscan.info(sha256_hash.hexdigest())
-
+        # print("pathhh: {}".format("logs/virustotal/{}.json".format(name_file)))
         with open("logs/virustotal/{}.json".format(name_file), "w") as outfile:
             json.dump(result, outfile, indent=4)
     except Exception as e:
@@ -185,11 +185,13 @@ def get_infor_by_hash(filename):
         pass
 def run_by_hash():
     # file_name = "/home/hungpt/Desktop/check_virustotal/petitepacked_EventLogChannelsView.exe"
-    folder_path = "/home/hungpt/Desktop/check_virustotal"
-
+    # folder_path = "/home/hungpt/Desktop/check_virustotal"
+    folder_path = "/home/hungpt/Downloads/PackingData-master/PackingData/MPRESS"
     files = glob.glob(folder_path + "/*.exe")
-    for file in tqdm(files[1000:1171]):
+    for file in tqdm(files):
         name_file = os.path.basename(file)
+        if name_file != "MPRESS_Desktops.exe":
+            continue
         name_save = "logs/virustotal/{}.json".format(name_file)
         if os.path.exists(name_save):
             continue

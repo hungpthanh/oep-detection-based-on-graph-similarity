@@ -196,7 +196,48 @@ def get_OEP(packer_name, file_name, end_of_unpacking_address):
 
     return None, "too many candidates"
 
+def get_OEP_inference(packer_name, file_name, end_of_unpacking_address):
+    def get_address_format(s):
+        return s[1:11]
 
+    if end_of_unpacking_address == "None":
+        return None, "not found eou"
+    packed_program_dot_file = os.path.join("data", "asm_cfg", packer_name,
+                                           "{}_{}_model.dot".format(packer_name, file_name))
+    original_graph = nx.DiGraph(read_dot(path=packed_program_dot_file))
+    # G = get_removed_backed_graph(packer_name, file_name)
+    # packed_program_graph = create_subgraph(G,
+    #                                        address="-1", from_specific_node=False)
+
+    # end_unpacking_node_name = "a{}{}".format(end_of_unpacking_address,
+    #                                                    packed_program_graph.nodes[end_of_unpacking_address]["label"])
+
+    end_unpacking_node_name = end_of_unpacking_address  # if node identity is pair <add, instruction>
+    original_end_of_unpacking_node = get_end_of_unpacking_in_original_graph(original_graph,
+                                                                            end_unpacking_node_name)
+
+    n_child = 0
+    child_nodes = []
+    # print("original")
+    # print(original_end_of_unpacking_node)
+    for child_node in original_graph.successors(original_end_of_unpacking_node):
+        n_child += 1
+        child_nodes.append(child_node)
+
+    if n_child == 0:
+        return None, "not found OEP"
+    if n_child == 1:
+        return child_nodes[0], "success"
+
+    try:
+        if n_child == 2:
+            for child_node in child_nodes:
+                if original_graph[original_end_of_unpacking_node][child_node]["label"] == "T":
+                    return child_node, "success"
+    except Exception as e:
+        return None, str(e)
+
+    return None, "too many candidates"
 def get_entry_point_from_pefile(file):
     pe = pefile.PE(file)
     entry_point_address = "0x{:X}".format(pe.OPTIONAL_HEADER.AddressOfEntryPoint)

@@ -1,7 +1,7 @@
 import peid
 from pefile import PE
 
-file = "/home/hungpt/Downloads/PackingData-master/Notpacked/AccessEnum.exe"
+file = "/home/hungpt/Desktop/upx_ADInsight.exe.GUnPacker.dump"
 
 
 # print(peid.find_ep_only_signature(file))
@@ -21,5 +21,5 @@ def using():
     pass
 
 if __name__ == '__main__':
-    using()
+    using_pefile()
 
