@@ -28,8 +28,8 @@ parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+",
                     default=["AccessEnum.exe", "Cacheset.exe", "ADInsight.exe", "ADExplorer.exe"])
-parser.add_argument('--log_path', default="logs/graph_based_method8", type=str)
-parser.add_argument('--first_k', default=3, type=int)
+parser.add_argument('--log_path', default="logs/graph_based_method9", type=str)
+parser.add_argument('--first_k', default=5, type=int)
 # Get the arguments
 args = parser.parse_args()
 gc.enable()
@@ -52,7 +52,7 @@ standard_feature = load_standard_feature()
 test_list = get_test_list()
 
 
-def end_of_unpacking_prediction(packer_name, node_list, unique_labels, data, end_unpacking_sequences, first_k=-1):
+def end_of_unpacking_prediction(packer_name, group_label, node_list, unique_labels, data, end_unpacking_sequences, first_k=-1):
     best_similarity = 0
     save_address = None
     try:
@@ -70,7 +70,7 @@ def end_of_unpacking_prediction(packer_name, node_list, unique_labels, data, end
         # print("Searching for best matching graph:")
         for name in node_list:
             check_end_unpacking_sequence = True if first_k == -1 else False
-            for end_unpacking_seq_sample in end_unpacking_sequence_samples[packer_name]:
+            for end_unpacking_seq_sample in end_unpacking_sequence_samples[packer_name][int(group_label):int(group_label)+1]:
                 if end_unpacking_sequences[name][:first_k] == end_unpacking_seq_sample[:first_k]:
                     check_end_unpacking_sequence = True
             if not check_end_unpacking_sequence:
@@ -120,13 +120,14 @@ def main():
                 continue
             print("Search packer name and OEP:")
             for packer_name_candidate, sample_files in tqdm(standard_feature.items()):
-                for _, feature in sample_files.items():
+                for group_label, feature in sample_files.items():
                     # update information of sample file
                     data['G1'] = feature
                     # create unique labels of G1 and sub graphs
                     merged_unique_labels = sorted(list(set(unique_labels + list(feature.keys()))))
                     # Finding end-of-unpacking
                     predicted_address, score, msg = end_of_unpacking_prediction(packer_name=packer_name_candidate,
+                                                                                group_label=group_label,
                                                                                 node_list=node_list,
                                                                                 unique_labels=merged_unique_labels,
                                                                                 data=data,

@@ -71,8 +71,10 @@ def standard_generation(packed_files, opcode_sequence, labels, X, merged_unique_
 
     for idx in range(len(packed_files)):
         label = str(labels[idx])
-        if label == -1:
+        print("label = {}".format(label))
+        if label == "-1":
             continue
+        print("pass: {}".format(type(label)))
         if not label in opcode_sequence_of_label:
             opcode_sequence_of_label[label] = []
 
@@ -172,6 +174,7 @@ def construct_standard_vector(packer_name, packed_files):
     # Save end-of-sequence
     with open("configs/end_of_unpacking_sequence.txt", "a") as f:
         for label, opcode_sequences in optimal_opcode_sequence_of_label.items():
+            print("label sequence = {}".format(label))
             for opcode_sequence in opcode_sequences:
                 print(opcode_sequence)
             max_length = min([len(seq) for seq in opcode_sequences])
