@@ -199,8 +199,8 @@ def main():
     train_of = {}
     for line in train_list:
         packer_name_of_file, file_name = get_packer_name_and_filename(line.strip())
-        # if packer_name_of_file != "packman" and packer_name_of_file != "jdpack":
-        #     continue
+        if packer_name_of_file != "telock":
+            continue
         if not (packer_name_of_file in train_of):
             train_of[packer_name_of_file] = []
         train_of[packer_name_of_file].append(line.strip())

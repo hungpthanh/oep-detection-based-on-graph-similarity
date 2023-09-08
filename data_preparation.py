@@ -14,14 +14,14 @@ from utils.string_utils import get_file_name_from_log
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--packer_names', nargs="+",
-                    default=["packman"])
+                    default=["telock"])
 parser.add_argument('--data_path', default="data", type=str)
-parser.add_argument('--original_folder', default="/home/hungpt/Downloads/PackingData-master/Notpacked", type=str)
+parser.add_argument('--original_folder', default="/home/hungpt/Downloads/dataset-packed-pe-master/not-packed", type=str)
 
 # Get the arguments
 args = parser.parse_args()
-oep_dictionary = get_oep_dataset()
-# log_oep = open("oep_data/packman.txt", "w")
+# oep_dictionary = get_oep_dataset()
+# log_oep = open("oep_data/telock.txt", "w")
 
 oep_dictionary_2 = get_oep_dataset_2()
 
@@ -49,7 +49,7 @@ oep_dictionary_2 = get_oep_dataset_2()
 #
 #             # get OEP of the packed code
 #             original_file = os.path.join(args.original_folder, file_name)
-#             original_dot_file = os.path.join(args.data_path, "log_bepum_malware", "{}_model.dot".format(file_name))
+#             original_dot_file = os.path.join(args.data_path, "log_bepum_malware_winxp", "{}_model.dot".format(file_name))
 #
 #             original_file_is_ok, msg = verify_cfg(original_dot_file)
 #             print("original_file_is_ok: {}".format(original_file_is_ok))
@@ -115,7 +115,9 @@ def split_train_test():
             data_of[packer_name_of_file].append(file_name)
 
     for packer_name, files in data_of.items():
-        if not (packer_name == "jdpack" or packer_name == "packman"):
+        # if not (packer_name == "jdpack" or packer_name == "packman"):
+        #     continue
+        if packer_name != "telock":
             continue
         f_train = open("data/train/{}.txt".format(packer_name), "w")
         f_test = open("data/test/{}.txt".format(packer_name), "w")

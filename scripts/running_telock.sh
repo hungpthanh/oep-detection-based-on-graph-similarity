@@ -1,0 +1,1 @@
+python graph_based_method.py --mode detection --packer_names telock --first_k 5

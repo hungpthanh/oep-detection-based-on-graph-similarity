@@ -263,10 +263,10 @@ def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, u
     if not using_upx:
         entry_point_of_original = list(original_cfg.nodes)[0]
         node_list_of_original, node_labels_of_original, original_labels_of_original, _ = convert_graph_to_vector(
-            original_cfg, entry_point_of_original, from_specific_node=True, from_bottom=False, depth=20)
+            original_cfg, entry_point_of_original, from_specific_node=True, from_bottom=False, depth=5) # 20 for 11 packer
     else:
         node_list_of_original, node_labels_of_original, original_labels_of_original, _ = convert_graph_to_vector(
-            original_cfg, oep_upx, from_specific_node=True, from_bottom=False, depth=20)
+            original_cfg, oep_upx, from_specific_node=True, from_bottom=False, depth=5)
 
     data_original = Counter(list(node_labels_of_original.values()) + original_labels_of_original)
     unique_labels = sorted(list(set(list(node_labels_of_original.values()) + original_labels_of_original)))
@@ -296,7 +296,7 @@ def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, u
             print("node: {}, sim = {}".format(node, sim))
 
             # if (sim > save_sim):
-            if (sim >= 0.90) and (sim > save_sim):
+            if (sim >= 0.75) and (sim > save_sim):
                 save_node, save_sim = node, sim
     # print("save_node = {}".format(save_node))
     return save_node
