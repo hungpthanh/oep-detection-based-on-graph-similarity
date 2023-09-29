@@ -51,21 +51,24 @@ with open(log_file, "r") as f:
         #     if tq > 0:
         #         set_techniques[packer_name].append()
 rows = []
+packer_name_rows = []
 for key, value in set_techniques.items():
     # print("key = {}".format(key))
     if key in packer_names:
         # print(get_average(value))
         # print("Key: {}, {}".format(key, get_average(value)))
         print("Key: {}".format(key))
+        packer_name_rows.append(key)
         row = []
         for idx, ele in enumerate(get_average(value)):
             print("({}){:.2f} ".format(idx, ele), end="")
             row.append("{:.2f}".format(ele))
+        row = [row[idx] for idx in [6, 5, 2, 7, 8, 3, 9, 12, 4, 1, 11, 0, 10, 13]]
         rows.append(row)
         print()
         # print("Key: {}, {}".format(key, value))
 pd.set_option('display.max_columns', None)
 df = pd.DataFrame(rows, columns=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
-                  index=["telock", "winupack", "jdpack", "packman", "mew", "yodaC", "petite", "MPRESS", "pecompact", "aspack", "fsg", "upx"])
+                  index=packer_name_rows)
 # print(df)
 df.to_csv('file_name.csv')

@@ -1,9 +1,9 @@
 import glob
 import os
 
-path = ""
+path = "/media/hungpt/SSD-HUNG/OEP_detection/log_be_pum_malware_all/"
 
-folders = []
+folders = ["first", "20230701", "20230711", "20230714", "20230722", "20230731"]
 
 L = set()
 for folder in folders:

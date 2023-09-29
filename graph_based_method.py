@@ -28,7 +28,7 @@ parser.add_argument('--packer_names', nargs="+", default=["upx"])
 parser.add_argument('--file_name', default="accesschk.exe", type=str)
 parser.add_argument('--sample_files', nargs="+",
                     default=["AccessEnum.exe", "Cacheset.exe", "ADInsight.exe", "ADExplorer.exe"])
-parser.add_argument('--log_path', default="logs/graph_based_method9", type=str)
+parser.add_argument('--log_path', default="logs/graph_based_method10", type=str)
 parser.add_argument('--first_k', default=5, type=int)
 # Get the arguments
 args = parser.parse_args()
@@ -93,6 +93,7 @@ def main():
         total_sample = 0
         correct_sample = 0
         for test_file in test_list:
+            start_time = time.time()
             packer_name_of_file, file_name = test_file.strip().split("_")[0], "_".join(test_file.strip().split("_")[1:])
             oep_address = oep_dictionary_2[test_file]
             if oep_address == "None":
@@ -153,6 +154,7 @@ def main():
                     packer_name, predicted_packer, file_name, preceding_oep, final_address, final_score))
             if final_address == preceding_oep:
                 correct_sample += 1
+            print("End time: {}".format(time.time() - start_time))
         print("The accuracy of packer: {} is {}".format(packer_name, 1.0 * correct_sample / total_sample))
         log_file.writelines(
             "The accuracy of packer: {} is {}\n".format(packer_name, 1.0 * correct_sample / total_sample))

@@ -7,7 +7,7 @@ import os
 from utils.oep_utils import get_entry_point_from_pefile, get_oep_dataset_2, verify_offset
 
 oep_dictionary_2 = get_oep_dataset_2()
-target_folder = "/media/hungpt/SSD-HUNG/test_Gunpacker"
+target_folder = "/media/hungpt/SSD-HUNG/OEP_detection/test_Gunpacker"
 source_folder = "/home/hungpt/Desktop/check_virustotal"
 
 def get_packer_name_and_filename(packer_name_file_name):
