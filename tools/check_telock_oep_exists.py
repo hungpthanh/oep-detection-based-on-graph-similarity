@@ -1,10 +1,15 @@
 import glob
 import os.path
+import shutil
 
 import pefile
 
 data_folder = "/home/hungpt/workspace/research/oep-detection/data/asm_cfg/telock"
 asm_files = glob.glob(data_folder + "/*.asm")
+
+checked_sample_telocks = "/media/hungpt/SSD-HUNG/29_samples_telocks"
+not_packed_folder = "/home/hungpt/Downloads/dataset-packed-pe-master/not-packed"
+packed_telock_folder = "/home/hungpt/Downloads/dataset-packed-pe-master/packed/TELock"
 
 
 def find_address(address, file):
@@ -27,8 +32,14 @@ for asm_file in asm_files:
         continue
     pe = pefile.PE(file)
     entry_point_address = "{:X}".format(pe.OPTIONAL_HEADER.AddressOfEntryPoint)
-    # print(asm_file)
-    # print(entry_point_address)
-    # print("Found: {}".format(find_address(entry_point_address, asm_file)))
+
     if find_address(entry_point_address, asm_file):
         print("timeout 60m java -jar Main.jar asm/testcase/{}".format(original_name))
+        # copy original
+        src = os.path.join(not_packed_folder, original_name)
+        dst = os.path.join(checked_sample_telocks, "original", original_name)
+        shutil.copyfile(src, dst)
+        # copy packed codes telock
+        src = os.path.join(packed_telock_folder, "{}_{}".format("telock", original_name))
+        dst = os.path.join(checked_sample_telocks, "packed", "{}_{}".format("telock", original_name))
+        shutil.copyfile(src, dst)

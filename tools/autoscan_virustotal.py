@@ -186,12 +186,13 @@ def get_infor_by_hash(filename):
 def run_by_hash():
     # file_name = "/home/hungpt/Desktop/check_virustotal/petitepacked_EventLogChannelsView.exe"
     # folder_path = "/home/hungpt/Desktop/check_virustotal"
-    folder_path = "/home/hungpt/Downloads/PackingData-master/PackingData/MPRESS"
+    # folder_path = "/home/hungpt/Downloads/PackingData-master/PackingData/MPRESS"
+    folder_path = "/media/hungpt/SSD-HUNG/29_samples_telocks/packed"
     files = glob.glob(folder_path + "/*.exe")
     for file in tqdm(files):
         name_file = os.path.basename(file)
-        if name_file != "MPRESS_Desktops.exe":
-            continue
+        # if name_file != "MPRESS_Desktops.exe":
+        #     continue
         name_save = "logs/virustotal/{}.json".format(name_file)
         if os.path.exists(name_save):
             continue

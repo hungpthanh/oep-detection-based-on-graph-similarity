@@ -214,6 +214,9 @@ def evaluate():
                     if not (packer_name in packer_identification_data):
                         packer_identification_data[packer_name] = []
                     packer_name_BE_PUM = get_packer_name_BE_PUM(packer_name, file_name)
+                    # if packer_name == "telock":
+                    #     print("BEPPPPP")
+                    #     print(packer_name_BE_PUM)
                     packer_identification_data[packer_name].append((packer_identification, packer_name_BE_PUM))
 
             print("avarage score is {}".format(np.mean(avg_score)))

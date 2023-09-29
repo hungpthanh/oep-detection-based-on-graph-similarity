@@ -43,7 +43,7 @@ for file_name in test_list:
         number_of[packer_name_of_file] = 0
         correct_of[packer_name_of_file] = 0
     number_of[packer_name_of_file] += 1
-    for index in range(1, 69):
+    for index in range(1, 70):
         logs = glob.glob(os.path.join(target_folder, "batch{}".format(index) + "/*.txt"))
         for log in logs:
 

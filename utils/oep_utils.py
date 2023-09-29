@@ -296,7 +296,7 @@ def search_entry_point_in_cfg(entry_point, packed_dot_file, original_dot_file, u
             print("node: {}, sim = {}".format(node, sim))
 
             # if (sim > save_sim):
-            if (sim >= 0.75) and (sim > save_sim):
+            if (sim >= 0.6) and (sim > save_sim):
                 save_node, save_sim = node, sim
     # print("save_node = {}".format(save_node))
     return save_node

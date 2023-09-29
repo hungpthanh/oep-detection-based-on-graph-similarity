@@ -28,7 +28,7 @@ for file_name in test_list:
         number_of[packer_name_of_file] = 0
         correct_of[packer_name_of_file] = 0
     number_of[packer_name_of_file] += 1
-    for index in range(1, 69):
+    for index in range(1, 70):
         file_path = os.path.join(target_folder, "batch{}".format(index), file_name_dump)
         if os.path.exists(file_path):
             cnt += 1
