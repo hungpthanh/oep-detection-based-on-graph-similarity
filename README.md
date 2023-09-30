@@ -1,7 +1,7 @@
 # Original Entry Point detection based on graph similarity
 - The official source code for the paper "Original Entry Point detection based on graph similarity"
-- This code is undering refactoring process
-- This code is for research purpose only
+- This code is undergoing a refactoring process
+- This code is for research purposes only
 ## Requirements
 - Python >= 3.7
 - networkx 2.6.3
