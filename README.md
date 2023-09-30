@@ -49,6 +49,7 @@ sh scripts/running_upx.sh
 ```
 
 ### Template setup
+Delete "end_of_unpacking_sequence.txt" before running
 ```bash
 python standard_graph_construction.py
 ```
