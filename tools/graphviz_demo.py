@@ -68,9 +68,14 @@ def generate_subgraph():
 
 
 if __name__ == '__main__':
-    if args.mode == "all":
-        generate_graph()
-    elif args.mode == "single":
-        generate_single()
-    else:
-        generate_subgraph()
+    # if args.mode == "all":
+    #     generate_graph()
+    # elif args.mode == "single":
+    #     generate_single()
+    # else:
+    #     generate_subgraph()
+
+    path = "/home/hungpt/workspace/research/oep-detection/data/log_bepum_malware/Tcpview.exe_model.dot"
+    s = Source.from_file(path)
+    # s.save(directory="logs/log_graph_color")
+    s.render()
