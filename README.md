@@ -5,7 +5,7 @@
 ## Requirements
 - Python >= 3.7
 - networkx 2.6.3
-
+- PyGraphviz
 ## Usage:
 ### Dataset
 - data: https://drive.google.com/file/d/1PPfADJnTPACcaqwzl1F6PdSsCzDPoloU/view?usp=sharing. (Put it under oep-detection folder)
